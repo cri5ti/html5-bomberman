@@ -7,10 +7,12 @@ define([
 ],function($, _, Backbone, core) {
 
 
-    var LEFT = 37;
-    var UP = 38;
-    var RIGHT = 39;
-    var DOWN = 40;
+    const LEFT = 37;
+    const UP = 38;
+    const RIGHT = 39;
+    const DOWN = 40;
+
+    const PLAYER_MOVE_SPEED = 1; // squares per second
 
     var keymap = {}; // it's ok to be global
 
@@ -52,15 +54,37 @@ define([
         },
 
         update: function(delta) {
-            var speed = delta * 5;
+            var speed = delta * PLAYER_MOVE_SPEED;
+
+            var dx = 0;
+            var dy = 0;
 
             // handle input
-            if (keymap[LEFT])   this.me.deltaMove(-speed, 0);
-            if (keymap[RIGHT])  this.me.deltaMove(speed, 0);
-            if (keymap[UP])     this.me.deltaMove(0, -speed);
-            if (keymap[DOWN])   this.me.deltaMove(0, speed);
+            if (keymap[LEFT])   dx-=speed;
+            if (keymap[RIGHT])  dx+=speed;
+            if (keymap[UP])     dy-=speed;
+            if (keymap[DOWN])   dy+=speed;
 
-            this.me.set('moving', keymap[LEFT] || keymap[RIGHT] || keymap[UP] || keymap[DOWN] );
+            var moving = keymap[LEFT] || keymap[RIGHT] || keymap[UP] || keymap[DOWN];
+
+            if (moving) {
+                this.requestMove(dx, dy);
+            }
+
+            this.me.set('moving', moving);
+        },
+
+        requestMove: function(dx, dy) {
+            var ox = this.me.get('x');
+            var oy = this.me.get('y');
+            var nx = ox + dx;
+            var ny = oy + dy;
+
+            var cx = Math.floor(nx);
+            var cy = Math.floor(ny);
+
+            if (this.world.map.getAbsTile(cx, cy) == 0)
+                this.me.deltaMove(dx, dy);
         }
 
     });

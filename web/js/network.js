@@ -24,11 +24,12 @@ define([
 
             this.world.player.on('change', this.playerChange, this);
 
-            this.socket = io.connect('http://192.168.0.2:1234/game');
+            this.socket = io.connect('http://192.168.0.2:8000/game');
 
             this.socket.on('disconnect', $.proxy(this.onDisconnect, this));
 
             this.socket.on('game-join', $.proxy(this.onGameJoin, this));
+            this.socket.on('map', $.proxy(this.onMapUpdate, this));
             this.socket.on('player-joined', $.proxy(this.onPlayerJoined, this));
             this.socket.on('player-update', $.proxy(this.onPlayerUpdated, this));
             this.socket.on('player-disconnected', $.proxy(this.onPlayerDisconnected, this));
@@ -59,8 +60,18 @@ define([
             });
         },
 
+        onMapUpdate: function(d) {
+            this.world.map.set({
+                x: d.x,
+                y: d.y,
+                width: d.w,
+                height: d.h,
+                map: d.map
+            });
+        },
+
         onPlayerJoined: function(d) {
-            console.log(d.name + " joined");
+            console.log(d.name + " #" + d.id + " joined");
             var c = new Character({
                 name: d.name,
                 character: d.character,
@@ -74,6 +85,7 @@ define([
 
         onPlayerDisconnected: function(d) {
             var c = this.peers[d.id];
+            if (!c) return; // we don't know this guy
             console.log(c.get('name') + " disconnected");
 
             this.world.players.remove(c);
@@ -83,18 +95,25 @@ define([
         onPlayerUpdated: function(d) {
             var c = this.peers[d.id];
             if (!c) {
-                console.log("Unknown client #"+ d.id);
+                console.log("Update from unknown #"+ d.id);
                 return;
             }
-//            console.log(c.get('name') + " ("+d.id+") update");
-            c.set('x', d.x);
-            c.set('y', d.y);
-            c.set('orient', d.o);
-            c.set('moving', d.m);
-            c.set('chat', d.chat);
+
+            c.set({
+                x: d.x,
+                y: d.y,
+                orient: d.o,
+                moving: d.m,
+                chat: d.chat
+            });
         },
 
         playerChange: function(player) {
+            _.debounce(this.sendPlayerChange)
+            this.sendPlayerChange(player);
+        },
+
+        sendPlayerChange: function(player) {
             this.socket.emit('update', {
                 id: this.id,
                 x: Math.round( player.get('x') * 1000 ) / 1000,

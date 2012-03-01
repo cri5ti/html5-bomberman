@@ -19,7 +19,7 @@ var server = require("./server");
 //_______________________________________________________________
 // IO
 
-var io = require('socket.io').listen(1234);
+var io = require('socket.io').listen(site);
 
 //io.set('transports', [
 //    'websocket',

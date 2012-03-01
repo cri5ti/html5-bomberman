@@ -11,12 +11,10 @@ define([
 ],function($, _, Backbone, core) {
 
 
-    const MOVE_ANIM_SPEED = 0.15;
+    const MOVE_ANIM_SPEED = 0.25;
     const SQUARE_SIZE = 16;
 
     var tmp = 0;
-
-    var orientations = ["down", "up", "right", "left"];
 
     CharacterView = Backbone.View.extend({
         className: 'john',
@@ -51,14 +49,14 @@ define([
             frame = frame % 3;
             if (!this.model.get('moving')) frame = 1;
 
-            var o = orientations.indexOf(this.model.get('orient'));
+            var o = this.model.get('orient');
 
             var x = this.model.get('x') * SQUARE_SIZE;
             var y = this.model.get('y') * SQUARE_SIZE;
 
             this.$el.css({
-                left: x,
-                top: y,
+                left: x - 11,
+                top: y - 16,
                 'background-position-x': -(frame*22)+'px',
                 'background-position-y': -(o*22)+'px',
                 'z-index': y

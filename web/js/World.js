@@ -21,6 +21,7 @@ define([
         $container: null,
 
         map: null,
+        mapView: null,
 
         /** our player */
         player: null,
@@ -37,8 +38,9 @@ define([
         initialize: function(opt) {
             this.$container = opt.container;
 
-            this.map = new MapView();
-            this.$container.append(this.map.el);
+            this.map = new Map();
+            this.mapView = new MapView({model: this.map});
+            this.$container.append(this.mapView.el);
 
             this.players.on('add', this.onCharacterAdded, this);
             this.players.on('remove', this.onCharacterRemoved, this);

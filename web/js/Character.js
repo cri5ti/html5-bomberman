@@ -12,13 +12,17 @@ define([
     "jquery", "underscore", "backbone",
 ],function($, _, Backbone, core) {
 
+    const ORIENT_DOWN = 0;
+    const ORIENT_UP = 1;
+    const ORIENT_RIGHT = 2;
+    const ORIENT_LEFT = 3;
 
     Character = Backbone.Model.extend({
         defaults: {
             character: 'john',
             x: 0,
             y: 0,
-            orient: 'down',
+            orient: ORIENT_DOWN,
             moving: false,
             chat: ''
         },
@@ -28,13 +32,13 @@ define([
             this.set('y', this.get('y') + y);
 
             if (x<0)
-                this.set('orient', 'left');
+                this.set('orient', ORIENT_LEFT);
             else if (x>0)
-                this.set('orient', 'right');
+                this.set('orient', ORIENT_RIGHT);
             else if (y<0)
-                this.set('orient', 'up');
+                this.set('orient', ORIENT_UP);
             else if (y>0)
-                this.set('orient', 'down');
+                this.set('orient', ORIENT_DOWN);
         },
 
         update: function() {
