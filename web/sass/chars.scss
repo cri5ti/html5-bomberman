@@ -1,0 +1,44 @@
+
+@import "compass";
+
+.characters, .john, .mary, .joe, .betty {
+    position: absolute;
+
+    background-image: url('/res/chars.png');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+
+$dx: 0px;
+$dy: 0px;
+.john.up { background-position: (-28-$dx) (-9-$dy); }
+.john.down { background-position: (-28-$dx) (-48-$dy); }
+.john.left { background-position: (-8-$dx) (-30-$dy); }
+.john.right { background-position: (-48-$dx) (-29-$dy); }
+
+
+
+$dx: 76px;
+$dy: 0px;
+.mary.up { background-position: (-28-$dx) (-9-$dy); }
+.mary.down { background-position: (-28-$dx) (-48-$dy); }
+.mary.left { background-position: (-8-$dx) (-30-$dy); }
+.mary.right { background-position: (-48-$dx) (-29-$dy); }
+
+
+$dx: 152px;
+$dy: 0px;
+.joe.up { background-position: (-28-$dx) (-9-$dy); }
+.joe.down { background-position: (-28-$dx) (-48-$dy); }
+.joe.left { background-position: (-8-$dx) (-30-$dy); }
+.joe.right { background-position: (-48-$dx) (-29-$dy); }
+
+
+$dx: 228px;
+$dy: 0px;
+.betty.up { background-position: (-28-$dx) (-9-$dy); }
+.betty.down { background-position: (-28-$dx) (-48-$dy); }
+.betty.left { background-position: (-8-$dx) (-30-$dy); }
+.betty.right { background-position: (-48-$dx) (-29-$dy); }

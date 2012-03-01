@@ -1,0 +1,88 @@
+/* line 4, ../sass/chars.scss */
+.characters, .john, .mary, .joe, .betty {
+  position: absolute;
+  background-image: url("/res/chars.png");
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+/* line 16, ../sass/chars.scss */
+.john.up {
+  background-position: -28px -9px;
+}
+
+/* line 17, ../sass/chars.scss */
+.john.down {
+  background-position: -28px -48px;
+}
+
+/* line 18, ../sass/chars.scss */
+.john.left {
+  background-position: -8px -30px;
+}
+
+/* line 19, ../sass/chars.scss */
+.john.right {
+  background-position: -48px -29px;
+}
+
+/* line 25, ../sass/chars.scss */
+.mary.up {
+  background-position: -104px -9px;
+}
+
+/* line 26, ../sass/chars.scss */
+.mary.down {
+  background-position: -104px -48px;
+}
+
+/* line 27, ../sass/chars.scss */
+.mary.left {
+  background-position: -84px -30px;
+}
+
+/* line 28, ../sass/chars.scss */
+.mary.right {
+  background-position: -124px -29px;
+}
+
+/* line 33, ../sass/chars.scss */
+.joe.up {
+  background-position: -180px -9px;
+}
+
+/* line 34, ../sass/chars.scss */
+.joe.down {
+  background-position: -180px -48px;
+}
+
+/* line 35, ../sass/chars.scss */
+.joe.left {
+  background-position: -160px -30px;
+}
+
+/* line 36, ../sass/chars.scss */
+.joe.right {
+  background-position: -200px -29px;
+}
+
+/* line 41, ../sass/chars.scss */
+.betty.up {
+  background-position: -256px -9px;
+}
+
+/* line 42, ../sass/chars.scss */
+.betty.down {
+  background-position: -256px -48px;
+}
+
+/* line 43, ../sass/chars.scss */
+.betty.left {
+  background-position: -236px -30px;
+}
+
+/* line 44, ../sass/chars.scss */
+.betty.right {
+  background-position: -276px -29px;
+}
