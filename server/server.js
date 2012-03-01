@@ -19,6 +19,7 @@
             this.set('x', d.x);
             this.set('y', d.y);
             this.set('o', d.o);
+            this.set('m', d.m);
             this.set('chat', d.chat);
         },
 
@@ -28,11 +29,12 @@
                 x: this.get('x'),
                 y: this.get('y'),
                 o: this.get('o'),
+                m: this.get('m'),
                 chat: this.get('chat')
             };
         },
 
-        getInfo: function() {
+        getInitialInfo: function() {
             return {
                 id: this.get('id'),
                 name: this.get('name'),
@@ -69,8 +71,8 @@
         connection: function(socket) {
             var playerId = ++maxPlayerId;
             var name = "?";
-            var x = Math.round(Math.random()*300 + 50);
-            var y = Math.round(Math.random()*300 + 50);
+            var x = Math.round(Math.random()*5 + 10);
+            var y = Math.round(Math.random()*5 + 10);
 
             var me = new Player();
             me.set('id', playerId);
@@ -85,12 +87,22 @@
                 console.log("Player " + name + " joined ("+x+","+y+")");
 
                 // notify everyone about me
-                socket.broadcast.emit('player-joined', me.getInfo());
+                socket.broadcast.emit('player-joined', me.getInitialInfo());
 
                 // update me about everything
                 _.each(players, function(p) {
                     if (p == me) return;
-                    socket.emit('player-joined', p.getInfo());
+                    socket.emit('player-joined', p.getInitialInfo());
+                });
+
+                // send map
+                socket.emit('map', {
+                    x: 10, y: 10, w: 5, h: 5,
+                    map: "11111" +
+                         "10001" +
+                         "10001" +
+                         "10001" +
+                         "11111"
                 });
             }, this));
 

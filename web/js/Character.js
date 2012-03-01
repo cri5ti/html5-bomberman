@@ -1,30 +1,31 @@
 /**
  * Created by JetBrains WebStorm.
  * User: cristi
- * Date: 29/02/2012
- * Time: 12:43
+ * Date: 01/03/2012
+ * Time: 12:28
  * To change this template use File | Settings | File Templates.
  */
+
+
 
 define([
     "jquery", "underscore", "backbone",
 ],function($, _, Backbone, core) {
 
-    var orients = ['up', 'right', 'down', 'left'];
-    var i=0;
 
     Character = Backbone.Model.extend({
         defaults: {
             character: 'john',
-            chat: '',
-            x: 100,
-            y: 100,
-            orient: 'up'
+            x: 0,
+            y: 0,
+            orient: 'down',
+            moving: false,
+            chat: ''
         },
 
         deltaMove: function(x, y) {
-            this.set('x', this.get('x') + x*5);
-            this.set('y', this.get('y') + y*5);
+            this.set('x', this.get('x') + x);
+            this.set('y', this.get('y') + y);
 
             if (x<0)
                 this.set('orient', 'left');
@@ -73,43 +74,8 @@ define([
         }
     });
 
-//    ________________________________________________________________________
 
 
-    CharacterView = Backbone.View.extend({
-        className: 'john',
-
-        initialize: function() {
-            this.render();
-            this.update();
-            this.model.on('change', this.update, this);
-        },
-
-        update: function() {
-            if (this.model.hasChanged("chat")) {
-                if (this.model.get('chat')) {
-                    this.$bubble.text(this.model.get('chat'));
-                    this.$bubble.show();
-                } else {
-                    this.$bubble.hide();
-                }
-            }
-
-            var classes = this.model.get('character') + ' ' + this.model.get('orient');
-            this.$el.attr('class', classes);
-            this.$el.css({
-                left: this.model.get('x'),
-                top: this.model.get('y')
-            });
-        },
-
-        render: function() {
-            this.$bubble = $('<div class="bubble"></div>');
-            this.$bubble.hide();
-            this.$el.append(this.$bubble)
-        }
-
-    });
 
 
 });

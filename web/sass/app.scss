@@ -8,9 +8,22 @@ html {
 }
 
 body {
-    @include background-image(linear-gradient(top, #354, #022, #466));
+    @include background-image(linear-gradient(top, #60aa42,#ace884,#27702c));
     color: #fff;
 }
+
+a {
+    color: #aaa;
+}
+
+a.disabled {
+    color: #333;
+}
+
+a:hover {
+    color: #fff;
+}
+
 
 #console {
     width: 100%;
@@ -46,24 +59,13 @@ body {
 }
 
 
-a {
-    color: #aaa;
-}
-
-a.disabled {
-    color: #333;
-}
-
-a:hover {
-    color: #fff;
-}
-
 .bubble {
     position: absolute;
-    background-color: #000;
+    border: solid 1px #000;
+    color: #000;
     top: -20px;
     left: 10px;
-    padding: 5px 10px;
+    padding: 3px 5px;
     font-size: 11px;
     white-space: nowrap;
     @include border-radius(8px 8px 8px 0);
