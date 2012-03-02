@@ -14,7 +14,7 @@ define([
 
     const SPACE = 32;
 
-    const PLAYER_MOVE_SPEED = 10; // squares per second
+    const PLAYER_MOVE_SPEED = 5; // squares per second
 
     var keymap = {}; // it's ok to be global
 
