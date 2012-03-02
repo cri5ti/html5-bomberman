@@ -52,8 +52,9 @@ site.get("*", function(req, res) {
 });
 
 
-site.listen(8000);
+var port = process.env.PORT || 8000;
+site.listen(port);
 
-console.log("Server listening on :8000");
+console.log("Server listening on :" + port);
 
 
