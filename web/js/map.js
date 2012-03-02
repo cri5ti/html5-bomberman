@@ -36,6 +36,11 @@ define([
             this.h = this.get('width');
             this.x = this.get('x');
             this.y = this.get('y');
+
+            if (this.hasChanged('width') || this.hasChanged('height')) {
+                console.log("resizing flames map");
+                this.flames = new Array(this.w * this.h);
+            }
         },
 
         getAbsTile: function(x, y) {
@@ -45,8 +50,15 @@ define([
         getTile: function(x, y) {
             var c = this.map[ y * this.w + x ];
             return c*1;
-        }
+        },
 
+        getFlame: function(x,y) {
+            return this.flames[ (y-this.y) * this.w + (x-this.x) ];
+        },
+
+        setFlame: function(f,x,y) {
+            this.flames[ (y-this.y) * this.w + (x-this.x) ] = f;
+        }
     });
 
     MapView = Backbone.View.extend({

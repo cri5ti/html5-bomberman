@@ -11,18 +11,21 @@ define([
 ],function($, _, Backbone, core) {
 
 
-    const MOVE_ANIM_SPEED = 0.25;
+    const MOVE_ANIM_SPEED = 0.15;
     const SQUARE_SIZE = 16;
-
-    var tmp = 0;
 
     CharacterView = Backbone.View.extend({
         className: 'john',
 
         initialize: function() {
-            this.render();
-            this.modelChange(true);
+            this.frame = 0;
+
+            this.$bubble = $('<div class="bubble"></div>');
+            this.$bubble.hide();
+            this.$el.append(this.$bubble);
+
             this.model.on('change', this.modelChange, this);
+            this.modelChange(true);
         },
 
         modelChange: function(init) {
@@ -37,15 +40,16 @@ define([
             }
 
             if (this.model.hasChanged("character") || init) {
-                var classes = this.model.get('character') + ' ' + this.model.get('orient');
+                var classes = 'character ' + this.model.get('character');
                 this.$el.attr('class', classes);
             }
+            this.update(0);
         },
 
         update: function(dt) {
-            tmp += dt;
+            this.frame += dt;
 
-            var frame = Math.floor(tmp / MOVE_ANIM_SPEED);
+            var frame = Math.floor(this.frame / MOVE_ANIM_SPEED);
             frame = frame % 3;
             if (!this.model.get('moving')) frame = 1;
 
@@ -61,13 +65,6 @@ define([
                 'background-position-y': -(o*22)+'px',
                 'z-index': y
             });
-        },
-
-        render: function() {
-            this.$bubble = $('<div class="bubble"></div>');
-            this.$bubble.hide();
-
-            this.$el.append(this.$bubble)
         }
 
     });

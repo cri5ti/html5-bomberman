@@ -24,6 +24,8 @@ define([
 
             this.world.player.on('change', this.playerChange, this);
 
+            this.world.placeBombs.on('add', this.requestPlaceBomb, this);
+
             this.socket = io.connect('http://192.168.0.2:8000/game');
 
             this.socket.on('disconnect', $.proxy(this.onDisconnect, this));
@@ -33,6 +35,9 @@ define([
             this.socket.on('player-joined', $.proxy(this.onPlayerJoined, this));
             this.socket.on('player-update', $.proxy(this.onPlayerUpdated, this));
             this.socket.on('player-disconnected', $.proxy(this.onPlayerDisconnected, this));
+
+            this.socket.on('bomb-placed', $.proxy(this.onBombPlaced, this));
+            this.socket.on('bomb-boomed', $.proxy(this.onBombBoomed, this));
         },
 
         onDisconnect: function() {
@@ -41,6 +46,7 @@ define([
             _.each(this.peers, _.bind(function(p) {
                 this.world.players.remove(p);
             }, this));
+            this.peers = {};
         },
 
         onGameJoin: function(d) {
@@ -113,6 +119,11 @@ define([
             this.sendPlayerChange(player);
         },
 
+        requestPlaceBomb: function(b) {
+            this.socket.emit('put-bomb', {x: b.get('x'), y: b.get('y')});
+            this.world.placeBombs.remove(b);
+        },
+
         sendPlayerChange: function(player) {
             this.socket.emit('update', {
                 id: this.id,
@@ -122,6 +133,19 @@ define([
                 m: player.get('moving'),
                 chat: player.get('chat')
             });
+        },
+
+        onBombPlaced: function(d) {
+            this.world.bombs.add(new Bomb({x:d.x, y:d.y}));
+        },
+
+        onBombBoomed: function(d) {
+            var b = this.world.bombs.find(function(b) {
+                return b.get('x') == d.x && b.get('y') == d.y
+            });
+
+            // locate bomb
+            this.world.explodeBomb(b, d.strength);
         }
 
     });

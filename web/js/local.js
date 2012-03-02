@@ -12,7 +12,9 @@ define([
     const RIGHT = 39;
     const DOWN = 40;
 
-    const PLAYER_MOVE_SPEED = 1; // squares per second
+    const SPACE = 32;
+
+    const PLAYER_MOVE_SPEED = 10; // squares per second
 
     var keymap = {}; // it's ok to be global
 
@@ -71,7 +73,17 @@ define([
                 this.requestMove(dx, dy);
             }
 
+            if (keymap[SPACE])
+                this.tryPlaceBomb();
+
             this.me.set('moving', moving);
+        },
+
+        tryPlaceBomb: function() {
+            this.world.placeBomb(
+                Math.floor(this.me.get('x')),
+                Math.floor(this.me.get('y'))
+            );
         },
 
         requestMove: function(dx, dy) {
@@ -85,6 +97,7 @@ define([
 
             if (this.world.map.getAbsTile(cx, cy) == 0)
                 this.me.deltaMove(dx, dy);
+//            else
         }
 
     });

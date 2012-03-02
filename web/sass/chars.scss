@@ -1,10 +1,13 @@
 
 @import "compass";
 
-.character,.john,.mary,.joe,.betty
-{
+.sprite,.character {
     position: absolute;
     background-repeat: no-repeat;
+}
+
+.character
+{
     width: 22px;
     height: 22px;
 }
@@ -13,3 +16,16 @@
 .mary {   background-image: url('/res/char-mary.png'); }
 .joe  {   background-image: url('/res/char-joe.png'); }
 .betty {  background-image: url('/res/char-betty.png'); }
+
+
+.bomb {
+    width: 16px;
+    height: 16px;
+    background-image: url('/res/bombs.png');
+}
+
+.flame {
+    width: 16px;
+    height: 16px;
+    background-image: url('/res/flames.png');
+}

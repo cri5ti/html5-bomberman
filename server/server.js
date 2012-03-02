@@ -13,6 +13,20 @@
 
 
 
+    Bomb = Backbone.Model.extend({
+        defaults: {
+            x: 0,
+            y: 0,
+            timePlaced: 0,
+            fuseTime: 2500,
+            strength: 4
+        }
+    });
+
+
+    BombCollection = Backbone.Collection.extend({
+    });
+
 
     Player = Backbone.Model.extend({
         setUpdate: function(d) {
@@ -52,8 +66,8 @@
 
     Map = Backbone.Model.extend({
         defaults: {
-            width: 25,
-            height: 20,
+            width: 27,
+            height: 19,
             x: 5,
             y: 3
         },
@@ -101,6 +115,12 @@
         },
 
         getTile: function(x, y) {
+            // check bounds
+            if (x<0) return -1;
+            if (x>=this.get('width')) return -1;
+            if (y<0) return -1;
+            if (y>=this.get('height')) return -1;
+
             var c = this.get('map')[ y * this.get('width') + x ];
             return c*1;
         },
@@ -115,11 +135,11 @@
             }
         },
 
-        setAbsMap: function(x, y, c) {
+        setAbsMap: function(x, y, c, silent) {
+            if (silent === undefined) silent = false;
             var ix = (y - this.get('y')) * this.get('width') + (x - this.get('x'));
-
             var map = this.get('map');
-            this.set('map', map.substr(0, ix) + c + map.substr(ix+1));
+            this.set('map', map.substr(0, ix) + c + map.substr(ix+1), {silent: silent});
         },
 
         prepareNewPlayer: function() {
@@ -147,6 +167,62 @@
 
     });
 
+
+    Game = Backbone.Model.extend({
+
+        defaults: {
+            endPoint: 'game'
+        },
+
+        bombs: null,
+
+        initialize: function() {
+
+            this.map = new Map();
+            this.bombs = new BombCollection();
+
+            this.bombs.on('add', this.onBombAdded, this);
+        },
+
+        onBombAdded: function(b) {
+            // set a timer.. TODO - is it ok to have lots of timers?
+            setTimeout(_.bind(function() {
+                this.explodeBomb(b);
+            }, this), b.get('fuseTime'));
+        },
+
+        explodeBomb: function(b) {
+            this.bombs.remove(b);
+
+            var strength = b.get('strength');
+
+            // update map
+            var dirs = [ [1,0], [-1,0], [0,1], [0,-1] ];
+            _.each(dirs, _.bind(function(dir) {
+                for(var i=1; i<=strength; i++) {
+                    var xx = b.get('x') + dir[0]*i;
+                    var yy = b.get('y') + dir[1]*i;
+
+                    var cb;
+                    if (cb = this.getBomb(xx, yy)) {
+                        console.log("Chained explosion!");
+                        this.explodeBomb(cb);
+                    }
+
+                    if (this.map.getAbsTile( xx, yy ) == TILE_BRICK) {
+                        this.map.setAbsMap( xx, yy, TILE_EMPTY );
+                        return;
+                    }
+                }
+            },this));
+        },
+
+        getBomb: function(x,y) {
+            return this.bombs.find(function(b) { return b.get('x') == x && b.get('y') == y; });
+        }
+    });
+
+
     var maxPlayerId = 0;
     var players = {};
 
@@ -158,31 +234,27 @@
 
             io.set('log level', 1);
 
-            this.map = new Map();
-//
-//            setInterval(function() {
-//
-//            }, 2000);
+            this.game = new Game();
 
-            this.game = opt.io
-                .of('/game')
-                .on('connection', _.bind(this.connection, this));
+            this.game.bombs.on('remove', this.onBombRemoved, this);
 
+            this.endpoint = io.of('/game');
+            this.endpoint.on('connection', _.bind(this.connection, this));
         },
 
         connection: function(socket) {
             var playerId = ++maxPlayerId;
             var name = "?";
 
-            var newPlayerInfo = this.map.prepareNewPlayer();
+            var newPlayerInfo = this.game.map.prepareNewPlayer();
 
             var me = new Player();
             me.set('id', playerId);
             players[playerId] = me;
 
             // check for map changes
-            this.map.on('change', _.debounce(function() {
-                socket.emit('map', this.map.getMap());
+            this.game.map.on('change', _.debounce(function() {
+                socket.emit('map', this.game.map.getMap());
             }, 50), this);
 
             socket.on('join', _.bind(function(d) {
@@ -203,7 +275,7 @@
                 });
 
                 // send map
-                socket.emit('map', this.map.getMap());
+                socket.emit('map', this.game.map.getMap());
             }, this));
 
             socket.on('update', _.bind(function(d) {
@@ -218,6 +290,18 @@
                 delete players[playerId];
             }, this));
 
+            socket.on('put-bomb', _.bind(function(d){
+                console.log('trying to place bomb at ' + d.x + ", " + d.y);
+
+                if (!this.game.bombs.any(function(b) { return b.get('x') == d.x && b.get('y') == d.y; })) {
+                    // no bomb here
+                    this.game.bombs.add(new Bomb({x: d.x, y: d.y}));
+                    this.endpoint.emit('bomb-placed', {x: d.x, y: d.y});
+                } else {
+                    console.log('bomb at ' + d.x + ", " + d.y + " already exists!");
+                }
+            }, this));
+
             me.setUpdate({
                 x: newPlayerInfo.x,
                 y: newPlayerInfo.y
@@ -230,6 +314,16 @@
                 your_id: playerId,
                 x: newPlayerInfo.x,
                 y: newPlayerInfo.y
+            });
+        },
+
+        onBombRemoved: function(b) {
+            console.log('exploding bomb at ' + b.get('x') + "," + b.get('y'));
+
+            this.endpoint.emit('bomb-boomed', {
+                x: b.get('x'),
+                y: b.get('y'),
+                strength: b.get('strength')
             });
         }
 
