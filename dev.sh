@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "- compass watcher"
-compass watch ../web/ &
+compass watch web/ &
 
 
 echo "- starting development server"
