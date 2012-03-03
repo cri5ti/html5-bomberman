@@ -1,0 +1,6 @@
+A bomberman clone using:
+ - node.js
+ - socket.io
+ - Backbone + Underscore
+ - jQuery
+ - CSS3 (via Compass + Sass)
