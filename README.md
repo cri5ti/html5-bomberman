@@ -1,7 +1,7 @@
 What is it?
 ================
 
-A Bomberman clone using:
+A HTML5 Bomberman clone using:
 
  * node.js
  * socket.io
