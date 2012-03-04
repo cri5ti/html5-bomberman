@@ -1,0 +1,45 @@
+/* line 4, ../sass/chars.scss */
+.sprite, .character {
+  position: absolute;
+  background-repeat: no-repeat;
+}
+
+/* line 10, ../sass/chars.scss */
+.character {
+  width: 22px;
+  height: 22px;
+}
+
+/* line 15, ../sass/chars.scss */
+.john {
+  background-image: url("/res/char-john.png");
+}
+
+/* line 16, ../sass/chars.scss */
+.mary {
+  background-image: url("/res/char-mary.png");
+}
+
+/* line 17, ../sass/chars.scss */
+.joe {
+  background-image: url("/res/char-joe.png");
+}
+
+/* line 18, ../sass/chars.scss */
+.betty {
+  background-image: url("/res/char-betty.png");
+}
+
+/* line 21, ../sass/chars.scss */
+.bomb {
+  width: 16px;
+  height: 16px;
+  background-image: url("/res/bombs.png");
+}
+
+/* line 27, ../sass/chars.scss */
+.flame {
+  width: 16px;
+  height: 16px;
+  background-image: url("/res/flames.png");
+}
