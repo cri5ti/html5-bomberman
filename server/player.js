@@ -19,7 +19,6 @@
             this.set('y', d.y);
             this.set('o', d.o);
             this.set('m', d.m);
-            this.set('chat', d.chat);
         },
 
         getUpdate: function() {
@@ -28,8 +27,7 @@
                 x: this.get('x'),
                 y: this.get('y'),
                 o: this.get('o'),
-                m: this.get('m'),
-                chat: this.get('chat')
+                m: this.get('m')
             };
         },
 
@@ -61,6 +59,7 @@
             this.socket.on('dead', _.bind(this.onDead, this));
             this.socket.on('disconnect', _.bind(this.onDisconnect, this));
             this.socket.on('put-bomb', _.bind(this.onPlaceBomb, this));
+            this.socket.on('chat', _.bind(this.onChat, this));
 
             // check for map changes
             this.game.map.on('notify', function() {
@@ -100,6 +99,11 @@
             } else {
                 console.log('A bomb at ' + d.x + ", " + d.y + " already exists!");
             }
+        },
+
+        onChat: function(d) {
+            console.log('> ' + this.me.get('name') + ": " + d.chat, 'chat');
+            this.endpoint.emit('chat', d);
         },
 
         spawnPlayer: function() {

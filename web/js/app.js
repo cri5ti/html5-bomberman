@@ -27,10 +27,49 @@ require([
      */
     $(function() {
 
+        $userid = $('#userid');
+
+        var defaultUser = localStorage.getItem("user");
+        if (defaultUser)
+            $userid.val(defaultUser);
+        $userid.focus();
+
+        $('#loginBtn').click(login);
+
+        $userid.change(function(e) {
+            if ($userid.val().length==0)
+                $('#loginBtn').attr('disabled', 'disabled');
+            else
+                $('#loginBtn').removeAttr('disabled');
+        });
+
+        $userid.keydown(function(e) {
+            if (e.keyCode == 13) {
+                login();
+                e.stopImmediatePropagation();
+            }
+        });
+
+    });
+
+    function login() {
+        var userid = $userid.val();
+        if (userid.length==0) return;
+
+        localStorage.setItem("user", userid);
+
+        $userid.blur();
+        $("#welcome").hide();
+
+        start(userid);
+    }
+
+    function start(name) {
         var world = new World({
             container: $("#map"),
             player: true,
-            npcs: 0
+            npcs: 0,
+            myName: name
         });
 
         var networking = new Networking({
@@ -39,7 +78,8 @@ require([
 
         var local = new LocalManager({
             document: $(document),
-            world: world
+            world: world,
+            network: networking
         });
 
 
@@ -55,7 +95,7 @@ require([
             lastTime = now;
         }, 50);
 
-    });
+    }
 
 
     function getTicks() {
@@ -64,5 +104,15 @@ require([
 
 
 
-
 });
+
+function info(m) {
+    chat(m, "info");
+}
+
+function chat(m, cls) {
+    var d = $("<div>");
+    d.html(m);
+    d.addClass(cls);
+    $('#chat').append(d);
+}

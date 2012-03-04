@@ -72,37 +72,73 @@ html {
 
 /* line 10, ../sass/app.scss */
 body {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #60aa42), color-stop(50%, #ace884), color-stop(100%, #27702c));
-  background-image: -webkit-linear-gradient(top, #60aa42, #ace884, #27702c);
-  background-image: -moz-linear-gradient(top, #60aa42, #ace884, #27702c);
-  background-image: -o-linear-gradient(top, #60aa42, #ace884, #27702c);
-  background-image: -ms-linear-gradient(top, #60aa42, #ace884, #27702c);
-  background-image: linear-gradient(top, #60aa42, #ace884, #27702c);
+  /*@include background-image(linear-gradient(top, #60aa42,#ace884,#27702c));*/
+  background-color: #27702c;
   color: #fff;
 }
 
-/* line 15, ../sass/app.scss */
-a {
-  color: #aaa;
+/* line 16, ../sass/app.scss */
+canvas {
+  -moz-box-shadow: black 0px 3px 20px;
+  -webkit-box-shadow: black 0px 3px 20px;
+  -o-box-shadow: black 0px 3px 20px;
+  box-shadow: black 0px 3px 20px;
 }
 
-/* line 19, ../sass/app.scss */
+/* line 20, ../sass/app.scss */
+#chat {
+  color: #0f0;
+  font-size: 12px;
+  line-height: 20px;
+  position: fixed;
+  width: 100%;
+  padding: 10px;
+  bottom: 100px;
+}
+/* line 29, ../sass/app.scss */
+#chat .info {
+  color: #000;
+}
+/* line 33, ../sass/app.scss */
+#chat .chat {
+  color: #ff0;
+}
+/* line 37, ../sass/app.scss */
+#chat .mychat {
+  color: #fff;
+}
+
+/* line 42, ../sass/app.scss */
+a {
+  color: #f60;
+}
+
+/* line 46, ../sass/app.scss */
 a.disabled {
   color: #333;
 }
 
-/* line 23, ../sass/app.scss */
+/* line 50, ../sass/app.scss */
 a:hover {
   color: #fff;
 }
 
-/* line 28, ../sass/app.scss */
+/* line 55, ../sass/app.scss */
 #console {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  background: #000;
+  padding: 10px;
+  border-top: solid 1px #6af;
+  background: #04a;
+  z-index: 1000;
+  -moz-box-shadow: black 0px -3px 20px;
+  -webkit-box-shadow: black 0px -3px 20px;
+  -o-box-shadow: black 0px -3px 20px;
+  box-shadow: black 0px -3px 20px;
 }
 
-/* line 33, ../sass/app.scss */
+/* line 67, ../sass/app.scss */
 #waitserver {
   position: absolute;
   top: 0;
@@ -116,24 +152,24 @@ a:hover {
   opacity: 0.5;
 }
 
-/* line 46, ../sass/app.scss */
+/* line 80, ../sass/app.scss */
 #chatbox {
   width: 90%;
   font-size: 14px;
   border: none;
   padding: 10px;
-  background: #000;
+  background: #04a;
   color: #888;
 }
 
-/* line 55, ../sass/app.scss */
+/* line 89, ../sass/app.scss */
 #chatbox:focus {
   border: none;
   color: #fff;
   outline: none;
 }
 
-/* line 62, ../sass/app.scss */
+/* line 96, ../sass/app.scss */
 .bubble {
   position: absolute;
   background: #000;
@@ -149,4 +185,92 @@ a:hover {
   -ms-border-radius: 8px 8px 8px 0;
   -khtml-border-radius: 8px 8px 8px 0;
   border-radius: 8px 8px 8px 0;
+}
+
+/* line 111, ../sass/app.scss */
+#footer {
+  position: fixed;
+  bottom: 0;
+  background: #000;
+  width: 100%;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #aaa;
+  z-order: -100;
+}
+/* line 122, ../sass/app.scss */
+#footer a {
+  color: #fff;
+}
+
+/* line 127, ../sass/app.scss */
+#welcome {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #273;
+}
+/* line 133, ../sass/app.scss */
+#welcome #form {
+  background: #384;
+  position: absolute;
+  font-size: 20px;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+  top: 10%;
+  padding: 30px;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -o-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -khtml-border-radius: 24px;
+  border-radius: 24px;
+  -moz-box-shadow: 0 0 30px #005511;
+  -webkit-box-shadow: 0 0 30px #005511;
+  -o-box-shadow: 0 0 30px #005511;
+  box-shadow: 0 0 30px #005511;
+}
+/* line 146, ../sass/app.scss */
+#welcome #form p {
+  color: #051;
+  margin-bottom: 20px;
+}
+/* line 151, ../sass/app.scss */
+#welcome #form input {
+  background: #273;
+  border: none;
+  font-size: 24px;
+  color: yellow;
+  border-bottom: solid 1px yellow;
+  padding: 10px;
+  width: 210px;
+}
+/* line 161, ../sass/app.scss */
+#welcome #form input:focus {
+  outline: none;
+}
+/* line 165, ../sass/app.scss */
+#welcome #form button {
+  background-color: #384;
+  border: none;
+  color: yellow;
+  font-size: 20px;
+  padding: 10px 20px;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -o-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -khtml-border-radius: 16px;
+  border-radius: 16px;
+}
+/* line 174, ../sass/app.scss */
+#welcome #form button:hover {
+  background-color: yellow;
+  color: #384;
+}
+/* line 179, ../sass/app.scss */
+#welcome #form button:disabled {
+  color: #384;
 }

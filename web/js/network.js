@@ -30,6 +30,7 @@ define([
             this.socket.on('player-update', $.proxy(this.onPlayerUpdated, this));
             this.socket.on('player-dying', $.proxy(this.onPlayerDying, this));
             this.socket.on('player-disconnected', $.proxy(this.onPlayerDisconnected, this));
+            this.socket.on('chat', $.proxy(this.onChat, this));
 
             this.socket.on('bomb-placed', $.proxy(this.onBombPlaced, this));
             this.socket.on('bomb-boomed', $.proxy(this.onBombBoomed, this));
@@ -71,6 +72,7 @@ define([
         },
 
         onPlayerJoined: function(d) {
+            info("<u>" + d.name + "</u> joined");
             console.log(d.name + " #" + d.id + " joined");
             var c = new Character({
                 name: d.name,
@@ -98,6 +100,7 @@ define([
         onPlayerDisconnected: function(d) {
             var c = this.peers[d.id];
             if (!c) return; // we don't know this guy
+            info("<u>" + c.get('name') + "</u> disconnected");
             console.log(c.get('name') + " disconnected");
 
             this.world.players.remove(c);
@@ -115,8 +118,7 @@ define([
                 x: d.x,
                 y: d.y,
                 orient: d.o,
-                moving: d.m,
-                chat: d.chat
+                moving: d.m
             });
         },
 
@@ -151,8 +153,26 @@ define([
                 x: Math.round( player.get('x') * 1000 ) / 1000,
                 y: Math.round( player.get('y') * 1000 ) / 1000,
                 o: player.get('orient'),
-                m: player.get('moving'),
-                chat: player.get('chat')
+                m: player.get('moving')
+            });
+        },
+
+        onChat: function(d) {
+            var c = this.peers[d.id];
+            var cls = "chat";
+            if (d.id == this.id) cls = "mychat";
+            if (!c)
+                chat('#' + d.id + '> ' + d.chat, cls);
+            else
+                chat(c.get('name') + '> ' + d.chat, cls);
+        },
+
+        sendChat: function(chat) {
+            chat = chat.trim();
+            if (chat.length==0) return;
+            this.socket.emit('chat', {
+                id: this.id,
+                chat: chat
             });
         },
 

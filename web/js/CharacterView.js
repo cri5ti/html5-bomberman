@@ -15,6 +15,7 @@ define([
             this.frame = 0;
 
             this.$bubble = $('<div class="bubble"></div>');
+            this.$bubble.text(this.model.get('name'));
             this.$bubble.hide();
             this.$el.append(this.$bubble);
 
@@ -22,18 +23,17 @@ define([
             this.model.on('die', this.hasDied, this);
 
             this.modelChange(true);
+
+        },
+
+        events: {
+            "mouseenter": function() { this.$bubble.show(); },
+            "mouseleave": function() { this.$bubble.hide(); }
         },
 
         modelChange: function(init) {
-            if (this.model.hasChanged("chat"))
-            {
-                if (this.model.get('chat')) {
-                    this.$bubble.text(this.model.get('chat'));
-                    this.$bubble.show();
-                } else {
-                    this.$bubble.hide();
-                }
-            }
+            if (this.model.hasChanged("name"))
+                this.$bubble.text(this.model.get('name'));
 
             if (this.model.hasChanged("character") || init) {
                 var classes = 'character ' + this.model.get('character');

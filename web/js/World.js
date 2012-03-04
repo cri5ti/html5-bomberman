@@ -86,7 +86,7 @@ define([
             if (opt.player) {
                 // create our player
                 this.player = new Character({
-                    name: "John" + Math.floor(Math.random()*100),
+                    name: opt.myName,
                     character: characters[Math.floor(Math.random()*(characters.length))]
                 });
                 this.players.add(this.player);
@@ -184,6 +184,7 @@ define([
         },
 
         update: function(dt) {
+
             this.players.each(function(p) {
                 p.update(dt);
             });

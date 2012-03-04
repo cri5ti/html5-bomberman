@@ -11,12 +11,12 @@ define([
 
     Character = Backbone.Model.extend({
         defaults: {
+            name: '?',
             character: 'john',
             x: 0,
             y: 0,
             orient: ORIENT_DOWN,
             moving: false,
-            chat: '',
             dead: true
         },
 

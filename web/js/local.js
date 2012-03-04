@@ -18,6 +18,8 @@ define([
 
     var keymap = {}; // it's ok to be global
 
+    var inChat = false;
+
     LocalManager = Backbone.Model.extend({
         defaults: {
         },
@@ -25,9 +27,11 @@ define([
         initialize: function(opt) {
             this.$document = opt.document;
             this.world = opt.world;
+            this.network = opt.network;
 
             this.me = this.world.player;
 
+            this.$console = $("#console");
             this.$chatbox = $("#chatbox");
             this.$chatbox.keyup(_.throttle(_.bind(function() {
                 if (this.$chatbox.val().length>0)
@@ -40,14 +44,27 @@ define([
         },
 
         onKeyDown: function(e) {
-            keymap[e.keyCode] = true;
+            if (!inChat)
+                keymap[e.keyCode] = true;
 
             if (e.keyCode == 13) {
                 if (this.$chatbox.is(":focus")) {
-                    this.me.sendMessage(this.$chatbox.val());
+                    this.$chatbox.blur();
+                    this.$console.animate({
+                        'height': 'toggle',
+                        'margin-bottom': 'toggle'
+                    }, 200);
+                    this.network.sendChat(this.$chatbox.val());
                     this.$chatbox.val("");
-                } else
+                    inChat = false;
+                } else {
+                    this.$console.animate({
+                        'height': 'toggle',
+                        'margin-bottom': 'toggle'
+                    }, 200);
                     this.$chatbox.focus();
+                    inChat = true;
+                }
             }
         },
 
