@@ -21,13 +21,13 @@ var server = require("./server/server");
 
 var io = require('socket.io').listen(site);
 
-//io.set('transports', [
+io.set('transports', [
 //    'websocket',
 //    'flashsocket'
 //    'htmlfile',
-//    'xhr-polling',
-//    'jsonp-polling',
-//]);
+    'xhr-polling',
+    'jsonp-polling'
+]);
 
 var s = new Server({io: io});
 
