@@ -14,7 +14,7 @@ var _ = require("underscore")._;
 var Backbone = require("backbone");
 
 
-var server = require("./server");
+var server = require("./server/server");
 
 //_______________________________________________________________
 // IO
@@ -30,6 +30,7 @@ var io = require('socket.io').listen(site);
 //]);
 
 var s = new Server({io: io});
+
 
 
 //_______________________________________________________________
@@ -53,8 +54,9 @@ site.get("*", function(req, res) {
 
 
 var port = process.env.PORT || 8000;
+
 site.listen(port);
 
-console.log("Server listening on :" + port);
 
+console.log("Server listening on :" + port);
 

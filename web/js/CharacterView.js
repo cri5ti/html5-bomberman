@@ -1,10 +1,4 @@
-/**
- * Created by JetBrains WebStorm.
- * User: cristi
- * Date: 29/02/2012
- * Time: 12:43
- * To change this template use File | Settings | File Templates.
- */
+
 
 define([
     "jquery", "underscore", "backbone",
@@ -25,6 +19,8 @@ define([
             this.$el.append(this.$bubble);
 
             this.model.on('change', this.modelChange, this);
+            this.model.on('die', this.hasDied, this);
+
             this.modelChange(true);
         },
 
@@ -46,24 +42,37 @@ define([
             this.update(0);
         },
 
+        hasDied: function() {
+            this.frame = 0;
+        },
+
         update: function(dt) {
             this.frame += dt;
 
             var frame = Math.floor(this.frame / MOVE_ANIM_SPEED);
-            frame = frame % 3;
-            if (!this.model.get('moving')) frame = 1;
+            var framex;
 
-            var o = this.model.get('orient');
+            if (!this.model.get('dead')) {
+                // alive
+                framex = frame % 3;
+                if (!this.model.get('moving')) framex = 1;
+                var framey = this.model.get('orient');
+            } else {
+                // dead
+                framey = Math.floor(frame / 3) + 4;
+                framex = frame % 3;
+            }
 
             var x = this.model.get('x') * SQUARE_SIZE;
             var y = this.model.get('y') * SQUARE_SIZE;
+            var z = Math.floor(this.model.get('y'));
 
             this.$el.css({
                 left: x - 11,
                 top: y - 16,
-                'background-position-x': -(frame*22)+'px',
-                'background-position-y': -(o*22)+'px',
-                'z-index': y
+                'background-position-x': -(framex*22)+'px',
+                'background-position-y': -(framey*22)+'px',
+                'z-index': z
             });
         }
 

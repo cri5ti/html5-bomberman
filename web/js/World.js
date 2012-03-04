@@ -31,7 +31,6 @@ define([
         },
 
         onFlameDone: function(f) {
-            console.log("flame done");
             this.remove(f);
         }
     });
@@ -92,15 +91,6 @@ define([
                 });
                 this.players.add(this.player);
             }
-
-            for(var i=0; i<opt.npcs; i++) {
-                // create a npc
-                this.players.add(new NpcCharacter({
-                    x: Math.random()*300 + 50,
-                    y: Math.random()*300 + 50,
-                    character: characters[Math.floor(Math.random()*(characters.length-1))+1]
-                }));
-            }
         },
 
 
@@ -124,7 +114,6 @@ define([
         },
 
         explodeBomb: function(b, strength) {
-            // TODO explosion
             this.bombs.remove(b);
 
             var bx = b.get('x');
@@ -135,7 +124,7 @@ define([
                     var fx = bx + o.x * i;
                     var fy = by + o.y * i;
 
-                    if (this.map.getAbsTile(fx, fy) != 0)
+                    if (this.map.getTile(fx, fy) != 0)
                         return; // stop on obstacle
 
                     this.addMergeFlame(fx, fy, i == strength ? o.e : o.d);
@@ -156,7 +145,7 @@ define([
                 // add new
                 ef = new Flame({x: x, y: y, type: type});
                 this.flames.add(ef);
-                this.map.setFlame(ef, x, y);
+                this.map.setFlame(x, y, ef);
             }
         },
 
@@ -164,12 +153,18 @@ define([
             var bv = new BombView({model: b});
             this.$container.append(bv.el);
             this.bombViews.push(bv);
+
+            this.map.setBomb(b.get('x'), b.get('y'), b);
         },
 
         onBombRemoved: function(b) {
             var bv = _.find(this.bombViews, function(v) { return v.model == b });
             bv.$el.remove();
-            // TODO FIXME: remove view from array
+
+            var bvi = this.bombViews.indexOf(bv);
+            this.bombViews.splice(bvi, 1);
+
+            this.map.setBomb(b.get('x'), b.get('y'), null);
         },
 
         onFlameAdded: function(f) {
@@ -185,7 +180,7 @@ define([
             var fvi = this.flamesView.indexOf(fv);
             this.flamesView.splice(fvi, 1);
 
-            this.map.setFlame(null, f.get('x'), f.get('y'));
+            this.map.setFlame(f.get('x'), f.get('y'), null);
         },
 
         update: function(dt) {

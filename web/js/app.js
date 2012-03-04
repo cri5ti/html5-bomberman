@@ -1,4 +1,8 @@
 
+TILE_EMPTY = 0;
+TILE_BRICK = 1;
+TILE_SOLID = 2;
+
 require.config(
     {
         baseUrl: "js",

@@ -1,11 +1,3 @@
-/**
- * Created by JetBrains WebStorm.
- * User: cristi
- * Date: 01/03/2012
- * Time: 12:46
- * To change this template use File | Settings | File Templates.
- */
-
 
 define([
     "jquery", "underscore", "backbone",
@@ -23,6 +15,7 @@ define([
             this.world = opt.world;
 
             this.world.player.on('change', this.playerChange, this);
+            this.world.player.on('die', this.playerDie, this);
 
             this.world.placeBombs.on('add', this.requestPlaceBomb, this);
 
@@ -30,10 +23,12 @@ define([
 
             this.socket.on('disconnect', $.proxy(this.onDisconnect, this));
 
-            this.socket.on('game-join', $.proxy(this.onGameJoin, this));
+            this.socket.on('game-info', $.proxy(this.onGameJoin, this));
             this.socket.on('map', $.proxy(this.onMapUpdate, this));
             this.socket.on('player-joined', $.proxy(this.onPlayerJoined, this));
+            this.socket.on('player-spawned', $.proxy(this.onPlayerSpawned, this));
             this.socket.on('player-update', $.proxy(this.onPlayerUpdated, this));
+            this.socket.on('player-dying', $.proxy(this.onPlayerDying, this));
             this.socket.on('player-disconnected', $.proxy(this.onPlayerDisconnected, this));
 
             this.socket.on('bomb-placed', $.proxy(this.onBombPlaced, this));
@@ -53,17 +48,16 @@ define([
             $('#waitserver').hide();
 
             this.id = d.your_id;
-            console.log("Joined game " + d.game + " (my id = " + this.id + ")");
-
-            // my position
-            this.world.player.set('x', d.x);
-            this.world.player.set('y', d.y);
+            console.log("Welcome to game " + d.game + " (my id = " + this.id + ")");
 
             this.socket.emit('join', {
                 id: this.id,
                 name: this.world.player.get('name'),
                 character: this.world.player.get('character')
             });
+
+            // mark ourself in the peer list
+            this.peers[this.id] = this.world.player;
         },
 
         onMapUpdate: function(d) {
@@ -80,13 +74,25 @@ define([
             console.log(d.name + " #" + d.id + " joined");
             var c = new Character({
                 name: d.name,
-                character: d.character,
-                x: d.x,
-                y: d.y
+                character: d.character
             });
-
             this.world.players.add(c);
             this.peers[d.id] = c;
+        },
+
+        onPlayerSpawned: function(d) {
+            var c = this.peers[d.id];
+            if (!c) {
+                // we don't know this guy
+                console.log("#" + d.id + " spawned");
+                return;
+            }
+            console.log(c.get('name') + " spawned");
+            c.set({
+                x: d.x,
+                y: d.y,
+                dead: false
+            });
         },
 
         onPlayerDisconnected: function(d) {
@@ -114,9 +120,24 @@ define([
             });
         },
 
+        onPlayerDying: function(d) {
+            var c = this.peers[d.id];
+            if (!c) {
+                console.log("Update from unknown #"+ d.id);
+                return;
+            }
+            c.die();
+        },
+
         playerChange: function(player) {
             _.debounce(this.sendPlayerChange)
             this.sendPlayerChange(player);
+        },
+
+        playerDie: function(player) {
+            this.socket.emit('dead', {
+                id: this.id
+            });
         },
 
         requestPlaceBomb: function(b) {

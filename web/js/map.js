@@ -1,14 +1,7 @@
-/**
- * Created by JetBrains WebStorm.
- * User: cristi
- * Date: 01/03/2012
- * Time: 14:09
- * To change this template use File | Settings | File Templates.
- */
 
 
 define([
-    "jquery", "underscore", "backbone",
+    "jquery", "underscore", "backbone"
 
 ],function($, _, Backbone, core) {
 
@@ -39,25 +32,38 @@ define([
 
             if (this.hasChanged('width') || this.hasChanged('height')) {
                 console.log("resizing flames map");
+
                 this.flames = new Array(this.w * this.h);
+                this.bombs = new Array(this.w * this.h);
             }
         },
 
-        getAbsTile: function(x, y) {
-            return this.getTile(x - this.x, y - this.y);
+        getTile: function(x, y) { return this._getMap(x, y, this.map)*1; },
+
+        getFlame: function(x, y) { return this._getMap(x, y, this.flames); },
+        setFlame: function(x, y, f) { this._setMap(x, y, f, this.flames); },
+
+        getBomb: function(x, y) { return this._getMap(x, y, this.bombs); },
+        setBomb: function(x, y, b) { this._setMap(x, y, b, this.bombs); },
+
+        canMove: function(ox, oy, tx, ty) {
+            // tile collision
+            if (this.getTile(tx, ty) != TILE_EMPTY)
+                return false;
+
+            // bomb collision
+            if ( (ox!=tx || oy!=ty) && this.getBomb(tx, ty) != null)
+                return false;
+
+            return true;
         },
 
-        getTile: function(x, y) {
-            var c = this.map[ y * this.w + x ];
-            return c*1;
+        _getMap: function(x, y, arr) {
+            return arr[ (y - this.y) * this.w + (x - this.x) ];
         },
 
-        getFlame: function(x,y) {
-            return this.flames[ (y-this.y) * this.w + (x-this.x) ];
-        },
-
-        setFlame: function(f,x,y) {
-            this.flames[ (y-this.y) * this.w + (x-this.x) ] = f;
+        _setMap: function(x, y, v, arr) {
+            arr[ (y - this.y) * this.w + (x - this.x) ] = v;
         }
     });
 
@@ -91,6 +97,8 @@ define([
         },
 
         render: function() {
+            var x = this.model.get('x');
+            var y = this.model.get('y');
             var w = this.model.get('width');
             var h = this.model.get('height');
 
@@ -112,7 +120,7 @@ define([
             for(var i=0; i<w; i++)
                 for(var j=0; j<h; j++)
                 {
-                    var tile = this.model.getTile(i,j);
+                    var tile = this.model.getTile(i+x,j+y);
                     ctx.drawImage(tilesImg, tile*TILE_SIZE, 0,
                         TILE_SIZE, TILE_SIZE,
                         i*TILE_SIZE, j*TILE_SIZE,

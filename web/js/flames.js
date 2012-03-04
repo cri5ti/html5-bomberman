@@ -1,10 +1,3 @@
-/**
- * Created by JetBrains WebStorm.
- * User: cristi
- * Date: 01/03/2012
- * Time: 14:09
- * To change this template use File | Settings | File Templates.
- */
 
 
 define([

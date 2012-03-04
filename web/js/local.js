@@ -56,11 +56,12 @@ define([
         },
 
         update: function(delta) {
+            if (this.me.get('dead')) return;
+
             var speed = delta * PLAYER_MOVE_SPEED;
-
             var dx = 0;
-            var dy = 0;
 
+            var dy = 0;
             // handle input
             if (keymap[LEFT])   dx-=speed;
             if (keymap[RIGHT])  dx+=speed;
@@ -69,38 +70,57 @@ define([
 
             var moving = keymap[LEFT] || keymap[RIGHT] || keymap[UP] || keymap[DOWN];
 
-            if (moving) {
+            if (moving)
                 this.requestMove(dx, dy);
-            }
 
             if (keymap[SPACE])
                 this.tryPlaceBomb();
 
-            this.me.set('moving', moving);
+            this.me.set('moving', moving===true);
+
+            var cx = Math.floor(this.me.get('x'));
+            var cy = Math.floor(this.me.get('y'));
+
+            if (this.world.map.getFlame(cx, cy)!=null)
+                this.me.die();
         },
 
         tryPlaceBomb: function() {
-            this.world.placeBomb(
-                Math.floor(this.me.get('x')),
-                Math.floor(this.me.get('y'))
-            );
+            var x = Math.floor(this.me.get('x'));
+            var y = Math.floor(this.me.get('y'));
+            if (this.world.map.getBomb(x, y) == null)
+                this.world.placeBomb(x, y);
         },
 
         requestMove: function(dx, dy) {
-            var ox = this.me.get('x');
-            var oy = this.me.get('y');
-            var nx = ox + dx;
-            var ny = oy + dy;
+            var x = this.me.get('x');
+            var y = this.me.get('y');
 
-            var cx = Math.floor(nx);
-            var cy = Math.floor(ny);
+            const PLAYER_GIRTH = 0.25;
 
-            if (this.world.map.getAbsTile(cx, cy) == 0)
-                this.me.deltaMove(dx, dy);
-//            else
+            var gx = Math.floor(x);
+            var gy = Math.floor(y);
+            var gtx = Math.floor(x + dx + util.dir(dx)*PLAYER_GIRTH );
+            var gty = Math.floor(y + dy + util.dir(dy)*PLAYER_GIRTH );
+
+            // can it move on X axis?
+            if (!this.world.map.canMove( gx, gy, gtx, gy ) )
+                dx = 0; // no x axis moving
+
+            if (!this.world.map.canMove( gx, gy, gx, gty ) )
+                dy = 0; // no y axis moving
+
+            this.me.deltaMove(dx, dy);
         }
 
+
     });
+
+    util = {};
+    util.dir = function(x) { return x>0 ? 1 : x<0 ? -1 : 0 }
+    util.ease = function(x, y, c) {
+        return x*(1-c) + y*c;
+    }
 
 
 });

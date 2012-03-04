@@ -1,10 +1,3 @@
-/**
- * Created by JetBrains WebStorm.
- * User: cristi
- * Date: 01/03/2012
- * Time: 14:09
- * To change this template use File | Settings | File Templates.
- */
 
 
 define([
@@ -49,12 +42,13 @@ define([
 
             var x = this.model.get('x') * SQUARE_SIZE;
             var y = this.model.get('y') * SQUARE_SIZE;
+            var z = this.model.get('y') - 1;
 
             this.$el.css({
                 left: x,
                 top: y,
                 'background-position-x': -(frame*16)+'px',
-                'z-index': y
+                'z-index': z
             });
         }
     });

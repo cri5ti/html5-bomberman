@@ -1,11 +1,3 @@
-/**
- * Created by JetBrains WebStorm.
- * User: cristi
- * Date: 01/03/2012
- * Time: 12:28
- * To change this template use File | Settings | File Templates.
- */
-
 
 
 define([
@@ -24,7 +16,8 @@ define([
             y: 0,
             orient: ORIENT_DOWN,
             moving: false,
-            chat: ''
+            chat: '',
+            dead: true
         },
 
         deltaMove: function(x, y) {
@@ -43,6 +36,11 @@ define([
 
         update: function() {
             // nothing to do..
+        },
+
+        die: function() {
+            this.set('dead', true);
+            this.trigger('die', this);
         },
 
         sendMessage: function(msg) {
