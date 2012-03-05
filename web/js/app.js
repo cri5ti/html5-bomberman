@@ -18,7 +18,8 @@ require.config(
 require([
     "jquery", "underscore", "backbone",
     "network", "local",
-    "World"
+    "World",
+	"polyfills/jscript"
 ],function($, _, Backbone, core) {
 
 

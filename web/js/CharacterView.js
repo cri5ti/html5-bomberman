@@ -5,8 +5,8 @@ define([
 ],function($, _, Backbone, core) {
 
 
-    const MOVE_ANIM_SPEED = 0.15;
-    const SQUARE_SIZE = 16;
+    var MOVE_ANIM_SPEED = 0.15;
+    var SQUARE_SIZE = 16;
 
     CharacterView = Backbone.View.extend({
         className: 'john',

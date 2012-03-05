@@ -6,16 +6,16 @@ define([
 ],function($, _, Backbone, core) {
 
 
-    const MOVE_ANIM_SPEED =0.15;
-    const SQUARE_SIZE = 16;
+    var MOVE_ANIM_SPEED =0.15;
+    var SQUARE_SIZE = 16;
 
-    const CENTER = 0;
-    const VERTICAL = 1;
-    const HORIZONTAL = 2;
-    const END_UP = 3;
-    const END_RIGHT = 4;
-    const END_DOWN = 5;
-    const END_LEFT = 6;
+    var CENTER = 0;
+    var VERTICAL = 1;
+    var HORIZONTAL = 2;
+    var END_UP = 3;
+    var END_RIGHT = 4;
+    var END_DOWN = 5;
+    var END_LEFT = 6;
 
     Flame = Backbone.Model.extend({
         defaults: {

@@ -6,15 +6,15 @@ define([
     "jquery", "underscore", "backbone",
 ],function($, _, Backbone, core) {
 
+	// consts
+    var LEFT = 37;
+    var UP = 38;
+    var RIGHT = 39;
+    var DOWN = 40;
+    var SPACE = 32;
 
-    const LEFT = 37;
-    const UP = 38;
-    const RIGHT = 39;
-    const DOWN = 40;
+    var PLAYER_MOVE_SPEED = 5; // squares per second
 
-    const SPACE = 32;
-
-    const PLAYER_MOVE_SPEED = 5; // squares per second
 
     var keymap = {}; // it's ok to be global
 
@@ -113,7 +113,7 @@ define([
             var x = this.me.get('x');
             var y = this.me.get('y');
 
-            const PLAYER_GIRTH = 0.25;
+            var PLAYER_GIRTH = 0.25;
 
             var gx = Math.floor(x);
             var gy = Math.floor(y);

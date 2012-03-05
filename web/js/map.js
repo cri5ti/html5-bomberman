@@ -6,7 +6,7 @@ define([
 ],function($, _, Backbone, core) {
 
 
-    const TILE_SIZE = 16;
+    var TILE_SIZE = 16;
 
 
     Map = Backbone.Model.extend({
@@ -113,6 +113,8 @@ define([
                 top: this.model.get('y') * TILE_SIZE
             })
 
+			if (this.canvas.getContext == undefined)
+				G_vmlCanvasManager.initElement(this.canvas);
             var ctx = this.canvas.getContext("2d");
             ctx.clearRect(0, 0, w, h);
 

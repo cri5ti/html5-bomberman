@@ -4,10 +4,10 @@ define([
     "jquery", "underscore", "backbone",
 ],function($, _, Backbone, core) {
 
-    const ORIENT_DOWN = 0;
-    const ORIENT_UP = 1;
-    const ORIENT_RIGHT = 2;
-    const ORIENT_LEFT = 3;
+    var ORIENT_DOWN = 0;
+    var ORIENT_UP = 1;
+    var ORIENT_RIGHT = 2;
+    var ORIENT_LEFT = 3;
 
     Character = Backbone.Model.extend({
         defaults: {
