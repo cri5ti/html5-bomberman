@@ -70,8 +70,7 @@ define([
             this.$el.css({
                 left: x - 11,
                 top: y - 16,
-                'background-position-x': -(framex*22)+'px',
-                'background-position-y': -(framey*22)+'px',
+                'background-position': (-framex*22)+'px ' + (-framey*22)+'px',
                 'z-index': z
             });
         }

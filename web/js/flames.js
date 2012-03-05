@@ -94,9 +94,7 @@ define([
             this.$el.css({
                 left: x,
                 top: y,
-                'background-position-x': -(frame*16)+'px',
-                'background-position-y': -(this.model.get('type')*16)+'px',
-//                'z-index': y
+                'background-position': (-frame*16)+'px ' + (-this.model.get('type')*16)+'px'
             });
         }
     });

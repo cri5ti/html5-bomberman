@@ -47,7 +47,7 @@ define([
             this.$el.css({
                 left: x,
                 top: y,
-                'background-position-x': -(frame*16)+'px',
+                'background-position': -(frame*16)+'px 0',
                 'z-index': z
             });
         }
