@@ -95,6 +95,11 @@ define([
                 y: d.y,
                 dead: false
             });
+
+			if (d.id == this.id) {
+				var cv = _.find(this.world.playerViews, function(v) { return v.model == c });
+				cv.showSpawn();
+			}
         },
 
         onPlayerDisconnected: function(d) {

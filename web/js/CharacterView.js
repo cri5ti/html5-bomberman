@@ -39,12 +39,22 @@ define([
                 var classes = 'character ' + this.model.get('character');
                 this.$el.attr('class', classes);
             }
+		
             this.update(0);
         },
 
         hasDied: function() {
             this.frame = 0;
         },
+
+		showSpawn: function() {
+			for(var i=0; i<20; i++)
+				this.$el.animate({
+					opacity: 'toggle'
+				}, {
+					duration: 50
+				});
+		},
 
         update: function(dt) {
             this.frame += dt;
