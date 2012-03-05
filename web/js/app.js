@@ -29,19 +29,17 @@ require([
 
         $userid = $('#userid');
 
-        var defaultUser = localStorage.getItem("user");
-        if (defaultUser)
-            $userid.val(defaultUser);
-        $userid.focus();
-
         $('#loginBtn').click(login);
 
-        $userid.change(function(e) {
+        updateButton = function() {
             if ($userid.val().length==0)
                 $('#loginBtn').attr('disabled', 'disabled');
             else
                 $('#loginBtn').removeAttr('disabled');
-        });
+        }
+
+        $userid.change(updateButton);
+        $userid.keyup(updateButton);
 
         $userid.keydown(function(e) {
             if (e.keyCode == 13) {
@@ -50,6 +48,12 @@ require([
             }
         });
 
+        var defaultUser = localStorage.getItem("user");
+        if (defaultUser)
+            $userid.val(defaultUser);
+        $userid.focus();
+
+        updateButton();
     });
 
     function login() {

@@ -83,12 +83,13 @@ define([
         },
 
         loadTiles: function() {
-            this.$tiles = $('<img src="/res/tiles.png">');
+            this.$tiles = $('<img>');
             this.$tiles.load(_.bind(function() {
                 this.inited = true;
                 if (this.model.get('map') === null) return;
                 this.render();
             },this));
+            this.$tiles.attr('src', '/res/tiles.png');
         },
 
         mapChange: function() {
