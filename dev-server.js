@@ -22,7 +22,7 @@ var server = require("./server/server");
 var io = require('socket.io').listen(site);
 
 io.set('transports', [
-//    'websocket',
+    'websocket',
 //    'flashsocket'
 //    'htmlfile',
     'xhr-polling',
