@@ -73,9 +73,8 @@ define([
             this.loadTiles();
 
             this.$canvas = $('<canvas/>');
-            this.$canvas.css({position: 'absolute'});
-            this.$el.append(this.$canvas);
             this.canvas = this.$canvas.get(0);
+            this.ctx = this.canvas.getContext("2d");
 
             this.model = opt.model;
 
@@ -98,6 +97,10 @@ define([
         },
 
         render: function() {
+            // No canvas?
+            if (this.canvas.getContext == undefined)
+				G_vmlCanvasManager.initElement(this.canvas);
+
             var x = this.model.get('x');
             var y = this.model.get('y');
             var w = this.model.get('width');
@@ -108,27 +111,20 @@ define([
                 height: h * TILE_SIZE
             });
 
-            this.$canvas.css({
-                left: this.model.get('x') * TILE_SIZE,
-                top: this.model.get('y') * TILE_SIZE
-            })
-
-			if (this.canvas.getContext == undefined)
-				G_vmlCanvasManager.initElement(this.canvas);
-            var ctx = this.canvas.getContext("2d");
+            var ctx = this.ctx;
             ctx.clearRect(0, 0, w, h);
 
             var tilesImg = this.$tiles.get(0);
 
-            for(var i=0; i<w; i++)
-                for(var j=0; j<h; j++)
-                {
+            for(var i=0; i<w; i++) {
+                for(var j=0; j<h; j++) {
                     var tile = this.model.getTile(i+x,j+y);
                     ctx.drawImage(tilesImg, tile*TILE_SIZE, 0,
                         TILE_SIZE, TILE_SIZE,
                         i*TILE_SIZE, j*TILE_SIZE,
                         TILE_SIZE, TILE_SIZE);
                 }
+            }
 
         }
 

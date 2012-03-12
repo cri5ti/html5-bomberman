@@ -104,8 +104,10 @@ define([
             });
 
 			if (d.id == this.id) {
-				var cv = _.find(this.world.playerViews, function(v) { return v.model == c });
-				cv.showSpawn();
+                c.trigger('spawn');
+                // FIXME
+//				var cv = _.find(this.world.playerViews, function(v) { return v.model == c });
+//				cv.showSpawn();
 			}
 
             play('spawn');
@@ -195,6 +197,7 @@ define([
         },
 
         onChat: function(d) {
+            d.chat = _.escape(d.chat);
             var c = this.peers[d.id];
             var cls = "chat";
             if (d.id == this.id) cls = "mychat";

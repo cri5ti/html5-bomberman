@@ -116,7 +116,7 @@ define([
             var x = this.me.get('x');
             var y = this.me.get('y');
 
-            var PLAYER_GIRTH = 0.25;
+            var PLAYER_GIRTH = 0.35;
 
             var gx = Math.floor(x);
             var gy = Math.floor(y);
@@ -126,6 +126,9 @@ define([
             // can it move on X axis?
             if (!this.world.map.canMove( gx, gy, gtx, gy ) )
                 dx = 0; // no x axis moving
+            else {
+                gx = Math.floor(x + dx);
+            }
 
             if (!this.world.map.canMove( gx, gy, gx, gty ) )
                 dy = 0; // no y axis moving

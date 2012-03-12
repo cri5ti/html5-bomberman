@@ -31,7 +31,7 @@
 
                     if (i%2==0 && j%2==0)
                         this.setMap(i,j, TILE_SOLID);
-                    else if ( Math.floor(Math.random()*3)==0)
+                    else if ( Math.floor(Math.random()*10)==0)
                         this.setMap(i,j, TILE_BRICK);
 
                 }
@@ -131,7 +131,7 @@
             if (_.size(g.playersById)==0)
                 return;
 
-            for(i=0; i<5; i++) {
+            for(i=0; i<1; i++) {
                 var x = Math.floor(Math.random()*this.get('width')) + this.get('x');
                 var y = Math.floor(Math.random()*this.get('height')) + this.get('y');
 

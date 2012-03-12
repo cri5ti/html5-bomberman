@@ -17,8 +17,7 @@ require.config(
 
 require([
     "jquery", "underscore", "backbone",
-    "network", "local",
-    "World",
+    "Game",
 	"polyfills/jscript"
 ],function($, _, Backbone, core) {
 
@@ -72,44 +71,8 @@ require([
     }
 
     function start(name) {
-        var world = new World({
-            container: $("#map"),
-            player: true,
-            npcs: 0,
-            myName: name
-        });
-
-        var networking = new Networking({
-            world: world
-        });
-
-        var local = new LocalManager({
-            document: $(document),
-            world: world,
-            network: networking
-        });
-
-
-        // main loop
-        var lastTime = getTicks();
-        setInterval(function() {
-            var now = getTicks();
-            var delta = (now - lastTime) / 1000;
-
-            local.update(delta);
-            world.update(delta);
-
-            lastTime = now;
-        }, 50);
-
+        var game = new Game({playerName: name});
     }
-
-
-    function getTicks() {
-        return new Date().getTime();
-    }
-
-
 
 });
 

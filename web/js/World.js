@@ -2,8 +2,13 @@
 
 define([
     "jquery", "underscore", "backbone",
-    "map", "bomb", "flames",
-    "Character", "CharacterView",
+
+    "Map",
+    "Bomb",
+    "Flame",
+    "Character",
+
+    "GameCanvas"
 ],function($, _, Backbone, core) {
 
 
@@ -17,7 +22,11 @@ define([
         {x:0, y:1, e: 5, d: 1}
     ];
 
-    PlayerCollection = Backbone.Collection.extend({});
+    PlayerCollection = Backbone.Collection.extend({
+        comparator: function(p) {
+            return p.get('y');
+        }
+    });
 
     BombsCollection = Backbone.Collection.extend({});
 
@@ -50,18 +59,12 @@ define([
         /** all players */
         players: new PlayerCollection,
 
-        /** all player views */
-        playerViews: [],
-
         /** bombs */
         bombs: new BombsCollection,
         /** queue of bombs to be placed */
         placeBombs: new BombsCollection,
-        /** bomb views, keyed by Bomb */
-        bombViews: [],
 
-        flames: null,//FlamesCollection//,
-        flamesView: [],
+        flames: new FlamesCollection(),
 
         /** obsolete, NPC players */
         npcs: [],
@@ -79,36 +82,24 @@ define([
             this.bombs.on('add', this.onBombAdded, this);
             this.bombs.on('remove', this.onBombRemoved, this);
 
-            this.flames = new FlamesCollection();
-            this.flames.on('add', this.onFlameAdded, this);
             this.flames.on('remove', this.onFlameRemoved, this);
 
-            if (opt.player) {
-                // create our player
-                this.player = new Character({
-                    name: opt.myName,
-                    character: characters[Math.floor(Math.random()*(characters.length))]
-                });
-                this.players.add(this.player);
-            }
+            this.canvas = new GameCanvas({world: this});
+
+            // create our player
+            this.player = new Character({
+                name: opt.myName,
+                character: characters[Math.floor(Math.random()*(characters.length))]
+            });
+            this.players.add(this.player);
         },
 
-
         onCharacterAdded: function(c) {
-            // create a view for the character
-            var cv = new CharacterView({model: c});
-            this.playerViews.push(cv);
-            this.$container.append(cv.el);
-
             this.updateScoring(true);
         },
 
         onCharacterRemoved: function(c) {
-            var cv = _.find(this.playerViews, function(v) { return v.model == c });
-            cv.$el.remove();
-
             this.updateScoring(true);
-            // TODO FIXME: this.playerViews.remove
         },
 
         /** bombs */
@@ -161,36 +152,14 @@ define([
         },
 
         onBombAdded: function(b) {
-            var bv = new BombView({model: b});
-            this.$container.append(bv.el);
-            this.bombViews.push(bv);
-
             this.map.setBomb(b.get('x'), b.get('y'), b);
         },
 
         onBombRemoved: function(b) {
-            var bv = _.find(this.bombViews, function(v) { return v.model == b });
-            bv.$el.remove();
-
-            var bvi = this.bombViews.indexOf(bv);
-            this.bombViews.splice(bvi, 1);
-
             this.map.setBomb(b.get('x'), b.get('y'), null);
         },
 
-        onFlameAdded: function(f) {
-            var fv = new FlameView({ model: f });
-            this.$container.append(fv.el);
-            this.flamesView.push(fv);
-        },
-
         onFlameRemoved: function(f) {
-            var fv = _.find(this.flamesView, function(v) { return v.model == f });
-            fv.$el.remove();
-
-            var fvi = this.flamesView.indexOf(fv);
-            this.flamesView.splice(fvi, 1);
-
             this.map.setFlame(f.get('x'), f.get('y'), null);
         },
 
@@ -200,17 +169,15 @@ define([
                 p.update(dt);
             });
 
-            _.each(this.playerViews, function(pv) {
-                pv.update(dt);
+            this.bombs.each(function(b) {
+                b.update(dt);
             });
 
-            _.each(this.bombViews, function(bv){
-                bv.update(dt);
+            this.flames.each(function(f) {
+                f.update(dt);
             });
 
-            _.each(this.flamesView, function(fv){
-                fv.update(dt);
-            });
+            this.canvas.update(dt);
         },
 
         updateScoring: function(recreate) {
