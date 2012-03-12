@@ -55,7 +55,7 @@ var base64UrlToBase64 = function(str) {
 	return str.replace(/\-/g, '+').replace(/_/g, '/')
 };
 
-site.get('/fb', function(req, res) {
+site.post('/fb', function(req, res) {
     var signed_request = req.param('signed_request');
     if (!signed_request) {
         res.send("Request not signed.");
