@@ -34,6 +34,11 @@
             // TODO move outside game
             this.lastTick = getTicks();
             setInterval(_.bind(this.update, this), 100);
+
+            // map updates
+            setInterval(_.bind(function() {
+                this.map.update(this, getTicks());
+            }, this), 20000);
         },
 
         generatePlayerId: function() {
