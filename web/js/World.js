@@ -137,7 +137,10 @@ define([
                     if (o.d == 0) return; // special case for center
                 }
             },this));
+
+            throttlePlay('explode-break');
         },
+
 
         addMergeFlame: function(x, y, type, owner) {
 
@@ -224,5 +227,8 @@ define([
 
     var scoreItem = _.template('<div class="score-item color-<%= color %>"><div class="player"><%= name %></div><div class="score"><%= score %></div></div>');
 
+    var throttlePlay = _.throttle(function(snd) {
+        play(snd)
+    }, 50);
 
 });

@@ -76,6 +76,7 @@ define([
         },
 
         onPlayerJoined: function(d) {
+            d.name = _.escape(d.name);
             info("<u>" + d.name + "</u> joined");
             console.log(d.name + " #" + d.id + " joined");
             var c = new Character({
@@ -106,6 +107,8 @@ define([
 				var cv = _.find(this.world.playerViews, function(v) { return v.model == c });
 				cv.showSpawn();
 			}
+
+            play('spawn');
         },
 
         onPlayerDisconnected: function(d) {
@@ -116,6 +119,8 @@ define([
 
             this.world.players.remove(c);
             delete this.peers[d.id];
+
+            play('disconnect');
         },
 
         onPlayerUpdated: function(d) {
@@ -149,6 +154,9 @@ define([
                 var killer = this.peers[d.flameOwner];
                 if (killer)
                     kill(c.get('name'), killer.get('name'));
+
+                if (d.flameOwner == this.id)
+                    play("win/" + Math.floor(Math.random()*10));
             }
         },
 
@@ -194,6 +202,8 @@ define([
                 chat('#' + d.id + '> ' + d.chat, cls);
             else
                 chat(c.get('name') + '> ' + d.chat, cls);
+
+            play('chat');
         },
 
         sendChat: function(chat) {

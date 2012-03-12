@@ -131,3 +131,8 @@ function chat(m, cls) {
     d.addClass(cls);
     $('#chat').append(d);
 }
+
+function play(snd) {
+    var a = new Audio("/snd/" + snd + ".wav");
+    a.play();
+}
