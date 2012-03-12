@@ -116,7 +116,7 @@ define([
             var x = this.me.get('x');
             var y = this.me.get('y');
 
-            var PLAYER_GIRTH = 0.25;
+            var PLAYER_GIRTH = 0.35;
 
             var gx = Math.floor(x);
             var gy = Math.floor(y);

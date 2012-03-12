@@ -13,8 +13,6 @@ define([
         initialize: function(opt) {
             this.world = new World({
                 container: $("#map"),
-                player: true,
-                npcs: 0,
                 myName: opt.playerName // TODO refactor this
             });
 

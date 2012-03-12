@@ -2,6 +2,8 @@
 
 define([
     "jquery", "underscore", "backbone",
+
+    "Sprite"
 ],function($, _, Backbone, core) {
 
     var ORIENT_DOWN = 0;
@@ -9,18 +11,6 @@ define([
     var ORIENT_RIGHT = 2;
     var ORIENT_LEFT = 3;
 
-    var MOVE_ANIM_SPEED = 0.15;
-
-    Sprite = Backbone.Model.extend({
-
-        initialize: function() {
-            this.set('frame', 0);
-        },
-
-        update: function(dt) {
-            this.set('frame', this.get('frame') + dt);
-        }
-    });
 
     Character = Sprite.extend({
         defaults: {
