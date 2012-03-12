@@ -10,89 +10,91 @@ var express = require("express");
 var site = express.createServer();
 var url = require("url");
 
-var _ = require("underscore")._;
-var Backbone = require("backbone");
-
-
-var server = require("./server/server");
-
 //_______________________________________________________________
 // IO
 
 var io = require('socket.io').listen(site);
 
-io.set('transports', [
-    'websocket',
-//    'flashsocket'
+//io.set('transports', [
+//    'websocket',
+//    'flashsocket',
 //    'htmlfile',
-    'xhr-polling',
-    'jsonp-polling'
-]);
+//    'xhr-polling',
+//    'jsonp-polling'
+//]);
+
+//_______________________________________________________________
+// Server
+
+var server = require("./server/server");
 
 var s = new Server({io: io});
 
 
-// ________
-// XMPP
+//_______________________________________________________________
+// Static resources
 
-//var junction = require('junction');
+site.use("/", express.static(public));
 
-//var options = {
-//    type        : 'client',
-//    jid         : "mihai.a.cristian@gmail.com",    // this is a special account for this app, so don't bother..
-//    password    : "notaweakpassword",
-//    host        : 'talk.google.com',
-//    port        : 5222
-//};
-//
-//var connection = junction.createConnection(options);
-//connection.on('online', function() {
-//    console.log('Connected as: ' + connection.jid);
-//    connection.send(new junction.elements.Presence());
-//
-//    connection.send(new junction.elements.Message() );
-//});
-//
-//connection.use(junction.presence(function(handler) {
-//    handler.on('available', function(stanza) {
-//        console.log(stanza.from + ' is available');
-//    });
-//    handler.on('unavailable', function(stanza) {
-//        console.log(stanza.from + ' is unavailable');
-//    });
-//}));
-//
-//connection.use(junction.serviceUnavailable());
-//connection.use(junction.errorHandler());
+//_______________________________________________________________
+// Facebook
 
+var base64ToString = function(str) {
+	return (new Buffer(str || "", "base64")).toString("ascii");
+};
 
+var base64UrlToString = function(str) {
+	return base64ToString( base64UrlToBase64(str) );
+};
+
+var base64UrlToBase64 = function(str) {
+	var paddingNeeded = (4- (str.length%4));
+	for (var i = 0; i < paddingNeeded; i++) {
+		str = str + '=';
+	}
+	return str.replace(/\-/g, '+').replace(/_/g, '/')
+};
+
+site.get('/fb', function(req, res) {
+    var signed_request = req.param('signed_request');
+    if (!signed_request) {
+        res.send("Request not signed.");
+        res.end();
+    }
+    var parts = signed_request.split('.');
+    var sig = base64UrlToBase64(parts[0]);
+    var payload = parts[1];
+    var data = JSON.parse(base64UrlToString(payload));
+    if (!data.user_id) {
+        // send over to authorize url
+    }
+    else {
+        // lets verify
+        if (data.algorithm.toUpperCase() !== 'HMAC-SHA256') {
+            res.send('Unknown algorithm. Expected HMAC-SHA256');
+            return;
+        }
+        var secret = 'f96d4be66d931678b7c5f12ee02e8db4';
+        var hmac = require('crypto').createHmac('sha256', secret);
+        hmac.update(payload);
+        var expected_sig = hmac.digest('base64');
+        if (sig != expected_sig){
+            console.log('expected [' + expected_sig + '] got [' + sig + ']');
+            res.send('Hello, this is my app! you are CHEATING! .. expected [' + expected_sig + '] got [' + sig + ']');
+        }
+        else {
+            res.send('Hello, this is my app! you passed verification and are ' + data.user_id);
+        }
+    }
+});
 
 
 //_______________________________________________________________
-// WebApp static resources
-
-site.use("/css", express.static(public + "css"));
-site.use("/js", express.static(public + "js"));
-site.use("/html", express.static(public + "html"));
-site.use("/res", express.static(public + "res"));
-site.use("/snd", express.static(public + "snd"));
-
-
-site.get("*", function(req, res) {
-
-    res.writeHead(200, {
-        'Content-Type': 'text/html',
-        'Access-Control-Allow-Origin' : 'http://dev.s2ih.fr'
-    });
-
-    fs.createReadStream(public + "index.html").pipe(res);
-});
 
 
 var port = process.env.PORT || 8000;
 
 site.listen(port);
-
 
 console.log("Server listening on :" + port);
 
