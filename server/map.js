@@ -31,7 +31,7 @@
 
                     if (i%2==0 && j%2==0)
                         this.setMap(i,j, TILE_SOLID);
-                    else if ( Math.floor(Math.random()*3)==0)
+                    else if ( Math.floor(Math.random()*5)==0)
                         this.setMap(i,j, TILE_BRICK);
 
                 }

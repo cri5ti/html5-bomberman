@@ -9,7 +9,20 @@ define([
     var ORIENT_RIGHT = 2;
     var ORIENT_LEFT = 3;
 
-    Character = Backbone.Model.extend({
+    var MOVE_ANIM_SPEED = 0.15;
+
+    Sprite = Backbone.Model.extend({
+
+        initialize: function() {
+            this.set('frame', 0);
+        },
+
+        update: function(dt) {
+            this.set('frame', this.get('frame') + dt);
+        }
+    });
+
+    Character = Sprite.extend({
         defaults: {
             name: '?',
             character: 'john',
@@ -35,50 +48,15 @@ define([
                 this.set('orient', ORIENT_DOWN);
         },
 
-        update: function() {
-            // nothing to do..
-        },
-
         die: function(flame) {
             this.set('dead', true);
             this.trigger('die', flame);
+            this.set('frame', 0);
         },
 
         sendMessage: function(msg) {
             this.set('chat', msg);
         }
     });
-
-
-    NpcCharacter = Character.extend({
-        defaults: _.extend({}, Character.prototype.defaults, {
-                moveDirection: 0,
-                moveCount: 5
-        }),
-
-        update: function() {
-            // finished last thought
-            if (this.get('moveCount')<=0) {
-                this.set('moveCount', Math.floor(Math.random()*5+2));
-                this.set('moveDirection', Math.floor(Math.random()*4));
-            }
-
-            // move
-            this.set('moveCount', this.get('moveCount')-1);
-
-            if (this.get('moveDirection')==0)
-                this.deltaMove(0,-1);
-            else if (this.get('moveDirection')==1)
-                this.deltaMove(1,0);
-            else if (this.get('moveDirection')==2)
-                this.deltaMove(0,1);
-            else if (this.get('moveDirection')==3)
-                this.deltaMove(-1,0);
-        }
-    });
-
-
-
-
 
 });

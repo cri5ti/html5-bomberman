@@ -126,6 +126,9 @@ define([
             // can it move on X axis?
             if (!this.world.map.canMove( gx, gy, gtx, gy ) )
                 dx = 0; // no x axis moving
+            else {
+                gx = Math.floor(x + dx);
+            }
 
             if (!this.world.map.canMove( gx, gy, gx, gty ) )
                 dy = 0; // no y axis moving

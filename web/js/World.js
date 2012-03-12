@@ -2,8 +2,13 @@
 
 define([
     "jquery", "underscore", "backbone",
-    "map", "bomb", "flames",
-    "Character", "CharacterView",
+
+    "Map",
+    "Bomb",
+    "Flame",
+    "Character",
+
+    "GameCanvas"
 ],function($, _, Backbone, core) {
 
 
@@ -50,9 +55,6 @@ define([
         /** all players */
         players: new PlayerCollection,
 
-        /** all player views */
-        playerViews: [],
-
         /** bombs */
         bombs: new BombsCollection,
         /** queue of bombs to be placed */
@@ -60,8 +62,7 @@ define([
         /** bomb views, keyed by Bomb */
         bombViews: [],
 
-        flames: null,//FlamesCollection//,
-        flamesView: [],
+        flames: new FlamesCollection(),
 
         /** obsolete, NPC players */
         npcs: [],
@@ -73,15 +74,10 @@ define([
             this.mapView = new MapView({model: this.map});
             this.$container.append(this.mapView.el);
 
-            this.players.on('add', this.onCharacterAdded, this);
-            this.players.on('remove', this.onCharacterRemoved, this);
-
             this.bombs.on('add', this.onBombAdded, this);
             this.bombs.on('remove', this.onBombRemoved, this);
 
-            this.flames = new FlamesCollection();
-            this.flames.on('add', this.onFlameAdded, this);
-            this.flames.on('remove', this.onFlameRemoved, this);
+            this.canvas = new GameCanvas({world: this});
 
             if (opt.player) {
                 // create our player
@@ -93,23 +89,22 @@ define([
             }
         },
 
-
-        onCharacterAdded: function(c) {
-            // create a view for the character
-            var cv = new CharacterView({model: c});
-            this.playerViews.push(cv);
-            this.$container.append(cv.el);
-
-            this.updateScoring(true);
-        },
-
-        onCharacterRemoved: function(c) {
-            var cv = _.find(this.playerViews, function(v) { return v.model == c });
-            cv.$el.remove();
-
-            this.updateScoring(true);
-            // TODO FIXME: this.playerViews.remove
-        },
+// FIXME
+//        onCharacterAdded: function(c) {
+//            // create a view for the character
+//            var cv = new CharacterView({model: c});
+//            this.playerViews.push(cv);
+//            this.$container.append(cv.el);
+//
+//            this.updateScoring(true);
+//        },
+//
+//        onCharacterRemoved: function(c) {
+//            var cv = _.find(this.playerViews, function(v) { return v.model == c });
+//            cv.$el.remove();
+//
+//            this.updateScoring(true);
+//        },
 
         /** bombs */
         placeBomb: function(x, y) {
@@ -178,19 +173,13 @@ define([
             this.map.setBomb(b.get('x'), b.get('y'), null);
         },
 
-        onFlameAdded: function(f) {
-            var fv = new FlameView({ model: f });
-            this.$container.append(fv.el);
-            this.flamesView.push(fv);
-        },
+//        onFlameAdded: function(f) {
+//            var fv = new FlameView({ model: f });
+//            this.$container.append(fv.el);
+//            this.flamesView.push(fv);
+//        },
 
         onFlameRemoved: function(f) {
-            var fv = _.find(this.flamesView, function(v) { return v.model == f });
-            fv.$el.remove();
-
-            var fvi = this.flamesView.indexOf(fv);
-            this.flamesView.splice(fvi, 1);
-
             this.map.setFlame(f.get('x'), f.get('y'), null);
         },
 
@@ -211,6 +200,8 @@ define([
             _.each(this.flamesView, function(fv){
                 fv.update(dt);
             });
+
+            this.canvas.update(dt);
         },
 
         updateScoring: function(recreate) {
