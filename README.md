@@ -13,9 +13,11 @@ A HTML5 Bomberman clone using:
 Demo
 =========
 
-A live demo is deployed on [Heroku](http://freezing-dawn-7918.herokuapp.com/).
+A live demo is deployed on [Amazon](http://ec2-176-34-217-95.eu-west-1.compute.amazonaws.com/).
 
-Please note that due to Heroku restrictions, WebSockets are unavailable, so the game will run using polling, which is a bit slower.
+~~Please note that due to Heroku restrictions, WebSockets are unavailable, so the game will run using polling, which is a bit slower.~~
+
+I've moved to Amazon EC2, and socket.io is on full speed!
 
 
 Why?
