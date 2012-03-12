@@ -30,6 +30,9 @@ require("./player.js");
 
             this.game.bombs.on('remove', this.onBombRemoved, this);
 
+            this.game.on('score-changes', _.debounce(this.notifyScoreUpdates, 50), this);
+
+
             this.endpoint = io.of('/game');
             this.endpoint.on('connection', _.bind(this.connection, this));
         },
@@ -81,13 +84,6 @@ require("./player.js");
                 ctrl.notifyGameState();
             }, this));
 
-
-            // TODO spawn
-            // TODO            var newPlayerInfo = this.game.map.getSpawnLocation();
-//            socket.emit('spawn', {
-//                x: newPlayerInfo.x,
-//                y: newPlayerInfo.y
-//            })
         },
 
         onBombRemoved: function(b) {
@@ -98,6 +94,15 @@ require("./player.js");
                 y: b.get('y'),
                 strength: b.get('strength')
             });
+        },
+
+        notifyScoreUpdates: function() {
+            var scoring = {};
+            _.each(this.game.playersById, function(p,id) {
+                scoring[id] = p.get('score');
+            });
+
+            this.endpoint.emit('score-updates', scoring);
         }
 
 

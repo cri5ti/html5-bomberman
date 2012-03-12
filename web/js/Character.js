@@ -17,7 +17,8 @@ define([
             y: 0,
             orient: ORIENT_DOWN,
             moving: false,
-            dead: true
+            dead: true,
+            score: 0
         },
 
         deltaMove: function(x, y) {
@@ -38,9 +39,9 @@ define([
             // nothing to do..
         },
 
-        die: function() {
+        die: function(flame) {
             this.set('dead', true);
-            this.trigger('die', this);
+            this.trigger('die', flame);
         },
 
         sendMessage: function(msg) {

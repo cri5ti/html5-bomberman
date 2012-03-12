@@ -98,8 +98,9 @@ define([
             var cx = Math.floor(this.me.get('x'));
             var cy = Math.floor(this.me.get('y'));
 
-            if (this.world.map.getFlame(cx, cy)!=null)
-                this.me.die();
+            var flame = this.world.map.getFlame(cx, cy);
+            if (flame!=null)
+                this.me.die(flame);
         },
 
         tryPlaceBomb: function() {

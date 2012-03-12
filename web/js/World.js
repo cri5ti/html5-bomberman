@@ -99,11 +99,15 @@ define([
             var cv = new CharacterView({model: c});
             this.playerViews.push(cv);
             this.$container.append(cv.el);
+
+            this.updateScoring(true);
         },
 
         onCharacterRemoved: function(c) {
             var cv = _.find(this.playerViews, function(v) { return v.model == c });
             cv.$el.remove();
+
+            this.updateScoring(true);
             // TODO FIXME: this.playerViews.remove
         },
 
@@ -118,6 +122,7 @@ define([
 
             var bx = b.get('x');
             var by = b.get('y');
+            var owner = b.get('owner');
 
             _.each(ortho,_.bind(function(o) {
                 for(var i=1; i<=strength; i++) {
@@ -127,23 +132,26 @@ define([
                     if (this.map.getTile(fx, fy) != 0)
                         return; // stop on obstacle
 
-                    this.addMergeFlame(fx, fy, i == strength ? o.e : o.d);
+                    this.addMergeFlame(fx, fy, i == strength ? o.e : o.d, owner);
 
                     if (o.d == 0) return; // special case for center
                 }
             },this));
         },
 
-        addMergeFlame: function(x, y, type) {
+        addMergeFlame: function(x, y, type, owner) {
 
             var ef = this.map.getFlame(x,y);
 
             if (ef) {
                 // merge
                 ef.mergeWith(type);
+
+                if (owner != this.player.id)
+                    ef.set('owner', owner);
             } else {
                 // add new
-                ef = new Flame({x: x, y: y, type: type});
+                ef = new Flame({x: x, y: y, type: type, owner: owner});
                 this.flames.add(ef);
                 this.map.setFlame(x, y, ef);
             }
@@ -200,11 +208,21 @@ define([
             _.each(this.flamesView, function(fv){
                 fv.update(dt);
             });
+        },
+
+        updateScoring: function(recreate) {
+            var $st = $("#score-table");
+            if (recreate) {
+                $st.empty();
+                _.each(this.players.sortBy(function(p) { return -p.get('score'); }), function(p) {
+                    var si = $(scoreItem({name: p.get('name'), score: p.get('score'), color: p.get('character')}));
+                    $st.append(si);
+                });
+            }
         }
     });
 
-
-
+    var scoreItem = _.template('<div class="score-item color-<%= color %>"><div class="player"><%= name %></div><div class="score"><%= score %></div></div>');
 
 
 });

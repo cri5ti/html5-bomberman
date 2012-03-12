@@ -12,7 +12,8 @@ define([
     Bomb = Backbone.Model.extend({
         defaults: {
             x: 0,
-            y: 0
+            y: 0,
+            owner: -1
         },
 
         initialize: function() {

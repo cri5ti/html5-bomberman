@@ -98,6 +98,7 @@
             _.each(this.blocks, function(b) {
                 this.map.setAbsMap(b.x, b.y, TILE_EMPTY);
             }, this);
+
             this.map.trigger('notify');
         },
 
@@ -127,6 +128,23 @@
 
         getBomb: function(x,y) {
             return this.bombs.find(function(b) { return b.get('x') == x && b.get('y') == y; });
+        },
+
+        scoreKill: function(whoId, byWhoId) {
+            var who = this.playersById[whoId];
+            if (!who) return;
+
+            if (whoId == byWhoId) { // suicide
+                console.log(who.get('name') + " suicided");
+                who.set('score', who.get('score') - 1);
+            } else {
+                var byWho = this.playersById[byWhoId];
+                if (!byWho) return;
+
+                console.log(who.get('name') + " was killed by " + byWho.get('name'));
+                byWho.set('score', byWho.get('score') + 1);
+            }
+            this.trigger('score-changes');
         }
     });
 

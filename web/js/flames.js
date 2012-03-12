@@ -21,7 +21,8 @@ define([
         defaults: {
             x: 0,
             y: 0,
-            type: 0
+            type: 0,
+            owner: -1
         },
 
         initialize: function() {
@@ -46,6 +47,8 @@ define([
 
             this.set('type', t);
             this.trigger('merged');
+
+
         }
 
     });

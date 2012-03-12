@@ -32,6 +32,8 @@ define([
             this.socket.on('player-disconnected', $.proxy(this.onPlayerDisconnected, this));
             this.socket.on('chat', $.proxy(this.onChat, this));
 
+            this.socket.on('score-updates', $.proxy(this.onScoreUpdates, this));
+
             this.socket.on('bomb-placed', $.proxy(this.onBombPlaced, this));
             this.socket.on('bomb-boomed', $.proxy(this.onBombBoomed, this));
         },
@@ -57,6 +59,8 @@ define([
                 character: this.world.player.get('character')
             });
 
+            this.world.player.id = this.id;
+
             // mark ourself in the peer list
             this.peers[this.id] = this.world.player;
         },
@@ -75,8 +79,10 @@ define([
             info("<u>" + d.name + "</u> joined");
             console.log(d.name + " #" + d.id + " joined");
             var c = new Character({
+                id: d.id,
                 name: d.name,
-                character: d.character
+                character: d.character,
+                score: d.score
             });
             this.world.players.add(c);
             this.peers[d.id] = c;
@@ -133,7 +139,17 @@ define([
                 console.log("Update from unknown #"+ d.id);
                 return;
             }
-            c.die();
+            console.log("Dying", d);
+            if (d.id != this.id)
+                c.die();
+
+            if (d.id == d.flameOwner)
+                suicide(c.get('name'));
+            else {
+                var killer = this.peers[d.flameOwner];
+                if (killer)
+                    kill(c.get('name'), killer.get('name'));
+            }
         },
 
         playerChange: function(player) {
@@ -141,9 +157,17 @@ define([
             this.sendPlayerChange(player);
         },
 
-        playerDie: function(player) {
+        playerDie: function(flame) {
+            var flameOwner = -1;
+            if (flame) {
+                flameOwner = flame.get('owner');
+                var oc = this.peers[ flameOwner ];
+                console.log("Killed by: ", oc.get('name'));
+            }
+
             this.socket.emit('dead', {
-                id: this.id
+                id: this.id,
+                flameOwner: flameOwner
             });
         },
 
@@ -182,7 +206,7 @@ define([
         },
 
         onBombPlaced: function(d) {
-            this.world.bombs.add(new Bomb({x:d.x, y:d.y}));
+            this.world.bombs.add(new Bomb({x:d.x, y:d.y, owner:d.owner}));
         },
 
         onBombBoomed: function(d) {
@@ -192,6 +216,17 @@ define([
 
             // locate bomb
             this.world.explodeBomb(b, d.strength);
+        },
+
+        onScoreUpdates: function(d) {
+            console.log("score updates: ", d);
+
+            _.each(d, _.bind(function(score, id) {
+                var p = this.peers[id];
+                if (p) p.set('score', score);
+            }, this));
+
+            this.world.updateScoring(true);
         }
 
     });

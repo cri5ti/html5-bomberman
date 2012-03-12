@@ -66,6 +66,8 @@ require([
         $userid.blur();
         $("#welcome").hide();
 
+        $("#ingame").show();
+
         start(userid);
     }
 
@@ -113,6 +115,14 @@ require([
 
 function info(m) {
     chat(m, "info");
+}
+
+function kill(p1, p2) {
+    chat("<div class='bomb'></div><u>"+p1+"</u> killed by <u>"+p2+"</u>", "kill");
+}
+
+function suicide(p1, p2) {
+    chat("<div class='bomb'></div><u>"+p1+"</u> suicided", "kill");
 }
 
 function chat(m, cls) {

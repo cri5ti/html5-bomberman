@@ -7,7 +7,8 @@
 
         defaults: {
             alive: false,
-            spawnAt: 0
+            spawnAt: 0,
+            score: 0
         },
 
         initialize: function(opt) {
@@ -35,12 +36,12 @@
             return {
                 id: this.get('id'),
                 name: this.get('name'),
-                character: this.get('character')
+                character: this.get('character'),
+                score: this.get('score')
             }
         },
 
         die: function() {
-            console.log(this.get('name') + " died");
             this.set('alive', false);
         }
     });
@@ -75,9 +76,12 @@
 
         onDead: function(d) {
             this.me.die();
+
+            this.game.scoreKill(d.id, d.flameOwner);
+
             this.me.set('spawnAt', this.game.lastTick + SPAWNING_TIME);
             // notify everyone else
-            this.socket.broadcast.emit('player-dying', d);
+            this.endpoint.emit('player-dying', d);
         },
 
         onDisconnect: function() {
@@ -90,12 +94,13 @@
         onPlaceBomb: function(d) {
             console.log('Placing bomb at ' + d.x + ", " + d.y);
 
+            // can place bomb there?
             if (!this.game.bombs.any(function(b) { return b.get('x') == d.x && b.get('y') == d.y; }))
             {
                 // no bomb here
-                this.game.bombs.add(new Bomb({x: d.x, y: d.y}));
+                this.game.bombs.add(new Bomb({x: d.x, y: d.y, owner: this.id}));
                 // notify everyone
-                this.endpoint.emit('bomb-placed', {x: d.x, y: d.y});
+                this.endpoint.emit('bomb-placed', {x: d.x, y: d.y, owner: this.id});
             } else {
                 console.log('A bomb at ' + d.x + ", " + d.y + " already exists!");
             }
