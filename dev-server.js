@@ -16,15 +16,41 @@ var Backbone = require("backbone");
 
 var server = require("./server/server");
 
+//_______________________________________________________________
+// IO
+
+var io = require('socket.io').listen(site);
+
+io.set('transports', [
+    'websocket',
+//    'flashsocket'
+//    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling'
+]);
+
+var s = new Server({io: io});
+
+
+
+//_______________________________________________________________
+// WebApp static resources
+
+site.use("/css", express.static(public + "css"));
+site.use("/js", express.static(public + "js"));
+site.use("/html", express.static(public + "html"));
+site.use("/res", express.static(public + "res"));
+
+
 site.get("*", function(req, res) {
 
-    res.writeHead(302, {
-        'Location': 'http://ec2-176-34-217-95.eu-west-1.compute.amazonaws.com/'
+    res.writeHead(200, {
+        'Content-Type': 'text/html',
+        'Access-Control-Allow-Origin' : 'http://dev.s2ih.fr'
     });
 
-    res.end();
+    fs.createReadStream(public + "index.html").pipe(res);
 });
-
 
 
 var port = process.env.PORT || 8000;
