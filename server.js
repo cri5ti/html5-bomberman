@@ -44,6 +44,12 @@ var register = function (app) {
 
     app.post('/fb/', function(req, res) {
 
+        var fb_app_id = "209351425839638";
+        var fb_canvas_url = "https://playshortfuse.com/fb/";
+        var fb_secret = 'f96d4be66d931678b7c5f12ee02e8db4';
+
+        // ---
+
         var signed_request = req.param('signed_request');
 
         if (!signed_request) {
@@ -55,25 +61,29 @@ var register = function (app) {
         var sig = base64UrlToBase64(parts[0]);
         var payload = parts[1];
         var data = JSON.parse(base64UrlToString(payload));
+
         if (!data.user_id) {
-            // send over to authorize url
-            res.send("authorize here please...");
+            // authorize
+            var auth_url = "http://www.facebook.com/dialog/oauth?client_id=" + fb_app_id + "&redirect_uri=" + urlencode(fb_canvas_url);
+            res.send("<script> top.location.href='" +auth_url + "'; </script>");
         }
         else {
             // lets verify
             if (data.algorithm.toUpperCase() !== 'HMAC-SHA256') {
+                // TODO
                 res.send('Unknown algorithm. Expected HMAC-SHA256');
                 return;
             }
-            var secret = 'f96d4be66d931678b7c5f12ee02e8db4';
-            var hmac = require('crypto').createHmac('sha256', secret);
+            var hmac = require('crypto').createHmac('sha256', fb_secret);
             hmac.update(payload);
             var expected_sig = hmac.digest('base64');
             if (sig != expected_sig){
+                // TODO
                 console.log('expected [' + expected_sig + '] got [' + sig + ']');
                 res.send('Hello, this is my app! you are CHEATING! .. expected [' + expected_sig + '] got [' + sig + ']');
             }
             else {
+                // TODO
                 res.send('Hello, this is my app! you passed verification and are ' + data.user_id);
             }
         }
