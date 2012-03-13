@@ -84,7 +84,7 @@ var register = function (app) {
                 res.send('Security error');
             }
             else {
-                next();
+                res.write(fs.readFileSync(public + "index.html", 'utf8'));
             }
         }
         res.end();
