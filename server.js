@@ -6,7 +6,11 @@ var public = "web/";
 
 var express = require("express"),
     crypto = require("crypto"),
-    fs = require("fs");
+    fs = require("fs"),
+    querystring = require('querystring');
+
+//_______________________________________________________________
+// HTTP + HTTPS
 
 var http = express.createServer();
 var https = express.createServer({
@@ -64,7 +68,7 @@ var register = function (app) {
 
         if (!data.user_id) {
             // authorize
-            var auth_url = "http://www.facebook.com/dialog/oauth?client_id=" + fb_app_id + "&redirect_uri=" + urlencode(fb_canvas_url);
+            var auth_url = "http://www.facebook.com/dialog/oauth?client_id=" + fb_app_id + "&redirect_uri=" + querystring.stringify(fb_canvas_url);
             res.send("<script> top.location.href='" +auth_url + "'; </script>");
         }
         else {
