@@ -40,19 +40,24 @@ var register = function (app) {
 
     app.use("/", express.static(public));
 
+    app.use(express.bodyParser());
 
     app.post('/fb/', function(req, res) {
+
         var signed_request = req.param('signed_request');
+
         if (!signed_request) {
             res.send("Request not signed.");
             res.end();
         }
+
         var parts = signed_request.split('.');
         var sig = base64UrlToBase64(parts[0]);
         var payload = parts[1];
         var data = JSON.parse(base64UrlToString(payload));
         if (!data.user_id) {
             // send over to authorize url
+            res.send("authorize here please...");
         }
         else {
             // lets verify
@@ -72,6 +77,7 @@ var register = function (app) {
                 res.send('Hello, this is my app! you passed verification and are ' + data.user_id);
             }
         }
+        res.end();
     });
 
 };
