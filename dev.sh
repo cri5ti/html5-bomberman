@@ -5,7 +5,7 @@ compass watch web/ &
 
 
 echo "- starting development server"
-nodemon --watch server server.js &
+nodemon --watch server.js --watch server server.js &
 
 # ----------------------------------------------
 #  Shutdown

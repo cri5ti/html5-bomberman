@@ -46,7 +46,7 @@ var register = function (app) {
 
     app.use(express.bodyParser());
 
-    app.post('/fb/', function(req, res) {
+    app.post('/', function(req, res, next) {
 
         var fb_app_id = "209351425839638";
         var fb_canvas_url = "https://apps.facebook.com/shortfuse/";
@@ -71,7 +71,8 @@ var register = function (app) {
             var auth_url = "http://www.facebook.com/dialog/oauth?client_id=" + fb_app_id + "&redirect_uri=" + encodeURIComponent(fb_canvas_url);
             res.send("<script> top.location.href='" +auth_url + "'; </script>");
         }
-        else {
+        else
+        {
             // lets verify
             if (data.algorithm.toUpperCase() !== 'HMAC-SHA256') {
                 // TODO
@@ -83,12 +84,10 @@ var register = function (app) {
             var expected_sig = hmac.digest('base64');
             if (sig != expected_sig){
                 // TODO
-                console.log('expected [' + expected_sig + '] got [' + sig + ']');
-                res.send('Hello, this is my app! you are CHEATING! .. expected [' + expected_sig + '] got [' + sig + ']');
+                res.send('Security error');
             }
             else {
-                // TODO
-                res.send('Hello, this is my app! you passed verification and are ' + data.user_id);
+                next();
             }
         }
         res.end();
