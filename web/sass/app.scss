@@ -13,10 +13,6 @@ body {
     color: #fff;
 }
 
-canvas {
-    @include box-shadow(#000 0px 3px 20px);
-}
-
 #chat {
     color: #0f0;
     font-size: 12px;
@@ -25,6 +21,7 @@ canvas {
     width: 100%;
     padding: 10px;
     bottom: 100px;
+    z-index: -1;
 
     .info {
         color: #000;

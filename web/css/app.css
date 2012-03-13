@@ -78,14 +78,6 @@ body {
 }
 
 /* line 16, ../sass/app.scss */
-canvas {
-  -moz-box-shadow: black 0px 3px 20px;
-  -webkit-box-shadow: black 0px 3px 20px;
-  -o-box-shadow: black 0px 3px 20px;
-  box-shadow: black 0px 3px 20px;
-}
-
-/* line 20, ../sass/app.scss */
 #chat {
   color: #0f0;
   font-size: 12px;
@@ -94,52 +86,53 @@ canvas {
   width: 100%;
   padding: 10px;
   bottom: 100px;
+  z-index: -1;
 }
-/* line 29, ../sass/app.scss */
+/* line 26, ../sass/app.scss */
 #chat .info {
   color: #000;
 }
-/* line 33, ../sass/app.scss */
+/* line 30, ../sass/app.scss */
 #chat .chat {
   color: #ff0;
 }
-/* line 37, ../sass/app.scss */
+/* line 34, ../sass/app.scss */
 #chat .mychat {
   color: #fff;
 }
-/* line 41, ../sass/app.scss */
+/* line 38, ../sass/app.scss */
 #chat .kill {
   color: #fa6;
 }
-/* line 45, ../sass/app.scss */
+/* line 42, ../sass/app.scss */
 #chat .bomb {
   display: inline-block;
   vertical-align: middle;
   margin: 0 5px;
 }
 
-/* line 52, ../sass/app.scss */
+/* line 49, ../sass/app.scss */
 a {
   color: #f60;
 }
 
-/* line 56, ../sass/app.scss */
+/* line 53, ../sass/app.scss */
 a.disabled {
   color: #333;
 }
 
-/* line 60, ../sass/app.scss */
+/* line 57, ../sass/app.scss */
 a:hover {
   color: #fff;
 }
 
-/* line 64, ../sass/app.scss */
+/* line 61, ../sass/app.scss */
 #map {
   position: absolute;
   top: 20px;
 }
 
-/* line 69, ../sass/app.scss */
+/* line 66, ../sass/app.scss */
 #console {
   position: fixed;
   bottom: 0;
@@ -154,25 +147,25 @@ a:hover {
   box-shadow: black 0px -3px 20px;
 }
 
-/* line 81, ../sass/app.scss */
+/* line 78, ../sass/app.scss */
 #score-table {
   padding: 12px;
   font: 13px Arial;
   background: black;
   border-bottom: solid 1px #4A4;
 }
-/* line 87, ../sass/app.scss */
+/* line 84, ../sass/app.scss */
 #score-table .score-item {
   display: inline-block;
   margin: 0 10px;
   color: #aaa;
 }
-/* line 92, ../sass/app.scss */
+/* line 89, ../sass/app.scss */
 #score-table .score-item .player {
   display: inline-block;
   margin-right: 3px;
 }
-/* line 97, ../sass/app.scss */
+/* line 94, ../sass/app.scss */
 #score-table .score-item .score {
   display: inline-block;
   font-size: 15px;
@@ -184,30 +177,30 @@ a:hover {
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 105, ../sass/app.scss */
+/* line 102, ../sass/app.scss */
 #score-table .score-item.color-mary .score {
   background: #a00;
   color: #fd6;
 }
-/* line 106, ../sass/app.scss */
+/* line 103, ../sass/app.scss */
 #score-table .score-item.color-john .score {
   background: #fff;
   color: #33f;
 }
-/* line 107, ../sass/app.scss */
+/* line 104, ../sass/app.scss */
 #score-table .score-item.color-joe .score {
   background: #333;
   color: #0f0;
   border: solid 1px #0f0;
   padding: 0 8px;
 }
-/* line 108, ../sass/app.scss */
+/* line 105, ../sass/app.scss */
 #score-table .score-item.color-betty .score {
   background: #05e;
   color: #ffa;
 }
 
-/* line 111, ../sass/app.scss */
+/* line 108, ../sass/app.scss */
 #waitserver {
   position: absolute;
   top: 0;
@@ -221,7 +214,7 @@ a:hover {
   opacity: 0.5;
 }
 
-/* line 124, ../sass/app.scss */
+/* line 121, ../sass/app.scss */
 #chatbox {
   width: 90%;
   font-size: 14px;
@@ -231,14 +224,14 @@ a:hover {
   color: #888;
 }
 
-/* line 133, ../sass/app.scss */
+/* line 130, ../sass/app.scss */
 #chatbox:focus {
   border: none;
   color: #fff;
   outline: none;
 }
 
-/* line 140, ../sass/app.scss */
+/* line 137, ../sass/app.scss */
 .bubble {
   position: absolute;
   background: #000;
@@ -256,7 +249,7 @@ a:hover {
   border-radius: 8px 8px 8px 0;
 }
 
-/* line 155, ../sass/app.scss */
+/* line 152, ../sass/app.scss */
 #footer {
   position: fixed;
   bottom: 0;
@@ -268,19 +261,19 @@ a:hover {
   color: #aaa;
   z-order: -100;
 }
-/* line 166, ../sass/app.scss */
+/* line 163, ../sass/app.scss */
 #footer a {
   color: #fff;
 }
 
-/* line 173, ../sass/app.scss */
+/* line 170, ../sass/app.scss */
 #welcome {
   position: fixed;
   width: 100%;
   height: 100%;
   background: #273;
 }
-/* line 179, ../sass/app.scss */
+/* line 176, ../sass/app.scss */
 #welcome #form {
   background: #384;
   position: absolute;
@@ -301,12 +294,12 @@ a:hover {
   -o-box-shadow: 0 0 30px #005511;
   box-shadow: 0 0 30px #005511;
 }
-/* line 192, ../sass/app.scss */
+/* line 189, ../sass/app.scss */
 #welcome #form p {
   color: #051;
   margin-bottom: 20px;
 }
-/* line 197, ../sass/app.scss */
+/* line 194, ../sass/app.scss */
 #welcome #form input {
   background: #273;
   border: none;
@@ -316,11 +309,11 @@ a:hover {
   padding: 10px;
   width: 210px;
 }
-/* line 207, ../sass/app.scss */
+/* line 204, ../sass/app.scss */
 #welcome #form input:focus {
   outline: none;
 }
-/* line 211, ../sass/app.scss */
+/* line 208, ../sass/app.scss */
 #welcome #form button {
   background-color: #384;
   border: none;
@@ -334,12 +327,12 @@ a:hover {
   -khtml-border-radius: 16px;
   border-radius: 16px;
 }
-/* line 220, ../sass/app.scss */
+/* line 217, ../sass/app.scss */
 #welcome #form button:hover {
   background-color: yellow;
   color: #384;
 }
-/* line 225, ../sass/app.scss */
+/* line 222, ../sass/app.scss */
 #welcome #form button:disabled {
   color: #384;
 }
