@@ -1,5 +1,7 @@
+Play it now on [playshortfuse.com](http://www.playshortfuse.com)
+-------------------------
 
-[Play it now](http://www.playshortfuse.com).
+---
 
 
 What is it?
