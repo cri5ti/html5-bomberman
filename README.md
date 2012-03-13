@@ -13,7 +13,7 @@ A HTML5 Bomberman clone using:
 Demo
 =========
 
-A live demo is deployed on [Amazon](http://ec2-176-34-217-95.eu-west-1.compute.amazonaws.com/).
+A live demo is deployed on [Amazon](http://ec2-46-137-157-196.eu-west-1.compute.amazonaws.com/).
 
 ~~Please note that due to Heroku restrictions, WebSockets are unavailable, so the game will run using polling, which is a bit slower.~~
 
