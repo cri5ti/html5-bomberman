@@ -68,7 +68,7 @@ var register = function (app) {
 
         if (!data.user_id) {
             // authorize
-            var auth_url = "http://www.facebook.com/dialog/oauth?client_id=" + fb_app_id + "&redirect_uri=" + querystring.stringify(fb_canvas_url);
+            var auth_url = "http://www.facebook.com/dialog/oauth?client_id=" + fb_app_id + "&redirect_uri=" + encodeURIComponent(fb_canvas_url);
             res.send("<script> top.location.href='" +auth_url + "'; </script>");
         }
         else {
