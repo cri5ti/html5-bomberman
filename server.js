@@ -49,7 +49,7 @@ var register = function (app) {
     app.post('/fb/', function(req, res) {
 
         var fb_app_id = "209351425839638";
-        var fb_canvas_url = "https://playshortfuse.com/fb/";
+        var fb_canvas_url = "https://apps.facebook.com/shortfuse/";
         var fb_secret = 'f96d4be66d931678b7c5f12ee02e8db4';
 
         // ---
