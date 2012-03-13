@@ -21,7 +21,7 @@ var https = express.createServer({
 //_______________________________________________________________
 // IO
 
-var io = require('socket.io').listen(http);
+var io = require('socket.io').listen(https);
 
 //io.set('transports', [
 //    'websocket',
@@ -116,7 +116,11 @@ var base64UrlToBase64 = function(str) {
 //_______________________________________________________________
 
 
-register(http);
+
+http.get("*", function(req, res) {
+    res.redirect("https://www.playshortfuse.com/");
+});
+
 http.listen(8000);
 
 register(https);
