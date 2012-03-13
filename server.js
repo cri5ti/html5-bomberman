@@ -41,9 +41,6 @@ var s = new Server({io: io});
 
 var register = function (app) {
 
-
-    app.use("/", express.static(public));
-
     app.use(express.bodyParser());
 
     app.post('/', function(req, res, next) {
@@ -92,6 +89,8 @@ var register = function (app) {
         }
         res.end();
     });
+
+    app.use("/", express.static(public));
 
 };
 
