@@ -66,6 +66,9 @@ define([
                     inChat = true;
                 }
             }
+
+            e.stopImmediatePropagation();
+            e.preventDefault();
         },
 
         onKeyUp: function(e) {
