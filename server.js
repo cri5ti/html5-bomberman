@@ -90,7 +90,7 @@ var register = function (app) {
         res.end();
     });
 
-    app.use("/", express.static(public));
+    app.use(express.static(public));
 
 };
 
