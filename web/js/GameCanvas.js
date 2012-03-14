@@ -206,11 +206,8 @@ define([
         mapDirty: function(x,y,w,h) {
             if (this.mapRepaint) return;
 
-            if (x == undefined) {
+            if (x == undefined)
                 this.mapRepaint = true;
-                var map = this.world.map;
-                this.addDirtyZone(map.x, map.y, map.w, map.h);
-            }
             else if (w == undefined)
                 this.addDirtyZone(x,y,1,1);
             else
@@ -260,7 +257,11 @@ define([
 
             // TODO compute map deltas
 
-            if (this.lastXY) {
+            if (this.mapRepaint) {
+                this.mapDirts = [];
+                this.mapDirty();
+            }
+            else if (this.lastXY) {
                 var dx = this.lastXY.x - x;
                 var dy = this.lastXY.y - y;
 
