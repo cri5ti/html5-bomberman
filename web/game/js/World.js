@@ -191,17 +191,47 @@ define([
             if (recreate) {
                 $st.empty();
                 _.each(this.players.sortBy(function(p) { return -p.get('score'); }), function(p) {
-                    var si = $(scoreItem({name: p.get('name'), score: p.get('score'), color: p.get('character')}));
+                    var si = $(scoreItem({name: p.get('name'), score: p.get('score'), color: p.get('character') }));
+
+                    var lag = p.get('lag');
+                    var lagw = lagBar(lag, 20, 300, 48, 8);
+                    var cg = Math.round(lagBar(lag, 20, 250, 255, 0));
+                    var cr = 255 - cg;
+
+                    $('.lag', si).css({
+                        width: lagw+'px',
+                        'background-color': 'rgb('+cr+','+cg+',0)'
+                    })
                     $st.append(si);
                 });
             }
         }
     });
 
-    var scoreItem = _.template('<div class="score-item color-<%= color %>"><div class="player"><%= name %></div><div class="score"><%= score %></div></div>');
+    var scoreItem = _.template('<div class="score-item color-<%= color %>"><div class="player"><%= name %></div><div class="score"><%= score %></div><div class="lag"></div></div>');
 
     var throttlePlay = _.throttle(function(snd) {
         play(snd)
     }, 50);
+
+    var lagBar = function(x, minLag, maxLag, minVal, maxVal) {
+        var dlag = maxLag - minLag;
+        var dval = maxVal - minVal;
+        var a = dval / dlag;
+        var b = minVal - minLag * dval / dlag;
+
+        return clampa(a*x + b, minVal, maxVal);
+    }
+
+    var clampa = function(x, a, b) {
+        if (a < b) return clamp(x, a, b)
+        return clamp(x, b, a);
+    }
+
+    var clamp = function(x, a, b) {
+        if (x < a) return a;
+        if (x > b) return b;
+        return x;
+    }
 
 });

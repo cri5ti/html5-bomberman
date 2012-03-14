@@ -24,6 +24,8 @@ require("./player.js");
         initialize: function(opt) {
             var io = opt.io;
 
+            global.counters.players = 0;
+
             io.set('log level', 1);
 
             this.game = new Game();
@@ -40,6 +42,8 @@ require("./player.js");
         },
 
         connection: function(socket) {
+            global.counters.players++;
+
             // generate id
             var playerId = this.game.generatePlayerId();
 
@@ -75,6 +79,8 @@ require("./player.js");
                 ctrl.on('disconnect', _.bind(function() {
                     delete this.game.playersById[playerId];
                     delete this.game.ctrlsById[playerId];
+
+                    global.counters.players--;
                 }, this));
 
                 console.log("+ " + name + " joined the game");

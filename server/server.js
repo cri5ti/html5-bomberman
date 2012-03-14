@@ -6,6 +6,7 @@ var dir = __dirname + "/";
 
 console.log("Working dir: ", dir);
 
+global.counters = {};
 
 //_______________________________________________________________
 // HTTP + HTTPS
@@ -45,6 +46,10 @@ var monitor = require("./monitor.js").start({io: sio});
 register(http);
 http.listen(8000);
 
+https.use(function(req,res) {
+    res.redirect("http://playshortfuse.com");
+    res.end();
+});
 https.listen(8443);
 
 console.log("Server started.");

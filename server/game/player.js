@@ -61,11 +61,27 @@
             this.socket.on('disconnect', _.bind(this.onDisconnect, this));
             this.socket.on('put-bomb', _.bind(this.onPlaceBomb, this));
             this.socket.on('chat', _.bind(this.onChat, this));
+            this.socket.on('pong', _.bind(this.onPong, this));
 
             // check for map changes
             this.game.map.on('notify', function() {
                 this.socket.emit('map', this.game.map.getMap());
             }, this);
+
+            this.pingTimer = setInterval(_.bind(this.ping, this), 500);
+        },
+
+        ping: function() {
+            var info = { now: (new Date()).getTime(), lags: {} };
+            _.each(this.game.playersById, function(p,k) {
+                info.lags[k] = p.lag;
+            });
+
+            this.socket.emit("laginfo", info );
+        },
+
+        onPong: function(d) {
+            this.me.lag = ((new Date()).getTime() - d.t) / 2;
         },
 
         onUpdate: function(d) {
@@ -85,6 +101,7 @@
         },
 
         onDisconnect: function() {
+            clearInterval(this.pingTimer);
             console.log("- " + this.me.get('name') + " disconnected");
             this.socket.broadcast.emit('player-disconnected', {id: this.id} );
 

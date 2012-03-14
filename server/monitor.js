@@ -16,8 +16,7 @@ Monitor.prototype.connection = function(s) {
     var timer = setInterval(function() {
 
         buildStats(function(stat) {
-            s.emit('stat', stat);
-            console.log(stat);
+            s.volatile.emit('stat', stat);
         });
 
     }, 1000);
@@ -46,7 +45,7 @@ var buildStats = function(b) {
 
     var stat = {
         time: time,
-        users: Math.round(Math.random() * 20)
+        users: global.counters.players
     };
 
     child = exec("ps -p" + pid + " -opcpu | sed -n '2p'", function (error, stdout, stderr) {

@@ -31,6 +31,7 @@ define([
             this.socket.on('player-dying', $.proxy(this.onPlayerDying, this));
             this.socket.on('player-disconnected', $.proxy(this.onPlayerDisconnected, this));
             this.socket.on('chat', $.proxy(this.onChat, this));
+            this.socket.on('laginfo', $.proxy(this.onPing, this));
 
             this.socket.on('score-updates', $.proxy(this.onScoreUpdates, this));
 
@@ -243,6 +244,16 @@ define([
                 this.world.map.setDirty(d.x, d.y);
                 this.world.breakings.add( new BreakingTile({x:d.x, y:d.y}) );
             }, this));
+        },
+
+        onPing: function(d) {
+            _.each(d.lags, _.bind(function(lag, id) {
+                var p = this.peers[id];
+                if (p) p.set('lag', lag);
+            }, this));
+
+            this.socket.emit('pong', {t: d.now} );
+            this.world.updateScoring(true);
         },
 
         onScoreUpdates: function(d) {

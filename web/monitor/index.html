@@ -8,10 +8,21 @@
     <script data-main="js/main.js" src="js/lib/require-jquery.js"></script>
 </head>
 <body>
-    <h1>Monitoring</h1>
+    <h4>Monitoring</h4>
 
-    <div id="chart-users" style="height: 200px;"></div>
-    <div id="chart-cpu" style="height: 200px;"></div>
+    <table>
+        <tr>
+            <td>Users:</td>
+            <td><span id="chart-users">Loading...</span></td>
+            <td><span id="curent-users"></span></td>
+        </tr>
+
+        <tr>
+            <td>node</td>
+            <td><span id="chart-cpu">Loading...</span></td>
+            <td><span id="curent-cpu"></span></td>
+        </tr>
+    </table>
 
 </body>
 </html>

@@ -88,6 +88,7 @@ a:hover {
         display: inline-block;
         margin: 0 10px;
         color: #aaa;
+        vertical-align: top;
 
         .player {
             display: inline-block;
@@ -99,6 +100,17 @@ a:hover {
             font-size: 15px;
             padding: 2px 10px;
             @include border-radius(10px);
+        }
+
+        .lag {
+            display: block;
+            position: relative;
+            height: 3px;
+            width: 0;
+            margin: 5px;
+            background-color: #0f0;
+            background-image: url('/res/lagbar.png');
+            background-position: left;
         }
     }
 
