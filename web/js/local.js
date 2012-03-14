@@ -13,7 +13,7 @@ define([
     var DOWN = 40;
     var SPACE = 32;
 
-    var PLAYER_MOVE_SPEED = 10; // squares per second
+    var PLAYER_MOVE_SPEED = 5; // squares per second
 
 
     var keymap = {}; // it's ok to be global

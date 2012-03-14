@@ -131,7 +131,7 @@
             if (_.size(g.playersById)==0)
                 return;
 
-            for(i=0; i<100; i++) {
+            for(i=0; i<20; i++) {
                 var x = Math.floor(Math.random()*this.get('width')) + this.get('x');
                 var y = Math.floor(Math.random()*this.get('height')) + this.get('y');
 
