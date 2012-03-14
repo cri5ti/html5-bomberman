@@ -36,6 +36,8 @@ define([
 
             this.socket.on('bomb-placed', $.proxy(this.onBombPlaced, this));
             this.socket.on('bomb-boomed', $.proxy(this.onBombBoomed, this));
+
+            this.socket.on('break-tiles', $.proxy(this.onTilesBroke, this));
         },
 
         onDisconnect: function() {
@@ -71,8 +73,11 @@ define([
                 y: d.y,
                 width: d.w,
                 height: d.h,
-                map: d.map
+                map: d.map,
+                initialized: true
             });
+            this.world.map.setDirty();
+            console.log("full map update");
         },
 
         onPlayerJoined: function(d) {
@@ -105,6 +110,7 @@ define([
 
 			if (d.id == this.id) {
                 c.trigger('spawn');
+                this.world.map.setDirty();
                 // FIXME
 //				var cv = _.find(this.world.playerViews, function(v) { return v.model == c });
 //				cv.showSpawn();
@@ -229,6 +235,14 @@ define([
 
             // locate bomb
             this.world.explodeBomb(b, d.strength);
+        },
+
+        onTilesBroke: function(ds) {
+            _.each(ds, _.bind(function(d) {
+                this.world.map.setTile(d.x, d.y, TILE_EMPTY);
+                this.world.map.setDirty(d.x, d.y);
+                this.world.breakings.add( new BreakingTile({x:d.x, y:d.y}) );
+            }, this));
         },
 
         onScoreUpdates: function(d) {

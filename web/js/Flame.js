@@ -15,6 +15,15 @@ define([
     var END_DOWN = 5;
     var END_LEFT = 6;
 
+
+    BreakingTile = Sprite.extend({
+        defaults: {
+            x: 0,
+            y: 0
+        }
+    });
+
+
     Flame = Sprite.extend({
 
         defaults: {
@@ -42,8 +51,7 @@ define([
             else if (t >= END_UP && nt >= END_UP) t = nt;
 
             this.set('type', t);
-            this.trigger('merged');
-
+            this.set('frame', 0);
         }
 
     });

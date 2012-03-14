@@ -101,10 +101,10 @@
             this._chainBombs(b);
 
             _.each(this.blocks, function(b) {
-                this.map.setAbsMap(b.x, b.y, TILE_EMPTY);
+                this.map.setAbsMap(b.x, b.y, TILE_EMPTY, false);
             }, this);
 
-            this.map.trigger('notify');
+            this.endpoint.emit('break-tiles', this.blocks);
         },
 
         /**

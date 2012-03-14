@@ -30,6 +30,20 @@ define([
 
     BombsCollection = Backbone.Collection.extend({});
 
+    BreakersCollection = Backbone.Collection.extend({
+        initialize: function() {
+            this.on('add', this.onAdd, this);
+        },
+
+        onAdd: function(b) {
+            b.on('done', this.onDone, this);
+        },
+
+        onDone: function(b) {
+            this.remove(b);
+        }
+    });
+
     FlamesCollection = Backbone.Collection.extend({
         initialize: function() {
             this.on('add', this.onFlameAdded, this);
@@ -65,6 +79,7 @@ define([
         placeBombs: new BombsCollection,
 
         flames: new FlamesCollection(),
+        breakings: new BreakersCollection(),
 
         /** obsolete, NPC players */
         npcs: [],
@@ -73,8 +88,6 @@ define([
             this.$container = opt.container;
 
             this.map = new Map();
-            this.mapView = new MapView({model: this.map});
-            this.$container.append(this.mapView.el);
 
             this.players.on('add', this.onCharacterAdded, this);
             this.players.on('remove', this.onCharacterRemoved, this);
@@ -165,17 +178,10 @@ define([
 
         update: function(dt) {
 
-            this.players.each(function(p) {
-                p.update(dt);
-            });
-
-            this.bombs.each(function(b) {
-                b.update(dt);
-            });
-
-            this.flames.each(function(f) {
-                f.update(dt);
-            });
+            this.players.each(function(p) { p.update(dt); });
+            this.bombs.each(function(b) { b.update(dt); });
+            this.flames.each(function(f) { f.update(dt); });
+            this.breakings.each(function(b) { b.update(dt); });
 
             this.canvas.update(dt);
         },

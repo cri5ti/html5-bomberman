@@ -54,8 +54,8 @@
 
     Map = Backbone.Model.extend({
         defaults: {
-            width: 27,
-            height: 19,
+            width: 50,
+            height: 40,
             x: 5,
             y: 3
         },
@@ -131,7 +131,7 @@
             if (_.size(g.playersById)==0)
                 return;
 
-            for(i=0; i<1; i++) {
+            for(i=0; i<100; i++) {
                 var x = Math.floor(Math.random()*this.get('width')) + this.get('x');
                 var y = Math.floor(Math.random()*this.get('height')) + this.get('y');
 

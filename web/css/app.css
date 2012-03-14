@@ -1,4 +1,3 @@
-@import url(chars.css);
 /* line 17, ../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -127,12 +126,17 @@ a:hover {
 }
 
 /* line 61, ../sass/app.scss */
-#map {
+#game {
   position: absolute;
-  top: 20px;
+  left: 50%;
+  top: 60px;
+  -moz-box-shadow: black 0px 3px 20px;
+  -webkit-box-shadow: black 0px 3px 20px;
+  -o-box-shadow: black 0px 3px 20px;
+  box-shadow: black 0px 3px 20px;
 }
 
-/* line 66, ../sass/app.scss */
+/* line 69, ../sass/app.scss */
 #console {
   position: fixed;
   bottom: 0;
@@ -147,25 +151,25 @@ a:hover {
   box-shadow: black 0px -3px 20px;
 }
 
-/* line 78, ../sass/app.scss */
+/* line 81, ../sass/app.scss */
 #score-table {
   padding: 12px;
   font: 13px Arial;
   background: black;
   border-bottom: solid 1px #4A4;
 }
-/* line 84, ../sass/app.scss */
+/* line 87, ../sass/app.scss */
 #score-table .score-item {
   display: inline-block;
   margin: 0 10px;
   color: #aaa;
 }
-/* line 89, ../sass/app.scss */
+/* line 92, ../sass/app.scss */
 #score-table .score-item .player {
   display: inline-block;
   margin-right: 3px;
 }
-/* line 94, ../sass/app.scss */
+/* line 97, ../sass/app.scss */
 #score-table .score-item .score {
   display: inline-block;
   font-size: 15px;
@@ -177,30 +181,30 @@ a:hover {
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 102, ../sass/app.scss */
+/* line 105, ../sass/app.scss */
 #score-table .score-item.color-mary .score {
   background: #a00;
   color: #fd6;
 }
-/* line 103, ../sass/app.scss */
+/* line 106, ../sass/app.scss */
 #score-table .score-item.color-john .score {
   background: #fff;
   color: #33f;
 }
-/* line 104, ../sass/app.scss */
+/* line 107, ../sass/app.scss */
 #score-table .score-item.color-joe .score {
   background: #333;
   color: #0f0;
   border: solid 1px #0f0;
   padding: 0 8px;
 }
-/* line 105, ../sass/app.scss */
+/* line 108, ../sass/app.scss */
 #score-table .score-item.color-betty .score {
   background: #05e;
   color: #ffa;
 }
 
-/* line 108, ../sass/app.scss */
+/* line 111, ../sass/app.scss */
 #waitserver {
   position: absolute;
   top: 0;
@@ -214,7 +218,7 @@ a:hover {
   opacity: 0.5;
 }
 
-/* line 121, ../sass/app.scss */
+/* line 124, ../sass/app.scss */
 #chatbox {
   width: 90%;
   font-size: 14px;
@@ -224,32 +228,14 @@ a:hover {
   color: #888;
 }
 
-/* line 130, ../sass/app.scss */
+/* line 133, ../sass/app.scss */
 #chatbox:focus {
   border: none;
   color: #fff;
   outline: none;
 }
 
-/* line 137, ../sass/app.scss */
-.bubble {
-  position: absolute;
-  background: #000;
-  color: #fff;
-  top: -20px;
-  left: 10px;
-  padding: 3px 5px;
-  font-size: 11px;
-  white-space: nowrap;
-  -moz-border-radius: 8px 8px 8px 0;
-  -webkit-border-radius: 8px 8px 8px 0;
-  -o-border-radius: 8px 8px 8px 0;
-  -ms-border-radius: 8px 8px 8px 0;
-  -khtml-border-radius: 8px 8px 8px 0;
-  border-radius: 8px 8px 8px 0;
-}
-
-/* line 152, ../sass/app.scss */
+/* line 141, ../sass/app.scss */
 #footer {
   position: fixed;
   bottom: 0;
@@ -261,19 +247,19 @@ a:hover {
   color: #aaa;
   z-order: -100;
 }
-/* line 163, ../sass/app.scss */
+/* line 152, ../sass/app.scss */
 #footer a {
   color: #fff;
 }
 
-/* line 170, ../sass/app.scss */
+/* line 157, ../sass/app.scss */
 #welcome {
   position: fixed;
   width: 100%;
   height: 100%;
   background: #273;
 }
-/* line 176, ../sass/app.scss */
+/* line 163, ../sass/app.scss */
 #welcome #form {
   background: #384;
   position: absolute;
@@ -294,12 +280,12 @@ a:hover {
   -o-box-shadow: 0 0 30px #005511;
   box-shadow: 0 0 30px #005511;
 }
-/* line 189, ../sass/app.scss */
+/* line 176, ../sass/app.scss */
 #welcome #form p {
   color: #051;
   margin-bottom: 20px;
 }
-/* line 194, ../sass/app.scss */
+/* line 181, ../sass/app.scss */
 #welcome #form input {
   background: #273;
   border: none;
@@ -309,11 +295,11 @@ a:hover {
   padding: 10px;
   width: 210px;
 }
-/* line 204, ../sass/app.scss */
+/* line 191, ../sass/app.scss */
 #welcome #form input:focus {
   outline: none;
 }
-/* line 208, ../sass/app.scss */
+/* line 195, ../sass/app.scss */
 #welcome #form button {
   background-color: #384;
   border: none;
@@ -327,12 +313,12 @@ a:hover {
   -khtml-border-radius: 16px;
   border-radius: 16px;
 }
-/* line 217, ../sass/app.scss */
+/* line 204, ../sass/app.scss */
 #welcome #form button:hover {
   background-color: yellow;
   color: #384;
 }
-/* line 222, ../sass/app.scss */
+/* line 209, ../sass/app.scss */
 #welcome #form button:disabled {
   color: #384;
 }

@@ -35,6 +35,8 @@ require("./player.js");
 
             this.endpoint = io.of('/game');
             this.endpoint.on('connection', _.bind(this.connection, this));
+
+            this.game.endpoint = this.endpoint;
         },
 
         connection: function(socket) {

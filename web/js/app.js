@@ -96,6 +96,7 @@ function chat(m, cls) {
 }
 
 function play(snd) {
+    // FIXME detect audio
     var a = new Audio("/snd/" + snd + ".wav");
     a.play();
 }

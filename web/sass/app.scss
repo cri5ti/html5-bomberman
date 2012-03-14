@@ -58,9 +58,12 @@ a:hover {
     color: #fff;
 }
 
-#map {
+#game {
     position: absolute;
-    top: 20px;
+    left: 50%;
+    top: 60px;
+
+    @include box-shadow(#000 0px 3px 20px);
 }
 
 #console {
@@ -134,20 +137,6 @@ a:hover {
 }
 
 
-.bubble {
-    position: absolute;
-    background: #000;
-    color: #fff;
-    top: -20px;
-    left: 10px;
-    padding: 3px 5px;
-    font-size: 11px;
-    white-space: nowrap;
-    @include border-radius(8px 8px 8px 0);
-}
-
-@import "chars.css";
-
 
 #footer {
     position: fixed;
@@ -162,8 +151,6 @@ a:hover {
     
     a { color: #fff; }
 }
-
-
 
 
 
