@@ -259,7 +259,6 @@ define([
 
             if (this.mapRepaint) {
                 this.mapDirts = [];
-                this.mapDirty();
             }
             else if (this.lastXY) {
                 var dx = this.lastXY.x - x;
@@ -291,6 +290,10 @@ define([
                 }
             } else {
                 this.mapDirty();
+            }
+
+            if (this.mapRepaint) {
+                this.mapDirty(0, 0, mp.w, mp.h);
             }
 
             var dm = this.mapDirts;
