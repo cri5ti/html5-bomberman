@@ -117,9 +117,9 @@ var base64UrlToBase64 = function(str) {
 
 
 // FIXME redirect to https or make socket.io over http
-//http.get("*", function(req, res) {
-//    res.redirect("https://www.playshortfuse.com/");
-//});
+http.get("*", function(req, res) {
+    res.redirect("https://www.playshortfuse.com/");
+});
 
 http.listen(8000);
 
