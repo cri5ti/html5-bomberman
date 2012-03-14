@@ -293,7 +293,7 @@ define([
             }
 
             if (this.mapRepaint) {
-                this.mapDirty(0, 0, mp.w, mp.h);
+                this.addDirtyZone(0,0,map.w,map.h);
             }
 
             var dm = this.mapDirts;
