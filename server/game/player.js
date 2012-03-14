@@ -68,7 +68,7 @@
                 this.socket.emit('map', this.game.map.getMap());
             }, this);
 
-            this.pingTimer = setInterval(_.bind(this.ping, this), 500);
+            this.pingTimer = setInterval(_.bind(this.ping, this), 2000);
         },
 
         ping: function() {
