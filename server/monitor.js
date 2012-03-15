@@ -40,7 +40,7 @@ var buildStats = function(b) {
         time: time,
         users: global.counters.players,
         mapfill: Math.round(global.counters.mapfill * 10000) / 100,
-        cpu: lastCpuTime
+        cpu: Math.round(lastCpuTime * 10000) / 100
     };
 
 }
