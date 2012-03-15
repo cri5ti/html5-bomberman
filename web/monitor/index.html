@@ -6,27 +6,30 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script data-main="js/main.js" src="js/lib/require-jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-    <h4>Monitoring</h4>
-
-    <table>
+    <table cellpadding="0" cellspacing="0">
         <tr>
-            <td>users:</td>
-            <td><span id="chart-users">Loading...</span></td>
-            <td><span id="curent-users"></span></td>
+            <td align="right" class="label">users:</td>
+            <td width="100"><div class="chart" id="chart-users">Loading...</div></td>
+            <td width="50" align="right" valign="middle"><div id="curent-users" style="font: 18px Arial; color: #fff;"></div></td>
         </tr>
 
         <tr>
-            <td>node (%cpu)</td>
-            <td><span id="chart-cpu">Loading...</span></td>
-            <td><span id="curent-cpu"></span></td>
+            <td align="right" class="label">node:</td>
+            <td><div class="chart" id="chart-cpu">Loading...</div></td>
+            <td valign="middle" align="right"><div id="curent-cpu"></div></td>
         </tr>
-
         <tr>
-            <td>map fill:</td>
-            <td><span id="chart-mapfill">Loading...</span></td>
-            <td><span id="curent-mapfill"></span></td>
+            <td colspan="3">
+                <hr noshade color="#555"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="label">mapfill:</td>
+            <td><div class="chart" id="chart-mapfill">Loading...</div></td>
+            <td valign="middle" align="right"><div id="curent-mapfill"></div></td>
         </tr>
     </table>
 

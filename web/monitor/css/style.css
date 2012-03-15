@@ -1,0 +1,24 @@
+
+BODY, TD {
+    font: 11px Arial;
+    background: #000;
+    color: #fff;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    height: 30px;
+}
+
+.label {
+    color: #666;
+    text-transform: uppercase;
+}
+
+.chart {
+    display: inline-block;
+
+}
