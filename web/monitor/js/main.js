@@ -43,6 +43,9 @@ require([
                 $("#curent-cpu").css({'color': '#f00', 'font-size': '120%'});
                 alertSound();
             }
+
+            var time = new Date(stat.time);
+            $("#lastupdate").text( time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() );
         });
 
     });
