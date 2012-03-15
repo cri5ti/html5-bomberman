@@ -31,7 +31,7 @@
 
                     if (i%2==0 && j%2==0)
                         this.setMap(i,j, TILE_SOLID);
-                    else if ( Math.floor(Math.random()*10)==0)
+                    else if ( Math.floor(Math.random()*5)==0)
                         this.setMap(i,j, TILE_BRICK);
 
                 }
@@ -110,12 +110,11 @@
 
                 if (this.getAbsTile(x,y) != TILE_SOLID) {
                     valid = true;
+
                     // clear room
-                    if (this.getAbsTile(x  , y  ) == TILE_BRICK) this.setAbsMap(x  , y  , TILE_EMPTY);
-                    if (this.getAbsTile(x-1, y  ) == TILE_BRICK) this.setAbsMap(x-1, y  , TILE_EMPTY);
-                    if (this.getAbsTile(x+1, y  ) == TILE_BRICK) this.setAbsMap(x+1, y  , TILE_EMPTY);
-                    if (this.getAbsTile(x  , y-1) == TILE_BRICK) this.setAbsMap(x  , y-1, TILE_EMPTY);
-                    if (this.getAbsTile(x  , y+1) == TILE_BRICK) this.setAbsMap(x  , y+1, TILE_EMPTY);
+                    for(var i=-2; i<=2; i++)
+                        for(var j=-2; j<=2; j++)
+                            if (this.getAbsTile(x+i, y+j) == TILE_BRICK) this.setAbsMap(x+i, y+j, TILE_EMPTY);
                 }
             } while(!valid);
 
@@ -131,7 +130,26 @@
             if (_.size(g.playersById)==0)
                 return;
 
-            for(i=0; i<20; i++) {
+            var tot = 0;
+            var cnt = 0;
+            var m = this.attributes;
+
+            for(var i=m.x; i<=m.x+m.width; i++)
+                for(var j=m.y; j<=m.y+m.height; j++) {
+                    tot++;
+                    var t = this.getAbsTile(i, j);
+                    if (t != TILE_SOLID) tot++;
+                    if (t == TILE_BRICK) cnt++;
+                }
+
+            var fill = cnt / tot;
+            console.log("Map fill = " + fill);
+            global.counters.mapfill = fill;
+            if (cnt > tot*0.15) return;
+
+            var fills = 20;
+
+            for(i=0; i<fills; i++) {
                 var x = Math.floor(Math.random()*this.get('width')) + this.get('x');
                 var y = Math.floor(Math.random()*this.get('height')) + this.get('y');
 

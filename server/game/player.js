@@ -109,7 +109,7 @@
         },
 
         onPlaceBomb: function(d) {
-            console.log('Placing bomb at ' + d.x + ", " + d.y);
+//            console.log('Placing bomb at ' + d.x + ", " + d.y);
 
             // can place bomb there?
             if (!this.game.bombs.any(function(b) { return b.get('x') == d.x && b.get('y') == d.y; }))

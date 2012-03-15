@@ -45,7 +45,8 @@ var buildStats = function(b) {
 
     var stat = {
         time: time,
-        users: global.counters.players
+        users: global.counters.players,
+        mapfill: Math.round(global.counters.mapfill * 10000) / 100
     };
 
     child = exec("ps -p" + pid + " -opcpu | sed -n '2p'", function (error, stdout, stderr) {

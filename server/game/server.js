@@ -25,6 +25,7 @@ require("./player.js");
             var io = opt.io;
 
             global.counters.players = 0;
+            global.counters.mapfill = 0;
 
             io.set('log level', 1);
 
@@ -95,7 +96,7 @@ require("./player.js");
         },
 
         onBombRemoved: function(b) {
-            console.log('exploding bomb at ' + b.get('x') + "," + b.get('y'));
+//            console.log('exploding bomb at ' + b.get('x') + "," + b.get('y'));
 
             this.endpoint.emit('bomb-boomed', {
                 x: b.get('x'),

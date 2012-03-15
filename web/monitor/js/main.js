@@ -6,7 +6,7 @@ require.config(
             "backbone": "lib/backbone",
             "underscore": "lib/underscore",
             "sparkline": "lib/sparkline"
-        },
+        }
     }
 );
 
@@ -22,39 +22,32 @@ require([
 
         var socket = io.connect('/monitoring');
 
-        var cpuvalues = [];
-        var usersvalues = [];
-
         socket.on('stat', function(stat) {
 
-            if (cpuvalues.length>60)
-                cpuvalues.splice(0, 1);
-
-            cpuvalues.push(stat.cpu);
-            $('#chart-cpu').sparkline(cpuvalues, {
-                height: '50px',
-                chartRangeMin: 0,
-                chartRangeMax: 100,
-                fillColor: '#eee'
-            });
-            $("#curent-cpu").text(stat.cpu + "%");
-
-            //
-
-            if (usersvalues.length>60)
-                usersvalues.splice(0, 1);
-
-            usersvalues.push(stat.users);
-            $('#chart-users').sparkline(usersvalues, {
-                height: '50px',
-                fillColor: '#eee',
-                chartRangeMin: 0
-            });
-            $("#curent-users").text(stat.users);
+            chart("cpu", stat.cpu, {val: stat.cpu+'%', chartRangeMin: 0, chartRangeMax: 100, fillColor: '#dfd'});
+            chart("users", stat.users, {chartRangeMin: 0, fillColor: '#ddf'});
+            chart("mapfill", stat.mapfill, {val: stat.mapfill+'%', chartRangeMin: 0, fillColor: '#ffd'});
 
         });
 
     });
+
+    var vals = {};
+    var chart = function(n, v, opt) {
+        if (!vals[n]) vals[n] = [];
+        var vs = vals[n];
+
+        if (vs.length>60)
+            vs.splice(0, 1);
+
+        vs.push(v);
+
+        $('#chart-'+n).sparkline(vs, _.extend(opt, {
+            height: '50px'
+        }));
+
+        $("#curent-"+n).text(opt.val || v);
+    }
 
 });
 
