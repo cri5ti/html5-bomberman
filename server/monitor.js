@@ -1,4 +1,5 @@
 
+var fs = require("fs");
 
 Monitor = function(sio) {
 
@@ -11,18 +12,12 @@ Monitor = function(sio) {
 
 Monitor.prototype.connection = function(s) {
 
-    console.log("new");
-
     var timer = setInterval(function() {
-
-        buildStats(function(stat) {
-            s.volatile.emit('stat', stat);
-        });
-
+        console.log(buildStats());
+        s.volatile.emit('stat', buildStats());
     }, 1000);
 
     s.on('disconnect', function() {
-        console.log("bye");
         clearInterval(timer);
     });
 
@@ -41,17 +36,38 @@ var buildStats = function(b) {
 
     var time = (new Date()).getTime();
 
-    var pid = process.pid;
-
-    var stat = {
+    return {
         time: time,
         users: global.counters.players,
-        mapfill: Math.round(global.counters.mapfill * 10000) / 100
+        mapfill: Math.round(global.counters.mapfill * 10000) / 100,
+        cpu: lastCpuTime
     };
 
-    child = exec("ps -p" + pid + " -opcpu | sed -n '2p'", function (error, stdout, stderr) {
-        stat.cpu = stdout*1;
-        b(stat);
-    });
-
 }
+
+var lastCpuTime = -1;
+
+var getUsage = function(cb) {
+    fs.readFile("/proc/" + process.pid + "/stat", function(err, data){
+        console.log(err);
+        if (err) return;
+
+        var elems = data.toString().split(' ');
+        var utime = parseInt(elems[13]);
+        var stime = parseInt(elems[14]);
+
+        cb(utime + stime);
+    });
+}
+
+setInterval(function() {
+    getUsage(function(startTime) {
+        setTimeout(function(){
+            getUsage(function(endTime){
+                var delta = endTime - startTime;
+
+                lastCpuTime = 100 * (delta / 10000);
+            });
+        }, 1000);
+    });
+}, 3000);

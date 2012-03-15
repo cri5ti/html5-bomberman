@@ -170,7 +170,6 @@ define([
         },
 
         playerChange: function(player) {
-            _.debounce(this.sendPlayerChange)
             this.sendPlayerChange(player);
         },
 
@@ -193,7 +192,7 @@ define([
             this.world.placeBombs.remove(b);
         },
 
-        sendPlayerChange: function(player) {
+        sendPlayerChange: _.throttle(function(player) {
             this.socket.emit('update', {
                 id: this.id,
                 x: Math.round( player.get('x') * 1000 ) / 1000,
@@ -201,7 +200,7 @@ define([
                 o: player.get('orient'),
                 m: player.get('moving')
             });
-        },
+        }, 500),
 
         onChat: function(d) {
             d.chat = _.escape(d.chat);
