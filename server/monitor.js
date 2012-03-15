@@ -45,7 +45,7 @@ var buildStats = function(b) {
 
 }
 
-var lastCpuTime = -1;
+var lastCpuTime = 0;
 
 var getUsage = function(cb) {
     fs.readFile("/proc/" + process.pid + "/stat", function(err, data){
