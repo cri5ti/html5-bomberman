@@ -200,7 +200,7 @@ define([
                 o: player.get('orient'),
                 m: player.get('moving')
             });
-        }, 500),
+        }, 25),
 
         onChat: function(d) {
             d.chat = _.escape(d.chat);
