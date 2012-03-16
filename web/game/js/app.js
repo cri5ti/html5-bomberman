@@ -9,6 +9,7 @@ require.config(
         paths: {
             "backbone": "lib/backbone",
             "underscore": "lib/underscore",
+            "text": "lib/text"
         },
         locale: "en"
     }
@@ -17,8 +18,9 @@ require.config(
 
 require([
     "jquery", "underscore", "backbone",
-    "Game",
-	"polyfills/jscript"
+    "polyfills/jscript",
+    "facebook",
+    "lobby"
 ],function($, _, Backbone, core) {
 
 
@@ -27,67 +29,30 @@ require([
      */
     $(function() {
 
-        $userid = $('#userid');
+        new LobbyView({el: $("#lobby-container")});
 
-        $('#loginBtn').click(login);
+        $("#loading").hide();
 
-        updateButton = function() {
-            if ($userid.val().length==0)
-                $('#loginBtn').attr('disabled', 'disabled');
-            else
-                $('#loginBtn').removeAttr('disabled');
-        }
-
-        $userid.change(updateButton);
-        $userid.keyup(updateButton);
-
-        $userid.keydown(function(e) {
-            if (e.keyCode == 13) {
-                login();
-                e.stopImmediatePropagation();
-            }
-        });
-
-        var defaultUser = localStorage.getItem("user");
-        if (defaultUser)
-            $userid.val(defaultUser);
-        $userid.focus();
-
-        updateButton();
     });
-
-    function login() {
-        var userid = $userid.val();
-        if (userid.length==0) return;
-
-        localStorage.setItem("user", userid);
-
-        $userid.blur();
-        $("#welcome").hide();
-
-        $("#ingame").show();
-
-        start(userid);
-    }
-
-    function start(name) {
-        var game = new Game({playerName: name});
-    }
 
 });
 
+// FIXME move
 function info(m) {
     chat(m, "info");
 }
 
+// FIXME move
 function kill(p1, p2) {
     chat("<div class='bomb'></div><u>"+p1+"</u> killed by <u>"+p2+"</u>", "kill");
 }
 
+// FIXME move
 function suicide(p1, p2) {
     chat("<div class='bomb'></div><u>"+p1+"</u> suicided", "kill");
 }
 
+// FIXME move
 function chat(m, cls) {
     var d = $("<div>");
     d.html(m);
@@ -95,6 +60,7 @@ function chat(m, cls) {
     $('#chat').append(d);
 }
 
+// FIXME move
 function play(snd) {
     // FIXME detect audio
     var a = new Audio("/snd/" + snd + ".wav");

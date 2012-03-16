@@ -1,0 +1,90 @@
+
+@import "compass";
+
+
+#lobby {
+    width: 350px;
+    margin: 50px auto;
+    padding: 10px;
+
+    font-size: 20px;
+
+    @include border-radius(24px);
+    @include box-shadow(#051, 0, 0, 30px);
+
+    section {
+        margin: 15px;
+    }
+
+    p {
+        color: #051;
+        margin-bottom: 5px;
+    }
+
+    #userpic {
+        @include border-radius(5px);
+        vertical-align: bottom;
+        width: 50px;
+        height: 50px;
+    }
+
+    input {
+        background: #273;
+        border: none;
+        font-size: 24px;
+        color: yellow;
+        border-bottom: solid 1px yellow;
+        padding: 10px;
+        width: 210px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    button {
+        background-color: #384;
+        border: none;
+        color: yellow;
+        font-size: 20px;
+        padding: 10px 20px;
+        @include border-radius(16px);
+    }
+
+    button:hover {
+        background-color: yellow;
+        color: #384;
+    }
+
+    button:disabled {
+        color: #384;
+    }
+    
+    .character-select {
+        li {
+            margin: 8px;
+            display: inline-block;
+            padding: 10px;
+            background-color: #384;
+            @include border-radius(5px);
+        }
+        li:hover { background-color: #5b7; }
+        li.selected { background-color: #5b7; }
+
+        li div {
+            width: 22px;
+            height: 22px;
+        }
+
+        .john  { background-image: url('/res/char-john.png'); }
+        .joe   { background-image: url('/res/char-joe.png'); }
+        .betty { background-image: url('/res/char-betty.png'); }
+        .mary  { background-image: url('/res/char-mary.png'); }
+
+        .frame0 .selected div { background-position: 0 0; }
+        .frame1 .selected div { background-position: -22px 0; }
+        .frame2 .selected div { background-position: -44px 0; }
+        .frame3 .selected div { background-position: -22px 0; }
+    }
+
+}

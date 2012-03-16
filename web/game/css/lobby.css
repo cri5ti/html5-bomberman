@@ -1,0 +1,133 @@
+/* line 5, ../sass/lobby.scss */
+#lobby {
+  width: 350px;
+  margin: 50px auto;
+  padding: 10px;
+  font-size: 20px;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -o-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -khtml-border-radius: 24px;
+  border-radius: 24px;
+  -moz-box-shadow: 0 0 30px #005511;
+  -webkit-box-shadow: 0 0 30px #005511;
+  -o-box-shadow: 0 0 30px #005511;
+  box-shadow: 0 0 30px #005511;
+}
+/* line 15, ../sass/lobby.scss */
+#lobby section {
+  margin: 15px;
+}
+/* line 19, ../sass/lobby.scss */
+#lobby p {
+  color: #051;
+  margin-bottom: 5px;
+}
+/* line 24, ../sass/lobby.scss */
+#lobby #userpic {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  vertical-align: bottom;
+  width: 50px;
+  height: 50px;
+}
+/* line 31, ../sass/lobby.scss */
+#lobby input {
+  background: #273;
+  border: none;
+  font-size: 24px;
+  color: yellow;
+  border-bottom: solid 1px yellow;
+  padding: 10px;
+  width: 210px;
+}
+/* line 41, ../sass/lobby.scss */
+#lobby input:focus {
+  outline: none;
+}
+/* line 45, ../sass/lobby.scss */
+#lobby button {
+  background-color: #384;
+  border: none;
+  color: yellow;
+  font-size: 20px;
+  padding: 10px 20px;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -o-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -khtml-border-radius: 16px;
+  border-radius: 16px;
+}
+/* line 54, ../sass/lobby.scss */
+#lobby button:hover {
+  background-color: yellow;
+  color: #384;
+}
+/* line 59, ../sass/lobby.scss */
+#lobby button:disabled {
+  color: #384;
+}
+/* line 64, ../sass/lobby.scss */
+#lobby .character-select li {
+  margin: 8px;
+  display: inline-block;
+  padding: 10px;
+  background-color: #384;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 71, ../sass/lobby.scss */
+#lobby .character-select li:hover {
+  background-color: #5b7;
+}
+/* line 72, ../sass/lobby.scss */
+#lobby .character-select li.selected {
+  background-color: #5b7;
+}
+/* line 74, ../sass/lobby.scss */
+#lobby .character-select li div {
+  width: 22px;
+  height: 22px;
+}
+/* line 79, ../sass/lobby.scss */
+#lobby .character-select .john {
+  background-image: url("/res/char-john.png");
+}
+/* line 80, ../sass/lobby.scss */
+#lobby .character-select .joe {
+  background-image: url("/res/char-joe.png");
+}
+/* line 81, ../sass/lobby.scss */
+#lobby .character-select .betty {
+  background-image: url("/res/char-betty.png");
+}
+/* line 82, ../sass/lobby.scss */
+#lobby .character-select .mary {
+  background-image: url("/res/char-mary.png");
+}
+/* line 84, ../sass/lobby.scss */
+#lobby .character-select .frame0 .selected div {
+  background-position: 0 0;
+}
+/* line 85, ../sass/lobby.scss */
+#lobby .character-select .frame1 .selected div {
+  background-position: -22px 0;
+}
+/* line 86, ../sass/lobby.scss */
+#lobby .character-select .frame2 .selected div {
+  background-position: -44px 0;
+}
+/* line 87, ../sass/lobby.scss */
+#lobby .character-select .frame3 .selected div {
+  background-position: -22px 0;
+}
