@@ -1,23 +1,42 @@
-<div id="lobby">
 
-    <section class="login">
-        <p>Welcome: </p>
-        <img id="userpic"><input id="userid" type="text" required/>
-        <button id="loginBtn" type="submit" disabled="disabled">&gt;</button>
-    </section>
+<div class="left">
+    <div class="logo">
+        <img src="/res/logo.png" width="146" height="45"/>
+    </div>
 
-    <section class="character-select">
-        <p>Select your character: </p>
-        <ul class="character">
-            <li class="selected"><div class="john"></div></li>
-            <li><div class="joe"></div></li>
-            <li><div class="mary"></div></li>
-            <li><div class="betty"></div></li>
-        </ul>
-    </section>
+    <div class="player">
+        <section class="login">
+            <p>Your name: </p>
+            <input id="userid" type="text" required/>
+            <div id="userpic"></div>
+        </section>
 
-    <section class="gametype">
-        <p>Type your name: </p>
-    </section>
+        <section class="character-select">
+            <p>Character: </p>
+            <ul class="character">
+                <li class="selected"><div class="john"></div></li>
+                <li><div class="joe"></div></li>
+                <li><div class="mary"></div></li>
+                <li><div class="betty"></div></li>
+            </ul>
+        </section>
+    </div>
+</div>
 
+<div class="right">
+    <div class="games">
+        <section class="games-list">
+            <p>Select a game:</p>
+
+            <div class="game-mode arena">
+                <div class="counter">3</div>
+                <label>arena</label>
+            </div>
+
+            <div class="game-mode future">
+                coming soon
+            </div>
+
+        </section>
+    </div>
 </div>

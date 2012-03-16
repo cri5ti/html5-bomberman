@@ -1,9 +1,37 @@
-/* line 5, ../sass/lobby.scss */
+/* line 11, ../sass/lobby.scss */
 #lobby {
-  width: 350px;
+  width: 600px;
   margin: 50px auto;
-  padding: 10px;
-  font-size: 20px;
+  white-space: nowrap;
+  font-size: 18px;
+  color: #051;
+}
+/* line 20, ../sass/lobby.scss */
+#lobby .left {
+  display: inline-block;
+  vertical-align: top;
+  width: 325px;
+}
+/* line 26, ../sass/lobby.scss */
+#lobby .right {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: -20px;
+}
+/* line 32, ../sass/lobby.scss */
+#lobby .logo {
+  margin: 0 30px 30px 30px;
+}
+/* line 36, ../sass/lobby.scss */
+#lobby p {
+  margin-bottom: 5px;
+}
+/* line 38, ../sass/lobby.scss */
+#lobby section {
+  margin: 15px;
+}
+/* line 40, ../sass/lobby.scss */
+#lobby .player {
   -moz-border-radius: 24px;
   -webkit-border-radius: 24px;
   -o-border-radius: 24px;
@@ -14,68 +42,48 @@
   -webkit-box-shadow: 0 0 30px #005511;
   -o-box-shadow: 0 0 30px #005511;
   box-shadow: 0 0 30px #005511;
+  background: #273;
+  padding: 5px;
 }
-/* line 15, ../sass/lobby.scss */
-#lobby section {
-  margin: 15px;
+/* line 43, ../sass/lobby.scss */
+#lobby .player #userpic {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 50px;
+  height: 50px;
+  margin-left: -50px;
 }
-/* line 19, ../sass/lobby.scss */
-#lobby p {
-  color: #051;
-  margin-bottom: 5px;
-}
-/* line 24, ../sass/lobby.scss */
-#lobby #userpic {
+/* line 50, ../sass/lobby.scss */
+#lobby .player #userpic img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  vertical-align: bottom;
-  width: 50px;
-  height: 50px;
 }
-/* line 31, ../sass/lobby.scss */
-#lobby input {
-  background: #273;
+/* line 53, ../sass/lobby.scss */
+#lobby .player input {
+  background: #205f20;
   border: none;
-  font-size: 24px;
-  color: yellow;
-  border-bottom: solid 1px yellow;
-  padding: 10px;
-  width: 210px;
+  font-size: 22px;
+  color: #5d4;
+  padding: 8px;
+  width: 250px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
 }
-/* line 41, ../sass/lobby.scss */
-#lobby input:focus {
+/* line 63, ../sass/lobby.scss */
+#lobby .player input:focus {
   outline: none;
 }
-/* line 45, ../sass/lobby.scss */
-#lobby button {
-  background-color: #384;
-  border: none;
-  color: yellow;
-  font-size: 20px;
-  padding: 10px 20px;
-  -moz-border-radius: 16px;
-  -webkit-border-radius: 16px;
-  -o-border-radius: 16px;
-  -ms-border-radius: 16px;
-  -khtml-border-radius: 16px;
-  border-radius: 16px;
-}
-/* line 54, ../sass/lobby.scss */
-#lobby button:hover {
-  background-color: yellow;
-  color: #384;
-}
-/* line 59, ../sass/lobby.scss */
-#lobby button:disabled {
-  color: #384;
-}
-/* line 64, ../sass/lobby.scss */
+/* line 70, ../sass/lobby.scss */
 #lobby .character-select li {
-  margin: 8px;
+  margin: 5px;
   display: inline-block;
   padding: 10px;
   background-color: #384;
@@ -85,49 +93,232 @@
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
+  opacity: 0.5;
 }
-/* line 71, ../sass/lobby.scss */
+/* line 78, ../sass/lobby.scss */
 #lobby .character-select li:hover {
   background-color: #5b7;
 }
-/* line 72, ../sass/lobby.scss */
+/* line 79, ../sass/lobby.scss */
 #lobby .character-select li.selected {
   background-color: #5b7;
+  opacity: 1;
 }
-/* line 74, ../sass/lobby.scss */
+/* line 81, ../sass/lobby.scss */
 #lobby .character-select li div {
   width: 22px;
   height: 22px;
+  background-position: -22px 0;
 }
-/* line 79, ../sass/lobby.scss */
+/* line 87, ../sass/lobby.scss */
 #lobby .character-select .john {
   background-image: url("/res/char-john.png");
 }
-/* line 80, ../sass/lobby.scss */
+/* line 88, ../sass/lobby.scss */
 #lobby .character-select .joe {
   background-image: url("/res/char-joe.png");
 }
-/* line 81, ../sass/lobby.scss */
+/* line 89, ../sass/lobby.scss */
 #lobby .character-select .betty {
   background-image: url("/res/char-betty.png");
 }
-/* line 82, ../sass/lobby.scss */
+/* line 90, ../sass/lobby.scss */
 #lobby .character-select .mary {
   background-image: url("/res/char-mary.png");
 }
-/* line 84, ../sass/lobby.scss */
+/* line 92, ../sass/lobby.scss */
 #lobby .character-select .frame0 .selected div {
   background-position: 0 0;
 }
-/* line 85, ../sass/lobby.scss */
+/* line 93, ../sass/lobby.scss */
 #lobby .character-select .frame1 .selected div {
   background-position: -22px 0;
 }
-/* line 86, ../sass/lobby.scss */
+/* line 94, ../sass/lobby.scss */
 #lobby .character-select .frame2 .selected div {
   background-position: -44px 0;
 }
-/* line 87, ../sass/lobby.scss */
+/* line 95, ../sass/lobby.scss */
 #lobby .character-select .frame3 .selected div {
   background-position: -22px 0;
 }
+/* line 98, ../sass/lobby.scss */
+#lobby .games {
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -o-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -khtml-border-radius: 24px;
+  border-radius: 24px;
+  -moz-box-shadow: 0 0 30px #005511;
+  -webkit-box-shadow: 0 0 30px #005511;
+  -o-box-shadow: 0 0 30px #005511;
+  box-shadow: 0 0 30px #005511;
+  background: #273;
+  padding: 5px;
+}
+/* line 101, ../sass/lobby.scss */
+#lobby .games .game-mode {
+  position: relative;
+  width: 256px;
+  height: 128px;
+  vertical-align: middle;
+  border: solid 1px #000;
+  margin-top: 10px;
+}
+/* line 111, ../sass/lobby.scss */
+#lobby .games .game-mode.arena {
+  background: url("/res/mode-arena.png");
+}
+/* line 113, ../sass/lobby.scss */
+#lobby .games .game-mode.arena:hover {
+  -moz-box-shadow: black 0 2px 4px;
+  -webkit-box-shadow: black 0 2px 4px;
+  -o-box-shadow: black 0 2px 4px;
+  box-shadow: black 0 2px 4px;
+  -moz-transform: translateY(-2px);
+  -webkit-transform: translateY(-2px);
+  -o-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+/* line 118, ../sass/lobby.scss */
+#lobby .games .game-mode.future {
+  background: #333;
+  border: solid 1px #111;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  line-height: 128px;
+  opacity: 0.2;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+}
+/* line 130, ../sass/lobby.scss */
+#lobby .games .counter {
+  position: absolute;
+  background: #a00;
+  padding: 5px 10px;
+  right: 0;
+  margin-top: -5px;
+  margin-right: -5px;
+  color: #fff;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: black 0 1px 5px;
+  -webkit-box-shadow: black 0 1px 5px;
+  -o-box-shadow: black 0 1px 5px;
+  box-shadow: black 0 1px 5px;
+}
+/* line 142, ../sass/lobby.scss */
+#lobby .games label {
+  position: absolute;
+  color: #fff;
+  bottom: 0;
+  right: 0;
+  text-transform: uppercase;
+  margin: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  text-shadow: white 0 1px 5px;
+}
+/* line 156, ../sass/lobby.scss */
+#lobby .games .game-mode:first-child {
+  margin-top: 0;
+}
+
+/*
+#lobby {
+    padding: 20px;
+    margin: 0 auto;
+    width: 750px;
+
+
+    #game-mode {
+        display: inline-block;
+        width: 350px;
+        height: 300px;
+        padding: 10px;
+        margin-left: -20px;
+        vertical-align: middle;
+    }
+
+    button {
+        background-color: #384;
+        border: none;
+        color: yellow;
+        font-size: 20px;
+        padding: 10px 20px;
+        @include border-radius(16px);
+    }
+
+    button:hover {
+        background-color: yellow;
+        color: #384;
+    }
+
+    button:disabled {
+        color: #5a7;
+    }
+
+    .gametype {
+        padding: 10px;
+        margin: 0;
+    }
+
+    .game-mode-cont {
+        position: relative;
+        margin: 0;
+        padding: 5px;
+
+        .game-mode {
+            position: relative;
+            width: 256px;
+            height: 128px;
+            border: solid 2px #5a7;
+            background: #363;
+            @include border-radius(8px);
+
+            &.arena {
+                background: url('/res/mode-arena.png');
+            }
+
+            &.capture-flag {
+                opacity: 0.5;
+            }
+
+            label {
+                text-transform: uppercase;
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                color: #5a7;
+                font-weight: bold;
+            }
+        }
+    }
+
+    #player {
+        position: relative;
+        display: inline-block;
+        width: 300px;
+        padding: 10px;
+        vertical-align: middle;
+
+        @include border-radius(24px);
+        @include box-shadow(#051, 0, 0, 30px);
+
+
+
+    }
+
+}*/

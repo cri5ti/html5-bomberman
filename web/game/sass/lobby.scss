@@ -1,45 +1,179 @@
 
 @import "compass";
 
-
-#lobby {
-    width: 350px;
-    margin: 50px auto;
-    padding: 10px;
-
-    font-size: 20px;
-
+@mixin shaded-box {
     @include border-radius(24px);
     @include box-shadow(#051, 0, 0, 30px);
+    background: #273;
+    padding: 5px;
+}
 
-    section {
-        margin: 15px;
+#lobby {
+
+    width: 600px;
+    margin: 50px auto;
+    white-space: nowrap;
+    font-size: 18px;
+    color: #051;
+
+
+    .left {
+        display: inline-block;
+        vertical-align: top;
+        width: 325px;
     }
 
-    p {
-        color: #051;
-        margin-bottom: 5px;
+    .right {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: -20px;
     }
 
-    #userpic {
-        @include border-radius(5px);
-        vertical-align: bottom;
-        width: 50px;
-        height: 50px;
+    .logo {
+        margin: 0 30px 30px 30px;
     }
 
-    input {
-        background: #273;
-        border: none;
-        font-size: 24px;
-        color: yellow;
-        border-bottom: solid 1px yellow;
+    p { margin-bottom: 5px; }
+
+    section { margin: 15px; }
+
+    .player {
+        @include shaded-box();
+
+        #userpic {
+            display: inline-block;
+            vertical-align: bottom;
+            width: 50px;
+            height: 50px;
+            margin-left: -50px;
+
+            img { @include border-radius(5px); }
+        }
+
+        input {
+            background: #205f20;
+            border: none;
+            font-size: 22px;
+            color: #5d4;
+            padding: 8px;
+            width: 250px;
+            @include border-radius(5px);
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+    }
+
+    .character-select {
+        li {
+            margin: 5px;
+            display: inline-block;
+            padding: 10px;
+            background-color: #384;
+            @include border-radius(5px);
+            opacity: 0.5;
+        }
+        li:hover { background-color: #5b7; }
+        li.selected { background-color: #5b7; opacity: 1; }
+
+        li div {
+            width: 22px;
+            height: 22px;
+            background-position: -22px 0;
+        }
+
+        .john  { background-image: url('/res/char-john.png'); }
+        .joe   { background-image: url('/res/char-joe.png'); }
+        .betty { background-image: url('/res/char-betty.png'); }
+        .mary  { background-image: url('/res/char-mary.png'); }
+
+        .frame0 .selected div { background-position: 0 0; }
+        .frame1 .selected div { background-position: -22px 0; }
+        .frame2 .selected div { background-position: -44px 0; }
+        .frame3 .selected div { background-position: -22px 0; }
+    }
+
+    .games {
+        @include shaded-box();
+
+        .game-mode {
+            position: relative;
+            width: 256px;
+            height: 128px;
+            vertical-align: middle;
+
+            border: solid 1px #000;
+            margin-top: 10px;
+
+
+            &.arena { background: url('/res/mode-arena.png'); }
+
+            &.arena:hover {
+                @include box-shadow(#000 0 2px 4px);
+                @include translateY(-2px);
+            }
+
+            &.future {
+                background: #333;
+                border: solid 1px #111;
+                color: #fff;
+                text-align: center;
+                font-size: 12px;
+                line-height: 128px;
+                opacity: 0.2;
+                @include border-radius(8px);
+            }
+        }
+
+        .counter {
+            position: absolute;
+            background: #a00;
+            padding: 5px 10px;
+            right: 0;
+            margin-top: -5px;
+            margin-right: -5px;
+            color: #fff;
+            @include border-radius(8px);
+            @include box-shadow(#000 0 1px 5px);
+        }
+
+        label {
+            position: absolute;
+            color: #fff;
+            bottom: 0;
+            right: 0;
+            text-transform: uppercase;
+            margin: 5px 10px;
+
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            @include text-shadow(#fff 0 1px 5px);
+        }
+
+        .game-mode:first-child {
+            margin-top: 0;
+        }
+    }
+
+}
+
+/*
+#lobby {
+    padding: 20px;
+    margin: 0 auto;
+    width: 750px;
+
+
+    #game-mode {
+        display: inline-block;
+        width: 350px;
+        height: 300px;
         padding: 10px;
-        width: 210px;
-    }
-
-    input:focus {
-        outline: none;
+        margin-left: -20px;
+        vertical-align: middle;
     }
 
     button {
@@ -57,34 +191,58 @@
     }
 
     button:disabled {
-        color: #384;
-    }
-    
-    .character-select {
-        li {
-            margin: 8px;
-            display: inline-block;
-            padding: 10px;
-            background-color: #384;
-            @include border-radius(5px);
-        }
-        li:hover { background-color: #5b7; }
-        li.selected { background-color: #5b7; }
-
-        li div {
-            width: 22px;
-            height: 22px;
-        }
-
-        .john  { background-image: url('/res/char-john.png'); }
-        .joe   { background-image: url('/res/char-joe.png'); }
-        .betty { background-image: url('/res/char-betty.png'); }
-        .mary  { background-image: url('/res/char-mary.png'); }
-
-        .frame0 .selected div { background-position: 0 0; }
-        .frame1 .selected div { background-position: -22px 0; }
-        .frame2 .selected div { background-position: -44px 0; }
-        .frame3 .selected div { background-position: -22px 0; }
+        color: #5a7;
     }
 
-}
+    .gametype {
+        padding: 10px;
+        margin: 0;
+    }
+
+    .game-mode-cont {
+        position: relative;
+        margin: 0;
+        padding: 5px;
+
+        .game-mode {
+            position: relative;
+            width: 256px;
+            height: 128px;
+            border: solid 2px #5a7;
+            background: #363;
+            @include border-radius(8px);
+
+            &.arena {
+                background: url('/res/mode-arena.png');
+            }
+
+            &.capture-flag {
+                opacity: 0.5;
+            }
+
+            label {
+                text-transform: uppercase;
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                color: #5a7;
+                font-weight: bold;
+            }
+        }
+    }
+
+    #player {
+        position: relative;
+        display: inline-block;
+        width: 300px;
+        padding: 10px;
+        vertical-align: middle;
+
+        @include border-radius(24px);
+        @include box-shadow(#051, 0, 0, 30px);
+
+
+
+    }
+
+}*/

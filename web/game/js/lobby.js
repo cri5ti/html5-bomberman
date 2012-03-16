@@ -26,7 +26,8 @@ define([
         },
 
         selectCharacter: function(e) {
-            $(e.target).addClass("selected");
+            $(".character li.selected").removeClass("selected");
+            $(e.currentTarget).addClass("selected");
         }
 
     })

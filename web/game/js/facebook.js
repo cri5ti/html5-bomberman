@@ -23,7 +23,7 @@ define([
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
 
-                $("#userpic").attr("src", "http://graph.facebook.com/" +uid+ "/picture?type=square");
+                $("#userpic").append($("<img/>").attr("src", "http://graph.facebook.com/" +uid+ "/picture?type=square").fadeIn());
 
                 FB.api('/me', function(response) {
                     $('#userid').val(response.name);

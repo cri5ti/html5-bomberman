@@ -29,7 +29,7 @@ require([
      */
     $(function() {
 
-        new LobbyView({el: $("#lobby-container")});
+        new LobbyView({el: $("#lobby")});
 
         $("#loading").hide();
 
