@@ -21,6 +21,7 @@ define([
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
 
+                console.log("FB: logged in");
                 fb.uid = uid;
 
                 FB.api('/me', function(response) {
@@ -31,9 +32,11 @@ define([
             } else if (response.status === 'not_authorized') {
                 // the user is logged in to Facebook,
                 // but has not authenticated your app
+                console.log("FB: not authorized");
                 fb.trigger('not-auth');
             } else {
                 // the user isn't logged in to Facebook.
+                console.log("FB: not logged");
                 fb.trigger('not-logged');
             }
         });
