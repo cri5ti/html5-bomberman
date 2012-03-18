@@ -171,11 +171,13 @@
 
             _.each(this.game.playersById, function(p, k) {
                 // FIXME same as above
-                if (!p.get('fbuid')) return;
+                var pfbuid = p.get('fbuid');
+                if (!pfbuid) return;
+                if (pfbuid == myfbuid) return;
 
                 pids.push(k);
-                m.get("kill:" + p.get('fbuid') + ":by:" + myfbuid);
-                m.get("kill:" + myfbuid + ":by:" + p.get('fbuid'));
+                m.get("kill:" + pfbuid + ":by:" + myfbuid);
+                m.get("kill:" + myfbuid + ":by:" + pfbuid);
             });
 
             var self = this;
