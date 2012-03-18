@@ -51,6 +51,7 @@ define([
             xfbml      : true  // parse XFBML
         });
 
+        console.log("FB: checking login...");
         fb.checkLogin();
 
     };
