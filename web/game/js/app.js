@@ -33,6 +33,8 @@ require([
 
         $("#loading").hide();
 
+
+
     });
 
 });
@@ -57,7 +59,9 @@ function chat(m, cls) {
     var d = $("<div>");
     d.html(m);
     d.addClass(cls);
-    $('#chat').append(d);
+    var $chat = $('#chat');
+    $chat.append(d);
+    $chat.prop('scrollTop', $chat.prop('scrollHeight') );
 }
 
 // FIXME move

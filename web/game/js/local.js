@@ -14,7 +14,7 @@ define([
     var SPACE = 32;
 
     var PLAYER_MOVE_SPEED = 5; // squares per second
-
+    var PLAYER_MAX_SPEED = 0.9;
 
     var keymap = {}; // it's ok to be global
 
@@ -80,6 +80,7 @@ define([
             if (this.me.get('dead')) return;
 
             var speed = delta * PLAYER_MOVE_SPEED;
+            if (speed > PLAYER_MAX_SPEED) speed = PLAYER_MAX_SPEED;
             var dx = 0;
 
             var dy = 0;

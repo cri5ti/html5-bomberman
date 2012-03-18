@@ -31,7 +31,7 @@
 
                     if (i%2==0 && j%2==0)
                         this.setMap(i,j, TILE_SOLID);
-                    else if ( Math.floor(Math.random()*5)==0)
+                    else if ( Math.floor(Math.random()*9)==0)
                         this.setMap(i,j, TILE_BRICK);
 
                 }
@@ -145,7 +145,7 @@
             var fill = cnt / tot;
             console.log("Map fill = " + fill);
             global.counters.mapfill = fill;
-            if (cnt > tot*0.15) return;
+            if (cnt > tot*0.09) return;
 
             var fills = 20;
 

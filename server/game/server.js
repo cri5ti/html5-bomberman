@@ -11,6 +11,8 @@ SPAWNING_TIME = 5000;
 _ = require('underscore')._;
 Backbone = require('backbone');
 
+var redis;
+
 require('./map.js');
 require('./game.js');
 require('./model.js');
@@ -23,23 +25,43 @@ require("./player.js");
 
         initialize: function(opt) {
             var io = opt.io;
+            redis = opt.redis;
 
             global.counters.players = 0;
             global.counters.mapfill = 0;
 
+            redis.incr("counters.restarts");
+            redis.set("stats.last-start-time", (new Date()).getTime());
+
             io.set('log level', 1);
 
-            this.game = new Game();
+            this.game = new Game({ redis: redis });
 
             this.game.bombs.on('remove', this.onBombRemoved, this);
 
             this.game.on('score-changes', _.debounce(this.notifyScoreUpdates, 50), this);
 
 
-            this.endpoint = io.of('/game');
+            this.endpoint = io.of('/game1');
             this.endpoint.on('connection', _.bind(this.connection, this));
 
             this.game.endpoint = this.endpoint;
+
+            this.lobby = io.of('/lobby');
+            this.lobby.on('connection', _.bind(this.lobbyConnection, this));
+        },
+
+        lobbyConnection: function(socket) {
+
+            socket.on('list-games', _.bind(function(d) {
+                socket.emit("list-games", {
+                    "game1": {
+                        type: "free",
+                        count: global.counters.players
+                    }
+                });
+            }, this));
+
         },
 
         connection: function(socket) {
@@ -59,11 +81,14 @@ require("./player.js");
             socket.on('join', _.bind(function(d) {
                 var name = d.name;
 
+                redis.incr("counters.joined-players");
+
                 // create new player
                 var me = new Player({
                     id: playerId,
                     name: d.name,
-                    character: d.character
+                    character: d.character,
+                    fbuid: d.fbuid
                 });
                 this.game.playersById[playerId] = me;
 
@@ -84,7 +109,7 @@ require("./player.js");
                     global.counters.players--;
                 }, this));
 
-                console.log("+ " + name + " joined the game");
+                console.log("+ " + name + " joined the game " + d.fbuid);
 
                 // notify everyone about my join
                 socket.broadcast.emit('player-joined', me.getInitialInfo());

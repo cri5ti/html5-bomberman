@@ -3,15 +3,28 @@
 define([
     "jquery", "underscore", "backbone",
 
-    "text!../html/lobby.html"
-], function($, _, Backbone, tpl) {
+    "text!../html/lobby.html",
+    "facebook",
+
+    "Game"
+], function($, _, Backbone, tpl, fb) {
 
 
     LobbyView = Backbone.View.extend({
 
         initialize: function() {
-
             this.$el.html(_.template(tpl));
+
+            this.initUsername();
+
+            this.lobby = io.connect('/lobby');
+
+            this.lobby.on('connect', _.bind(this.lobbyConnect, this));
+            this.lobby.on('disconnect', _.bind(this.lobbyDisconnect, this));
+
+            this.lobby.on('list-games', _.bind(this.onGamesList, this));
+
+            fb.on("auth", _.bind(this.gotFacebookUser, this));
 
             var frame = 0;
             setInterval(function() {
@@ -22,69 +35,103 @@ define([
         },
 
         events: {
-            "click .character li": "selectCharacter"
+            "click .character li": "selectCharacter",
+            "click .game-mode": "startGame"
         },
 
         selectCharacter: function(e) {
             $(".character li.selected").removeClass("selected");
             $(e.currentTarget).addClass("selected");
-        }
+        },
 
-    })
+        gotFacebookUser: function() {
+            $("#userpic").append($("<img/>").attr("src", "http://graph.facebook.com/" + fb.uid + "/picture?type=square").fadeIn());
+            $('#userid').val(fb.uname);
+        },
 
-    /*
-    init:
+        lobbyConnect: function(s) {
+            console.log("lobby on!");
+            this.listGames();
+            this.timer = setInterval(_.bind(this.listGames, this), 2000);
+        },
 
-    $userid = $('#userid');
+        lobbyDisconnect: function() {
+            clearInterval(this.timer);
+        },
 
-            $('#loginBtn').click(login);
+        listGames: function() {
+            this.lobby.emit("list-games");
+        },
 
-            updateButton = function() {
-                if ($userid.val().length==0)
-                    $('#loginBtn').attr('disabled', 'disabled');
-                else
-                    $('#loginBtn').removeAttr('disabled');
-            }
+        onGamesList: function(games) {
+            var gamesList = $('#games-list').empty();
 
-            $userid.change(updateButton);
-            $userid.keyup(updateButton);
-
-            $userid.keydown(function(e) {
-                if (e.keyCode == 13) {
-                    login();
-                    e.stopImmediatePropagation();
-                }
+            _.each(games, function(game, key) {
+                var i = $(gameTemplate(game));
+                i.data("game", key);
+                gamesList.append(i);
             });
+        },
 
-            var defaultUser = localStorage.getItem("user");
+        initUsername: function() {
+            var $userid = $('#userid');
+
+            var defaultUser = localStorage.getItem("userName");
+            var chr = localStorage.getItem("character");
+
             if (defaultUser)
                 $userid.val(defaultUser);
-            $userid.focus();
 
-            updateButton();
+            if (!chr) {
+                var chrs = $(".character-select li");
+                var chrix = Math.floor(Math.random() * chrs.length);
+                chrs.eq(chrix).addClass("selected");
+            } else {
+                $(".character-select li ." + chr).parent().addClass("selected");
+            }
 
+        },
 
+        startGame: function(e) {
+            var name = $('#userid').val();
+            var game = $(e.currentTarget).data("game");
+            var character = $(".character-select li.selected div").attr("class");
 
+            localStorage.setItem("userName", name);
+            localStorage.setItem("character", character);
 
-    function login() {
-        var userid = $userid.val();
-        if (userid.length==0) return;
+            console.log("Joining " + game);
 
-        localStorage.setItem("user", userid);
+            if (name.length==0) {
+                alert("Please enter a name.");
+                return;
+            }
 
-        $userid.blur();
-        $("#welcome").hide();
+            $("#lobby").hide();
+            $("#game").show();
 
-        $("#ingame").show();
+            new Game({
+                playerName: name,
+                fbuid: fb.uid,
+                character: character,
+                game: game
+            });
 
-        start(userid);
-    }
+            console.log({
+                            playerName: name,
+                            fbuid: FBuid,
+                            character: character,
+                            game: game
+                        });
+        }
 
-    function start(name) {
-        var game = new Game({playerName: name});
-    }
+    });
 
-     */
+    var gameTemplate = _.template('<div class="game-mode <%= type %>">'+
+                                    '<div class="counter"><%= count %></div>' +
+                                    '<div class="play">play</div>' +
+                                '</div>)');
 
+    var FBuid = -1;
 
 });

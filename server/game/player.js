@@ -11,7 +11,7 @@
             score: 0
         },
 
-        initialize: function(opt) {
+        initialize: function() {
             this.id = this.get('id');
         },
 
@@ -37,7 +37,8 @@
                 id: this.get('id'),
                 name: this.get('name'),
                 character: this.get('character'),
-                score: this.get('score')
+                score: this.get('score'),
+                fbuid: this.get('fbuid')
             }
         },
 
@@ -69,6 +70,8 @@
             }, this);
 
             this.pingTimer = setInterval(_.bind(this.ping, this), 2000);
+
+            this.notifyFriendBattles();
         },
 
         ping: function() {
@@ -155,6 +158,30 @@
 
             // placed bombs
             // TODO
+        },
+
+        notifyFriendBattles: function() {
+            var myfbuid = this.me.get('fbuid');
+            //FIXME is it null or -1?
+            if (!myfbuid) return;
+
+            var pids = [];
+
+            var m = this.game.redis.multi();
+
+            _.each(this.game.playersById, function(p, k) {
+                // FIXME same as above
+                if (!p.get('fbuid')) return;
+
+                pids.push(k);
+                m.get("kill:" + myfbuid + ":by:" + p.get('fbuid'));
+                m.get("kill:" + p.get('fbuid') + ":by:" + myfbuid);
+            });
+
+            var self = this;
+            m.exec(function(err, res) {
+                self.socket.emit('friend-scores', {ids: pids, scores: res});
+            });
         }
 
     });

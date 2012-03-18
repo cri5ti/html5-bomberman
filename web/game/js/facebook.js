@@ -4,13 +4,18 @@ define([
 ], function($, _, Backbone) {
 
 
+    var fb = {};
+
+    _.extend(fb, Backbone.Events);
+
+
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '209351425839638', // App ID
             channelUrl : '//fb/static/channel.html', // Channel File
             status     : true, // check login status
             cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
+            xfbml      : false  // parse XFBML
         });
 
         FB.getLoginStatus(function(response) {
@@ -23,28 +28,27 @@ define([
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
 
-                $("#userpic").append($("<img/>").attr("src", "http://graph.facebook.com/" +uid+ "/picture?type=square").fadeIn());
+                fb.uid = uid;
 
                 FB.api('/me', function(response) {
-                    $('#userid').val(response.name);
-                    console.log('Good to see you, ' + response.name + '.');
-                });
-
-                FB.api('/me/friends', { limit: 10 }, function(response) {
-                    console.log('My friends: ', response);
+                    fb.uname = response.name;
+                    fb.trigger('auth');
                 });
 
             } else if (response.status === 'not_authorized') {
                 // the user is logged in to Facebook,
                 // but has not authenticated your app
-                alert('not authorized');
+//                alert('not authorized');
+                fb.trigger('not-auth');
             } else {
                 // the user isn't logged in to Facebook.
-                alert('not logged in');
+//                alert('not logged in');
+                fb.trigger('not-logged');
             }
         });
 
     };
+
 
     // Load the SDK Asynchronously
     (function(d){
@@ -54,5 +58,8 @@ define([
         js.src = "//connect.facebook.net/en_US/all.js";
         ref.parentNode.insertBefore(js, ref);
     }(document));
+
+
+    return fb;
 
 });

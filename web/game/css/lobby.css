@@ -16,7 +16,7 @@
 #lobby .right {
   display: inline-block;
   vertical-align: top;
-  margin-left: -20px;
+  margin-left: -40px;
 }
 /* line 32, ../sass/lobby.scss */
 #lobby .logo {
@@ -61,8 +61,12 @@
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
+  -moz-box-shadow: black 0 1px 6px;
+  -webkit-box-shadow: black 0 1px 6px;
+  -o-box-shadow: black 0 1px 6px;
+  box-shadow: black 0 1px 6px;
 }
-/* line 53, ../sass/lobby.scss */
+/* line 56, ../sass/lobby.scss */
 #lobby .player input {
   background: #205f20;
   border: none;
@@ -77,11 +81,11 @@
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 63, ../sass/lobby.scss */
+/* line 66, ../sass/lobby.scss */
 #lobby .player input:focus {
   outline: none;
 }
-/* line 70, ../sass/lobby.scss */
+/* line 73, ../sass/lobby.scss */
 #lobby .character-select li {
   margin: 5px;
   display: inline-block;
@@ -95,54 +99,54 @@
   border-radius: 5px;
   opacity: 0.5;
 }
-/* line 78, ../sass/lobby.scss */
+/* line 81, ../sass/lobby.scss */
 #lobby .character-select li:hover {
   background-color: #5b7;
 }
-/* line 79, ../sass/lobby.scss */
+/* line 82, ../sass/lobby.scss */
 #lobby .character-select li.selected {
   background-color: #5b7;
   opacity: 1;
 }
-/* line 81, ../sass/lobby.scss */
+/* line 84, ../sass/lobby.scss */
 #lobby .character-select li div {
   width: 22px;
   height: 22px;
   background-position: -22px 0;
 }
-/* line 87, ../sass/lobby.scss */
+/* line 90, ../sass/lobby.scss */
 #lobby .character-select .john {
   background-image: url("/res/char-john.png");
 }
-/* line 88, ../sass/lobby.scss */
+/* line 91, ../sass/lobby.scss */
 #lobby .character-select .joe {
   background-image: url("/res/char-joe.png");
 }
-/* line 89, ../sass/lobby.scss */
+/* line 92, ../sass/lobby.scss */
 #lobby .character-select .betty {
   background-image: url("/res/char-betty.png");
 }
-/* line 90, ../sass/lobby.scss */
+/* line 93, ../sass/lobby.scss */
 #lobby .character-select .mary {
   background-image: url("/res/char-mary.png");
 }
-/* line 92, ../sass/lobby.scss */
+/* line 95, ../sass/lobby.scss */
 #lobby .character-select .frame0 .selected div {
   background-position: 0 0;
 }
-/* line 93, ../sass/lobby.scss */
+/* line 96, ../sass/lobby.scss */
 #lobby .character-select .frame1 .selected div {
   background-position: -22px 0;
 }
-/* line 94, ../sass/lobby.scss */
+/* line 97, ../sass/lobby.scss */
 #lobby .character-select .frame2 .selected div {
   background-position: -44px 0;
 }
-/* line 95, ../sass/lobby.scss */
+/* line 98, ../sass/lobby.scss */
 #lobby .character-select .frame3 .selected div {
   background-position: -22px 0;
 }
-/* line 98, ../sass/lobby.scss */
+/* line 101, ../sass/lobby.scss */
 #lobby .games {
   -moz-border-radius: 24px;
   -webkit-border-radius: 24px;
@@ -156,8 +160,14 @@
   box-shadow: 0 0 30px #005511;
   background: #273;
   padding: 5px;
+  padding: 20px;
 }
-/* line 101, ../sass/lobby.scss */
+/* line 105, ../sass/lobby.scss */
+#lobby .games #games-list {
+  min-width: 258px;
+  min-height: 300px;
+}
+/* line 110, ../sass/lobby.scss */
 #lobby .games .game-mode {
   position: relative;
   width: 256px;
@@ -166,23 +176,18 @@
   border: solid 1px #000;
   margin-top: 10px;
 }
-/* line 111, ../sass/lobby.scss */
-#lobby .games .game-mode.arena {
+/* line 120, ../sass/lobby.scss */
+#lobby .games .game-mode.free {
   background: url("/res/mode-arena.png");
 }
-/* line 113, ../sass/lobby.scss */
-#lobby .games .game-mode.arena:hover {
-  -moz-box-shadow: black 0 2px 4px;
-  -webkit-box-shadow: black 0 2px 4px;
-  -o-box-shadow: black 0 2px 4px;
-  box-shadow: black 0 2px 4px;
-  -moz-transform: translateY(-2px);
-  -webkit-transform: translateY(-2px);
-  -o-transform: translateY(-2px);
-  -ms-transform: translateY(-2px);
-  transform: translateY(-2px);
+/* line 122, ../sass/lobby.scss */
+#lobby .games .game-mode.free:hover {
+  -moz-box-shadow: yellow 0 0 30px 3px;
+  -webkit-box-shadow: yellow 0 0 30px 3px;
+  -o-box-shadow: yellow 0 0 30px 3px;
+  box-shadow: yellow 0 0 30px 3px;
 }
-/* line 118, ../sass/lobby.scss */
+/* line 126, ../sass/lobby.scss */
 #lobby .games .game-mode.future {
   background: #333;
   border: solid 1px #111;
@@ -198,7 +203,39 @@
   -khtml-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 130, ../sass/lobby.scss */
+/* line 137, ../sass/lobby.scss */
+#lobby .games .game-mode .play {
+  cursor: default;
+  line-height: 128px;
+  font-size: 32px;
+  color: #FF0;
+  text-align: center;
+  text-shadow: black 0 1px 5px;
+  opacity: 0;
+  -moz-transform: translateX(50px);
+  -webkit-transform: translateX(50px);
+  -o-transform: translateX(50px);
+  -ms-transform: translateX(50px);
+  transform: translateX(50px);
+  -moz-transition-property: opacity, transform;
+  -webkit-transition-property: opacity, transform;
+  -o-transition-property: opacity, transform;
+  transition-property: opacity, transform;
+  -moz-transition-duration: 250ms;
+  -webkit-transition-duration: 250ms;
+  -o-transition-duration: 250ms;
+  transition-duration: 250ms;
+}
+/* line 151, ../sass/lobby.scss */
+#lobby .games .game-mode:hover .play {
+  opacity: 1;
+  -moz-transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -o-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+/* line 157, ../sass/lobby.scss */
 #lobby .games .counter {
   position: absolute;
   background: #a00;
@@ -218,7 +255,7 @@
   -o-box-shadow: black 0 1px 5px;
   box-shadow: black 0 1px 5px;
 }
-/* line 142, ../sass/lobby.scss */
+/* line 169, ../sass/lobby.scss */
 #lobby .games label {
   position: absolute;
   color: #fff;
@@ -231,94 +268,42 @@
   color: #000;
   text-shadow: white 0 1px 5px;
 }
-/* line 156, ../sass/lobby.scss */
+/* line 183, ../sass/lobby.scss */
 #lobby .games .game-mode:first-child {
   margin-top: 0;
 }
 
-/*
-#lobby {
-    padding: 20px;
-    margin: 0 auto;
-    width: 750px;
+/* line 191, ../sass/lobby.scss */
+article {
+  margin: 40px 10px;
+  color: #132;
+}
+/* line 195, ../sass/lobby.scss */
+article header {
+  font-size: 16px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+/* line 197, ../sass/lobby.scss */
+article p {
+  font-size: 13px;
+}
 
-
-    #game-mode {
-        display: inline-block;
-        width: 350px;
-        height: 300px;
-        padding: 10px;
-        margin-left: -20px;
-        vertical-align: middle;
-    }
-
-    button {
-        background-color: #384;
-        border: none;
-        color: yellow;
-        font-size: 20px;
-        padding: 10px 20px;
-        @include border-radius(16px);
-    }
-
-    button:hover {
-        background-color: yellow;
-        color: #384;
-    }
-
-    button:disabled {
-        color: #5a7;
-    }
-
-    .gametype {
-        padding: 10px;
-        margin: 0;
-    }
-
-    .game-mode-cont {
-        position: relative;
-        margin: 0;
-        padding: 5px;
-
-        .game-mode {
-            position: relative;
-            width: 256px;
-            height: 128px;
-            border: solid 2px #5a7;
-            background: #363;
-            @include border-radius(8px);
-
-            &.arena {
-                background: url('/res/mode-arena.png');
-            }
-
-            &.capture-flag {
-                opacity: 0.5;
-            }
-
-            label {
-                text-transform: uppercase;
-                position: absolute;
-                right: 10px;
-                bottom: 10px;
-                color: #5a7;
-                font-weight: bold;
-            }
-        }
-    }
-
-    #player {
-        position: relative;
-        display: inline-block;
-        width: 300px;
-        padding: 10px;
-        vertical-align: middle;
-
-        @include border-radius(24px);
-        @include box-shadow(#051, 0, 0, 30px);
-
-
-
-    }
-
-}*/
+/* line 202, ../sass/lobby.scss */
+footer {
+  background: #373;
+  width: 100%;
+  padding: 30px 20px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #252;
+  margin-top: 35px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+/* line 215, ../sass/lobby.scss */
+footer a {
+  color: #4c4;
+}

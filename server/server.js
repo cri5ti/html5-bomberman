@@ -25,6 +25,8 @@ var https = express.createServer({
 var sio = require('socket.io').listen(http);
 //io.set('transports', ['websocket','flashsocket','htmlfile','xhr-polling','jsonp-polling']);
 
+var redis = require("redis").createClient();
+
 
 /////////////
 
@@ -57,13 +59,12 @@ var register = function (app) {
     app.use("/monitor/", express.static("web/monitor/"));
 };
 
-// FIXME
 global.counters = {};
-// var monitor = require("./monitor.js").start({io: sio});
+var monitor = require("./monitor.js").start({io: sio, redis: redis});
 
 var server = require("./game/server");
 
-var s = new Server({io: sio});
+var s = new Server({io: sio, redis: redis});
 
 
 register(http);

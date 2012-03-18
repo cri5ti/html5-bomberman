@@ -1,68 +1,243 @@
-/*
-Syntax error: Undefined mixin 'box-shadow'.
-        on line 9 of /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss, in `box-shadow'
-        from line 9 of /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss
-
-Backtrace:
-/Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss:9:in `box-shadow'
-/Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss:9
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:170:in `visit_mixin'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:238:in `visit_rule'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:47:in `visit_root'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:7:in `send'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/visitors/perform.rb:7:in `visit'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/tree/root_node.rb:20:in `render'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/engine.rb:299:in `_render'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/engine.rb:247:in `render'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/util.rb:310:in `silence_sass_warnings'
-/Library/Ruby/Gems/1.8/gems/sass-3.1.15/lib/sass/../sass/engine.rb:247:in `render'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:136:in `compile'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:122:in `timed'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:135:in `compile'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/logger.rb:45:in `red'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:134:in `compile'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:114:in `compile_if_required'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:99:in `run'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:97:in `each'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:97:in `run'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:122:in `timed'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/compiler.rb:96:in `run'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/commands/watch_project.rb:142:in `recompile'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/commands/watch_project.rb:68:in `perform'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/commands/base.rb:18:in `execute'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/commands/project_base.rb:19:in `execute'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/bin/compass:25
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/bin/compass:39:in `call'
-/Library/Ruby/Gems/1.8/gems/compass-0.11.7/bin/compass:39
-/usr/bin/compass:19:in `load'
-/usr/bin/compass:19
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Undefined mixin 'box-shadow'.\A         on line 9 of /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss, in `box-shadow'\A         from line 9 of /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss"; }
+/* line 7, ../sass/game.scss */
+#game #view {
+  position: absolute;
+  -moz-box-shadow: black 0px 3px 20px;
+  -webkit-box-shadow: black 0px 3px 20px;
+  -o-box-shadow: black 0px 3px 20px;
+  box-shadow: black 0px 3px 20px;
+}
+/* line 13, ../sass/game.scss */
+#game #waitserver {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  text-align: center;
+  line-height: 100px;
+  color: #fff;
+  opacity: 0.5;
+}
+/* line 26, ../sass/game.scss */
+#game #score-table {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  padding: 12px;
+  font: 13px Arial;
+  background: black;
+  border-right: solid 1px #4A4;
+}
+/* line 39, ../sass/game.scss */
+#game #score-table section {
+  margin-bottom: 20px;
+}
+/* line 42, ../sass/game.scss */
+#game #score-table section header {
+  color: #555;
+  text-transform: uppercase;
+  margin: 5px;
+}
+/* line 49, ../sass/game.scss */
+#game #score-table #challenges-section {
+  display: none;
+}
+/* line 52, ../sass/game.scss */
+#game #score-table #challenges-section .icon img {
+  width: 25px;
+  height: 25px;
+}
+/* line 54, ../sass/game.scss */
+#game #score-table #challenges-section .icon1 {
+  float: left;
+}
+/* line 55, ../sass/game.scss */
+#game #score-table #challenges-section .icon2 {
+  float: right;
+}
+/* line 56, ../sass/game.scss */
+#game #score-table #challenges-section .vs {
+  color: #666;
+}
+/* line 58, ../sass/game.scss */
+#game #score-table #challenges-section .score-item {
+  display: block;
+  clear: both;
+  padding: 10px 10px;
+  color: #aaa;
+  vertical-align: top;
+  border-top: solid 1px #222;
+  text-align: center;
+  line-height: 25px;
+}
+/* line 68, ../sass/game.scss */
+#game #score-table #challenges-section .score-item:first-child {
+  border-top: none;
+}
+/* line 72, ../sass/game.scss */
+#game #score-table #friends-section {
+  display: none;
+}
+/* line 75, ../sass/game.scss */
+#game #score-table #friends-section .friend {
+  color: #999;
+}
+/* line 76, ../sass/game.scss */
+#game #score-table #friends-section .friend img {
+  width: 25px;
+  height: 25px;
+  margin: 5px 10px;
+  vertical-align: middle;
+}
+/* line 82, ../sass/game.scss */
+#game #score-table #friends-section .friend .who {
+  display: inline-block;
+}
+/* line 83, ../sass/game.scss */
+#game #score-table #friends-section .friend .challenge {
+  display: inline-block;
+}
+/* line 88, ../sass/game.scss */
+#game #score-table #scores-section .score-item {
+  clear: both;
+  display: block;
+  padding: 10px 10px;
+  color: #aaa;
+  vertical-align: top;
+  border-top: solid 1px #222;
+}
+/* line 96, ../sass/game.scss */
+#game #score-table #scores-section .score-item .icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  vertical-align: middle;
+  float: left;
+}
+/* line 104, ../sass/game.scss */
+#game #score-table #scores-section .score-item img {
+  width: 25px;
+  height: 25px;
+}
+/* line 106, ../sass/game.scss */
+#game #score-table #scores-section .score-item .player {
+  display: inline-block;
+  margin-right: 3px;
+  max-width: 85px;
+}
+/* line 112, ../sass/game.scss */
+#game #score-table #scores-section .score-item .score {
+  float: right;
+  display: inline-block;
+  font-size: 15px;
+  padding: 2px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 120, ../sass/game.scss */
+#game #score-table #scores-section .score-item .lag {
+  display: block;
+  height: 3px;
+  width: 0;
+  margin: 5px 5px 5px 35px;
+  background-color: #0f0;
+  background-image: url("/res/lagbar.png");
+  background-position: left;
+}
+/* line 132, ../sass/game.scss */
+#game #score-table .score-item:first-child {
+  border-top: none;
+}
+/* line 136, ../sass/game.scss */
+#game #score-table .score-item.color-mary .score {
+  background: #a00;
+  color: #fd6;
+}
+/* line 137, ../sass/game.scss */
+#game #score-table .score-item.color-john .score {
+  background: #fff;
+  color: #33f;
+}
+/* line 138, ../sass/game.scss */
+#game #score-table .score-item.color-joe .score {
+  background: #333;
+  color: #0f0;
+  border: solid 1px #0f0;
+  padding: 0 8px;
+}
+/* line 139, ../sass/game.scss */
+#game #score-table .score-item.color-betty .score {
+  background: #05e;
+  color: #ffa;
+}
+/* line 145, ../sass/game.scss */
+#game #chat {
+  position: fixed;
+  bottom: 0;
+  left: 225px;
+  right: 0;
+  z-index: -1;
+  color: #0f0;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 10px;
+  overflow-y: scroll;
+}
+/* line 159, ../sass/game.scss */
+#game #chat .info {
+  color: #000;
+}
+/* line 163, ../sass/game.scss */
+#game #chat .chat {
+  color: #ff0;
+}
+/* line 167, ../sass/game.scss */
+#game #chat .mychat {
+  color: #fff;
+}
+/* line 171, ../sass/game.scss */
+#game #chat .kill {
+  color: #fa6;
+}
+/* line 175, ../sass/game.scss */
+#game #chat .bomb {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+/* line 182, ../sass/game.scss */
+#game #console {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  border-top: solid 1px #6af;
+  background: #04a;
+  z-index: 1000;
+  -moz-box-shadow: black 0px -3px 20px;
+  -webkit-box-shadow: black 0px -3px 20px;
+  -o-box-shadow: black 0px -3px 20px;
+  box-shadow: black 0px -3px 20px;
+}
+/* line 194, ../sass/game.scss */
+#game #chatbox {
+  width: 90%;
+  font-size: 14px;
+  border: none;
+  padding: 10px;
+  background: #04a;
+  color: #888;
+}
+/* line 203, ../sass/game.scss */
+#game #chatbox:focus {
+  border: none;
+  color: #fff;
+  outline: none;
+}

@@ -19,7 +19,7 @@ define([
 
             this.world.placeBombs.on('add', this.requestPlaceBomb, this);
 
-            this.socket = io.connect('/game');
+            this.socket = io.connect('/' + opt.game);
 
             this.socket.on('disconnect', $.proxy(this.onDisconnect, this));
 
@@ -34,6 +34,7 @@ define([
             this.socket.on('laginfo', $.proxy(this.onPing, this));
 
             this.socket.on('score-updates', $.proxy(this.onScoreUpdates, this));
+            this.socket.on('friend-scores', $.proxy(this.onFriendScoreUpdates, this));
 
             this.socket.on('bomb-placed', $.proxy(this.onBombPlaced, this));
             this.socket.on('bomb-boomed', $.proxy(this.onBombBoomed, this));
@@ -58,6 +59,7 @@ define([
 
             this.socket.emit('join', {
                 id: this.id,
+                fbuid: this.world.player.get('fbuid'),
                 name: this.world.player.get('name'),
                 character: this.world.player.get('character')
             });
@@ -84,13 +86,14 @@ define([
         onPlayerJoined: function(d) {
             d.name = _.escape(d.name);
             info("<u>" + d.name + "</u> joined");
-            console.log(d.name + " #" + d.id + " joined");
             var c = new Character({
                 id: d.id,
                 name: d.name,
                 character: d.character,
-                score: d.score
+                score: d.score,
+                fbuid: d.fbuid
             });
+            console.log(d.name + " #" + d.id + " joined", c);
             this.world.players.add(c);
             this.peers[d.id] = c;
         },
@@ -252,18 +255,24 @@ define([
             }, this));
 
             this.socket.emit('pong', {t: d.now} );
-            this.world.updateScoring(true);
+            this.world.updateScoring(false);
         },
 
         onScoreUpdates: function(d) {
-            console.log("score updates: ", d);
-
             _.each(d, _.bind(function(score, id) {
                 var p = this.peers[id];
                 if (p) p.set('score', score);
             }, this));
 
             this.world.updateScoring(true);
+        },
+
+
+        onFriendScoreUpdates: function(d) {
+            var self = this;
+            var mates =_.map(d.ids, function(id) { return self.peers[id] });
+
+            this.world.updateFriendScoring(mates, d.scores);
         }
 
     });

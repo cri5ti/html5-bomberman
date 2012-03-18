@@ -20,7 +20,8 @@
 
         bombs: null,
 
-        initialize: function() {
+        initialize: function(opt) {
+            this.redis = opt.redis;
 
             this.map = new Map();
 
@@ -139,18 +140,35 @@
             var who = this.playersById[whoId];
             if (!who) return;
 
+            this.redis.incr("counters.kills");
+
             if (whoId == byWhoId) { // suicide
                 console.log(who.get('name') + " suicided");
                 who.set('score', who.get('score') - 1);
+
+                this.redis.incr("counters.kills.suicides");
+
+                this.redis.incr("suicides-by:" + whoId);
             } else {
                 var byWho = this.playersById[byWhoId];
                 if (!byWho) return;
 
                 console.log(who.get('name') + " was killed by " + byWho.get('name'));
                 byWho.set('score', byWho.get('score') + 1);
+
+                this.redis.incr("counters.kills.kills");
+
+                this.redis.incr("kills-by:" + byWhoId);
+
+                if (who.get('fbuid')>0 && byWho.get('fbuid') > 0)
+                    this.redis.incr("kill:" + who.get('fbuid') + ":by:" + byWho.get('fbuid'));
+
+                this.ctrlsById[whoId].notifyFriendBattles();
+                this.ctrlsById[byWhoId].notifyFriendBattles();
             }
             this.trigger('score-changes');
         }
+
     });
 
 

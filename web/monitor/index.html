@@ -9,30 +9,71 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <td align="right" class="label">users:</td>
-            <td width="100"><div class="chart" id="chart-users">Loading...</div></td>
-            <td width="50" align="right" valign="middle"><div id="curent-users" style="font: 18px Arial; color: #fff;"></div></td>
-        </tr>
+<table cellpadding="0">
+    <tr>
+        <td>
 
-        <tr>
-            <td align="right" class="label">node:</td>
-            <td><div class="chart" id="chart-cpu">Loading...</div></td>
-            <td valign="middle" align="right"><div id="curent-cpu"></div></td>
-        </tr>
-        <tr style="height: 10px;">
-            <td colspan="3">
-                <hr noshade color="#555"/>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" class="label">mapfill:</td>
-            <td><div class="chart" id="chart-mapfill">Loading...</div></td>
-            <td valign="middle" align="right"><div id="curent-mapfill"></div></td>
-        </tr>
-    </table>
-    <div id="lastupdate" style="padding: 5px; color: #444;"></div>
+            <table class="charts" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="right" class="label">users:</td>
+                    <td width="100"><div class="chart" id="chart-users">Loading...</div></td>
+                    <td width="50" align="right" valign="middle"><div id="curent-users" style="font: 18px Arial; color: #fff;"></div></td>
+                </tr>
+                <tr>
+                    <td align="right" class="label">node:</td>
+                    <td><div class="chart" id="chart-cpu">Loading...</div></td>
+                    <td valign="middle" align="right"><div id="curent-cpu"></div></td>
+                </tr>
+                <tr style="height: 10px;">
+                    <td colspan="3">
+                        <hr noshade color="#555"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="label">mapfill:</td>
+                    <td><div class="chart" id="chart-mapfill">Loading...</div></td>
+                    <td valign="middle" align="right"><div id="curent-mapfill"></div></td>
+                </tr>
+            </table>
+
+        </td>
+        <td width="10"></td>
+        <td>
+
+            <table>
+                <tr>
+                    <td align="right" class="label">Uptime:</td>
+                    <td colspan="2"><span id="stat-uptime">?</span></td>
+                </tr>
+                <tr>
+                    <td align="right" class="label">Restarts:</td>
+                    <td colspan="2"><span id="stat-restarts">?</span></td>
+                </tr>
+                <tr>
+                    <td align="right" class="label">Joins:</td>
+                    <td colspan="2"><span id="stat-joins">?</span></td>
+                </tr>
+                <tr style="height: 10px;">
+                    <td colspan="3">
+                        <hr noshade color="#555"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" align="right" class="label">Kills:</td>
+                    <td colspan="2"><span id="stat-kills">?</span></td>
+                </tr>
+                <tr>
+                    <td><span id="stat-kills-kil">?</span></td>
+                    <td><span id="stat-kills-sui">?</span></td>
+                </tr>
+            </table>
+            
+        </td>
+    </tr>
+</table>
+
+<div id="lastupdate" style="padding: 5px; color: #444;"></div>
 
 </body>
 </html>
