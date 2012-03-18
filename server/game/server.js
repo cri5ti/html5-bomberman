@@ -106,6 +106,13 @@ require("./player.js");
                     delete this.game.playersById[playerId];
                     delete this.game.ctrlsById[playerId];
 
+
+                    // FIXME D.R.Y.
+                    _.each(this.game.ctrlsById, function(ctrl, id) {
+                        if (id == playerId) return;
+                        ctrl.notifyFriendBattles();
+                    });
+
                     global.counters.players--;
                 }, this));
 
@@ -116,6 +123,11 @@ require("./player.js");
 
                 // update me about the current game state
                 ctrl.notifyGameState();
+
+                _.each(this.game.ctrlsById, function(ctrl, id) {
+                    if (id == playerId) return;
+                    ctrl.notifyFriendBattles();
+                });
             }, this));
 
         },

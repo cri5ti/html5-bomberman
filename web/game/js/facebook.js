@@ -8,16 +8,9 @@ define([
 
     _.extend(fb, Backbone.Events);
 
+    window.fb = fb;
 
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '209351425839638', // App ID
-            channelUrl : '//fb/static/channel.html', // Channel File
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : false  // parse XFBML
-        });
-
+    fb.checkLogin = function() {
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 // the user is logged in and has authenticated your
@@ -38,14 +31,24 @@ define([
             } else if (response.status === 'not_authorized') {
                 // the user is logged in to Facebook,
                 // but has not authenticated your app
-//                alert('not authorized');
                 fb.trigger('not-auth');
             } else {
                 // the user isn't logged in to Facebook.
-//                alert('not logged in');
                 fb.trigger('not-logged');
             }
         });
+    }
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '209351425839638', // App ID
+            channelUrl : '//fb/static/channel.html', // Channel File
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+        });
+
+        fb.checkLogin();
 
     };
 

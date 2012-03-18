@@ -98,6 +98,16 @@
         .frame3 .selected div { background-position: -22px 0; }
     }
 
+    #facebook-login {
+        p {
+            font-size: 12px;
+            white-space: normal;
+            line-height: 15px;
+            color: #8fa;
+        }
+        a { color: #afa; }
+    }
+
     .games {
         @include shaded-box();
         padding: 20px;

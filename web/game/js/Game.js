@@ -123,12 +123,13 @@ define([
         },
 
         refreshFriends: function() {
-            $("#friends-section").show();
-
             FB.api({
                     method: 'fql.query',
                     query: 'SELECT uid, name FROM user WHERE uid IN ( SELECT uid2 FROM friend WHERE uid1 = me() ) ORDER BY rand() limit 5'
                 }, function(res) {
+                    if (res.error_code) return;
+
+                    $("#friends-section").show();
 
                     var fs = $("#friends-section #friends");
 

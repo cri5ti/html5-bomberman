@@ -174,8 +174,8 @@
                 if (!p.get('fbuid')) return;
 
                 pids.push(k);
-                m.get("kill:" + myfbuid + ":by:" + p.get('fbuid'));
                 m.get("kill:" + p.get('fbuid') + ":by:" + myfbuid);
+                m.get("kill:" + myfbuid + ":by:" + p.get('fbuid'));
             });
 
             var self = this;

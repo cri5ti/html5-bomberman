@@ -55,6 +55,15 @@
             .icon2 { float: right; }
             .vs { color: #666; }
 
+            .score {
+                padding: 2px 5px;
+
+                &.high {
+                    color: #000;
+                    background: #fff;
+                }
+            }
+
             .score-item {
                 display: block;
                 clear: both;

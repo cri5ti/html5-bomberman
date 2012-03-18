@@ -267,7 +267,18 @@ a:hover {
 #lobby .character-select .frame3 .selected div {
   background-position: -22px 0;
 }
-/* line 101, ../sass/lobby.scss */
+/* line 102, ../sass/lobby.scss */
+#lobby #facebook-login p {
+  font-size: 12px;
+  white-space: normal;
+  line-height: 15px;
+  color: #8fa;
+}
+/* line 108, ../sass/lobby.scss */
+#lobby #facebook-login a {
+  color: #afa;
+}
+/* line 111, ../sass/lobby.scss */
 #lobby .games {
   -moz-border-radius: 24px;
   -webkit-border-radius: 24px;
@@ -283,12 +294,12 @@ a:hover {
   padding: 5px;
   padding: 20px;
 }
-/* line 105, ../sass/lobby.scss */
+/* line 115, ../sass/lobby.scss */
 #lobby .games #games-list {
   min-width: 258px;
   min-height: 300px;
 }
-/* line 110, ../sass/lobby.scss */
+/* line 120, ../sass/lobby.scss */
 #lobby .games .game-mode {
   position: relative;
   width: 256px;
@@ -297,18 +308,18 @@ a:hover {
   border: solid 1px #000;
   margin-top: 10px;
 }
-/* line 120, ../sass/lobby.scss */
+/* line 130, ../sass/lobby.scss */
 #lobby .games .game-mode.free {
   background: url("/res/mode-arena.png");
 }
-/* line 122, ../sass/lobby.scss */
+/* line 132, ../sass/lobby.scss */
 #lobby .games .game-mode.free:hover {
   -moz-box-shadow: yellow 0 0 30px 3px;
   -webkit-box-shadow: yellow 0 0 30px 3px;
   -o-box-shadow: yellow 0 0 30px 3px;
   box-shadow: yellow 0 0 30px 3px;
 }
-/* line 126, ../sass/lobby.scss */
+/* line 136, ../sass/lobby.scss */
 #lobby .games .game-mode.future {
   background: #333;
   border: solid 1px #111;
@@ -324,7 +335,7 @@ a:hover {
   -khtml-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 137, ../sass/lobby.scss */
+/* line 147, ../sass/lobby.scss */
 #lobby .games .game-mode .play {
   cursor: default;
   line-height: 128px;
@@ -347,7 +358,7 @@ a:hover {
   -o-transition-duration: 250ms;
   transition-duration: 250ms;
 }
-/* line 151, ../sass/lobby.scss */
+/* line 161, ../sass/lobby.scss */
 #lobby .games .game-mode:hover .play {
   opacity: 1;
   -moz-transform: translateX(0);
@@ -356,7 +367,7 @@ a:hover {
   -ms-transform: translateX(0);
   transform: translateX(0);
 }
-/* line 157, ../sass/lobby.scss */
+/* line 167, ../sass/lobby.scss */
 #lobby .games .counter {
   position: absolute;
   background: #a00;
@@ -376,7 +387,7 @@ a:hover {
   -o-box-shadow: black 0 1px 5px;
   box-shadow: black 0 1px 5px;
 }
-/* line 169, ../sass/lobby.scss */
+/* line 179, ../sass/lobby.scss */
 #lobby .games label {
   position: absolute;
   color: #fff;
@@ -389,28 +400,28 @@ a:hover {
   color: #000;
   text-shadow: white 0 1px 5px;
 }
-/* line 183, ../sass/lobby.scss */
+/* line 193, ../sass/lobby.scss */
 #lobby .games .game-mode:first-child {
   margin-top: 0;
 }
 
-/* line 191, ../sass/lobby.scss */
+/* line 201, ../sass/lobby.scss */
 article {
   margin: 40px 10px;
   color: #132;
 }
-/* line 195, ../sass/lobby.scss */
+/* line 205, ../sass/lobby.scss */
 article header {
   font-size: 16px;
   margin: 10px 0;
   font-weight: bold;
 }
-/* line 197, ../sass/lobby.scss */
+/* line 207, ../sass/lobby.scss */
 article p {
   font-size: 13px;
 }
 
-/* line 202, ../sass/lobby.scss */
+/* line 212, ../sass/lobby.scss */
 footer {
   background: #373;
   width: 100%;
@@ -424,7 +435,7 @@ footer {
   right: 0;
   box-sizing: border-box;
 }
-/* line 215, ../sass/lobby.scss */
+/* line 225, ../sass/lobby.scss */
 footer a {
   color: #4c4;
 }
@@ -494,6 +505,15 @@ footer a {
   color: #666;
 }
 /* line 58, ../sass/game.scss */
+#game #score-table #challenges-section .score {
+  padding: 2px 5px;
+}
+/* line 61, ../sass/game.scss */
+#game #score-table #challenges-section .score.high {
+  color: #000;
+  background: #fff;
+}
+/* line 67, ../sass/game.scss */
 #game #score-table #challenges-section .score-item {
   display: block;
   clear: both;
@@ -504,34 +524,34 @@ footer a {
   text-align: center;
   line-height: 25px;
 }
-/* line 68, ../sass/game.scss */
+/* line 77, ../sass/game.scss */
 #game #score-table #challenges-section .score-item:first-child {
   border-top: none;
 }
-/* line 72, ../sass/game.scss */
+/* line 81, ../sass/game.scss */
 #game #score-table #friends-section {
   display: none;
 }
-/* line 75, ../sass/game.scss */
+/* line 84, ../sass/game.scss */
 #game #score-table #friends-section .friend {
   color: #999;
 }
-/* line 76, ../sass/game.scss */
+/* line 85, ../sass/game.scss */
 #game #score-table #friends-section .friend img {
   width: 25px;
   height: 25px;
   margin: 5px 10px;
   vertical-align: middle;
 }
-/* line 82, ../sass/game.scss */
+/* line 91, ../sass/game.scss */
 #game #score-table #friends-section .friend .who {
   display: inline-block;
 }
-/* line 83, ../sass/game.scss */
+/* line 92, ../sass/game.scss */
 #game #score-table #friends-section .friend .challenge {
   display: inline-block;
 }
-/* line 88, ../sass/game.scss */
+/* line 97, ../sass/game.scss */
 #game #score-table #scores-section .score-item {
   clear: both;
   display: block;
@@ -540,7 +560,7 @@ footer a {
   vertical-align: top;
   border-top: solid 1px #222;
 }
-/* line 96, ../sass/game.scss */
+/* line 105, ../sass/game.scss */
 #game #score-table #scores-section .score-item .icon {
   width: 25px;
   height: 25px;
@@ -548,18 +568,18 @@ footer a {
   vertical-align: middle;
   float: left;
 }
-/* line 104, ../sass/game.scss */
+/* line 113, ../sass/game.scss */
 #game #score-table #scores-section .score-item img {
   width: 25px;
   height: 25px;
 }
-/* line 106, ../sass/game.scss */
+/* line 115, ../sass/game.scss */
 #game #score-table #scores-section .score-item .player {
   display: inline-block;
   margin-right: 3px;
   max-width: 85px;
 }
-/* line 112, ../sass/game.scss */
+/* line 121, ../sass/game.scss */
 #game #score-table #scores-section .score-item .score {
   float: right;
   display: inline-block;
@@ -572,7 +592,7 @@ footer a {
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 120, ../sass/game.scss */
+/* line 129, ../sass/game.scss */
 #game #score-table #scores-section .score-item .lag {
   display: block;
   height: 3px;
@@ -582,33 +602,33 @@ footer a {
   background-image: url("/res/lagbar.png");
   background-position: left;
 }
-/* line 132, ../sass/game.scss */
+/* line 141, ../sass/game.scss */
 #game #score-table .score-item:first-child {
   border-top: none;
 }
-/* line 136, ../sass/game.scss */
+/* line 145, ../sass/game.scss */
 #game #score-table .score-item.color-mary .score {
   background: #a00;
   color: #fd6;
 }
-/* line 137, ../sass/game.scss */
+/* line 146, ../sass/game.scss */
 #game #score-table .score-item.color-john .score {
   background: #fff;
   color: #33f;
 }
-/* line 138, ../sass/game.scss */
+/* line 147, ../sass/game.scss */
 #game #score-table .score-item.color-joe .score {
   background: #333;
   color: #0f0;
   border: solid 1px #0f0;
   padding: 0 8px;
 }
-/* line 139, ../sass/game.scss */
+/* line 148, ../sass/game.scss */
 #game #score-table .score-item.color-betty .score {
   background: #05e;
   color: #ffa;
 }
-/* line 145, ../sass/game.scss */
+/* line 154, ../sass/game.scss */
 #game #chat {
   position: fixed;
   bottom: 0;
@@ -621,29 +641,29 @@ footer a {
   padding: 10px;
   overflow-y: scroll;
 }
-/* line 159, ../sass/game.scss */
+/* line 168, ../sass/game.scss */
 #game #chat .info {
   color: #000;
 }
-/* line 163, ../sass/game.scss */
+/* line 172, ../sass/game.scss */
 #game #chat .chat {
   color: #ff0;
 }
-/* line 167, ../sass/game.scss */
+/* line 176, ../sass/game.scss */
 #game #chat .mychat {
   color: #fff;
 }
-/* line 171, ../sass/game.scss */
+/* line 180, ../sass/game.scss */
 #game #chat .kill {
   color: #fa6;
 }
-/* line 175, ../sass/game.scss */
+/* line 184, ../sass/game.scss */
 #game #chat .bomb {
   display: inline-block;
   vertical-align: middle;
   margin: 0 5px;
 }
-/* line 182, ../sass/game.scss */
+/* line 191, ../sass/game.scss */
 #game #console {
   position: fixed;
   bottom: 0;
@@ -657,7 +677,7 @@ footer a {
   -o-box-shadow: black 0px -3px 20px;
   box-shadow: black 0px -3px 20px;
 }
-/* line 194, ../sass/game.scss */
+/* line 203, ../sass/game.scss */
 #game #chatbox {
   width: 90%;
   font-size: 14px;
@@ -666,7 +686,7 @@ footer a {
   background: #04a;
   color: #888;
 }
-/* line 203, ../sass/game.scss */
+/* line 212, ../sass/game.scss */
 #game #chatbox:focus {
   border: none;
   color: #fff;

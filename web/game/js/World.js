@@ -205,21 +205,23 @@ define([
         updateFriendScoring: function(mates, scores) {
             $("#challenges-section").show();
 
-            var $st = $("#challenges");
+            var $st = $("#challenges").empty();
 
             var fbuid = this.player.get('fbuid');
 
             for(var i=0, l=mates.length; i<l; i++) {
                 var mate = mates[i];
 
-                s1 = scores[ i*2   ];
-                s2 = scores[ i*2+1 ];
+                s1 = scores[ i*2   ] * 1;
+                s2 = scores[ i*2+1 ] * 1;
 
                 $st.append(mateScoreTemplate({
                     id1: fbuid,
                     id2: mate.get('fbuid'),
                     score1: s1,
-                    score2: s2
+                    score2: s2,
+                    cls1: s1 > s2 ? 'high' : '',
+                    cls2: s2 > s1 ? 'high' : ''
                 }));
             }
 
@@ -248,9 +250,9 @@ define([
     var mateScoreTemplate =  _.template(
             '<div class="score-item">' +
                 '<div class="icon icon1"><img src="http://graph.facebook.com/<%= id1 %>/picture?type=square"/></div>' +
-                '<span class="score score1"><%= score1 %></span>' +
+                '<span class="score score1 <%= cls1 %>"><%= score1 %></span>' +
                 '<span class="vs"> vs </span>' +
-                '<span class="score score2"><%= score2 %></span>' +
+                '<span class="score score2 <%= cls2 %>"><%= score2 %></span>' +
                 '<div class="icon icon2"><img src="http://graph.facebook.com/<%= id2 %>/picture?type=square"/></div>' +
             '</div>');
 

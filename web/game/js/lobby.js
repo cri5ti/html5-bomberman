@@ -25,6 +25,9 @@ define([
             this.lobby.on('list-games', _.bind(this.onGamesList, this));
 
             fb.on("auth", _.bind(this.gotFacebookUser, this));
+            fb.on("not-logged", function() {
+                $("#facebook-login").show();
+            });
 
             var frame = 0;
             setInterval(function() {
@@ -45,6 +48,8 @@ define([
         },
 
         gotFacebookUser: function() {
+            $("#facebook-login").fadeOut(500);
+
             $("#userpic").append($("<img/>").attr("src", "http://graph.facebook.com/" + fb.uid + "/picture?type=square").fadeIn());
             $('#userid').val(fb.uname);
         },

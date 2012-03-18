@@ -146,7 +146,18 @@
 #lobby .character-select .frame3 .selected div {
   background-position: -22px 0;
 }
-/* line 101, ../sass/lobby.scss */
+/* line 102, ../sass/lobby.scss */
+#lobby #facebook-login p {
+  font-size: 12px;
+  white-space: normal;
+  line-height: 15px;
+  color: #8fa;
+}
+/* line 108, ../sass/lobby.scss */
+#lobby #facebook-login a {
+  color: #afa;
+}
+/* line 111, ../sass/lobby.scss */
 #lobby .games {
   -moz-border-radius: 24px;
   -webkit-border-radius: 24px;
@@ -162,12 +173,12 @@
   padding: 5px;
   padding: 20px;
 }
-/* line 105, ../sass/lobby.scss */
+/* line 115, ../sass/lobby.scss */
 #lobby .games #games-list {
   min-width: 258px;
   min-height: 300px;
 }
-/* line 110, ../sass/lobby.scss */
+/* line 120, ../sass/lobby.scss */
 #lobby .games .game-mode {
   position: relative;
   width: 256px;
@@ -176,18 +187,18 @@
   border: solid 1px #000;
   margin-top: 10px;
 }
-/* line 120, ../sass/lobby.scss */
+/* line 130, ../sass/lobby.scss */
 #lobby .games .game-mode.free {
   background: url("/res/mode-arena.png");
 }
-/* line 122, ../sass/lobby.scss */
+/* line 132, ../sass/lobby.scss */
 #lobby .games .game-mode.free:hover {
   -moz-box-shadow: yellow 0 0 30px 3px;
   -webkit-box-shadow: yellow 0 0 30px 3px;
   -o-box-shadow: yellow 0 0 30px 3px;
   box-shadow: yellow 0 0 30px 3px;
 }
-/* line 126, ../sass/lobby.scss */
+/* line 136, ../sass/lobby.scss */
 #lobby .games .game-mode.future {
   background: #333;
   border: solid 1px #111;
@@ -203,7 +214,7 @@
   -khtml-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 137, ../sass/lobby.scss */
+/* line 147, ../sass/lobby.scss */
 #lobby .games .game-mode .play {
   cursor: default;
   line-height: 128px;
@@ -226,7 +237,7 @@
   -o-transition-duration: 250ms;
   transition-duration: 250ms;
 }
-/* line 151, ../sass/lobby.scss */
+/* line 161, ../sass/lobby.scss */
 #lobby .games .game-mode:hover .play {
   opacity: 1;
   -moz-transform: translateX(0);
@@ -235,7 +246,7 @@
   -ms-transform: translateX(0);
   transform: translateX(0);
 }
-/* line 157, ../sass/lobby.scss */
+/* line 167, ../sass/lobby.scss */
 #lobby .games .counter {
   position: absolute;
   background: #a00;
@@ -255,7 +266,7 @@
   -o-box-shadow: black 0 1px 5px;
   box-shadow: black 0 1px 5px;
 }
-/* line 169, ../sass/lobby.scss */
+/* line 179, ../sass/lobby.scss */
 #lobby .games label {
   position: absolute;
   color: #fff;
@@ -268,28 +279,28 @@
   color: #000;
   text-shadow: white 0 1px 5px;
 }
-/* line 183, ../sass/lobby.scss */
+/* line 193, ../sass/lobby.scss */
 #lobby .games .game-mode:first-child {
   margin-top: 0;
 }
 
-/* line 191, ../sass/lobby.scss */
+/* line 201, ../sass/lobby.scss */
 article {
   margin: 40px 10px;
   color: #132;
 }
-/* line 195, ../sass/lobby.scss */
+/* line 205, ../sass/lobby.scss */
 article header {
   font-size: 16px;
   margin: 10px 0;
   font-weight: bold;
 }
-/* line 197, ../sass/lobby.scss */
+/* line 207, ../sass/lobby.scss */
 article p {
   font-size: 13px;
 }
 
-/* line 202, ../sass/lobby.scss */
+/* line 212, ../sass/lobby.scss */
 footer {
   background: #373;
   width: 100%;
@@ -303,7 +314,7 @@ footer {
   right: 0;
   box-sizing: border-box;
 }
-/* line 215, ../sass/lobby.scss */
+/* line 225, ../sass/lobby.scss */
 footer a {
   color: #4c4;
 }
