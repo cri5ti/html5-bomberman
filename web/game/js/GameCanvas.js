@@ -30,11 +30,6 @@ define([
             this.ctx = this.$canvas.get(0).getContext("2d");
 
             this.world.$container.append(this.$canvas);
-            this.world.$container.css({
-                width: (VIEW_W * SQUARE_SIZE) + 'px',
-                height: (VIEW_H * SQUARE_SIZE) + 'px',
-                'margin-left': -(VIEW_W * SQUARE_SIZE / 2) + 'px'
-            });
 
             // map layer
             this.map = this._canvas( (VIEW_W+2) * SQUARE_SIZE, (VIEW_H+2) * SQUARE_SIZE).get(0);
@@ -137,8 +132,9 @@ define([
 
             var spr = this.sprCharacters[c.get('character')];
 
-            this.ctx.drawImage(spr, framex * CHAR_W, framey*CHAR_H, CHAR_W, CHAR_H,
-                x, y, CHAR_H, CHAR_H);
+            if (framey < 8)
+                this.ctx.drawImage(spr, framex * CHAR_W, framey*CHAR_H, CHAR_W, CHAR_H,
+                    x, y, CHAR_H, CHAR_H);
         },
 
         drawFlame: function(f) {

@@ -5,10 +5,12 @@
     <title>Short Fuse</title>
 
     <script data-main="js/app.js" src="js/lib/require-jquery.js"></script>
-	<!--[if IE]><script src="js/polyfills/excanvas.js"></script><![endif]-->
+    <!--[if IE]><script src="js/polyfills/excanvas.js"></script><![endif]-->
     <script src="/socket.io/socket.io.js"></script>
 
     <link href="css/app.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="shortcut icon" href="favicon.ico" />
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -23,39 +25,13 @@
     </script>
 </head>
 <body>
+<div id="fb-root"></div>
 
-    <div id="ingame" style="display: none;">
+<div id="game"></div>
 
-        <div id="console" style="display: none;">
-            &gt; <input id="chatbox"/>
-        </div>
+<div id="lobby"></div>
 
-        <div id="footer">
-            <p>Using: node.js, socket.io, backbone, underscore, jquery, compass, sass, html5 (css3, canvas).</p>
-            <p>An open source project by <a href="http://twitter.com/cri5ti">@cri5ti.</a></p>
-            <p>Fork me on <a href="https://github.com/cri5ti/html5-bomberman">GitHub</a>.</p>
-        </div>
-
-        <div id="chat">
-            Press &lt;Enter&gt; to type on chat.
-        </div>
-
-        <div id="score-table"></div>
-
-        <div id="game"></div>
-
-        <div id="waitserver">Waiting for connection
-        </div>
-
-    </div>
-
-    <div id="welcome">
-        <div id="form">
-            <p>Type your name: </p>
-            <input id="userid" type="text" required/>
-            <button id="loginBtn" type="submit" disabled="disabled">&gt;</button>
-        </div>
-    </div>
+<div id="loading"></div>
 
 </body>
 </html>

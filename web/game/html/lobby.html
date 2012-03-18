@@ -1,0 +1,57 @@
+
+<div class="left">
+    <div class="logo">
+        <img src="/res/logo.png" width="146" height="45"/>
+    </div>
+
+    <div class="player">
+        <section class="login">
+            <p>Your name: </p>
+            <input id="userid" type="text" required/>
+            <div id="userpic"></div>
+        </section>
+
+        <section class="character-select">
+            <p>Character: </p>
+            <ul class="character">
+                <li><div class="john"></div></li>
+                <li><div class="joe"></div></li>
+                <li><div class="mary"></div></li>
+                <li><div class="betty"></div></li>
+            </ul>
+        </section>
+        
+        <section id="facebook-login" style="display: none;">
+            <p>Login to Facebook to challenge your friends and keep the battle scores!</p>
+            <div class="fb-login-button" onlogin="fb.checkLogin();">Login</div>
+        </section>
+    </div>
+</div>
+
+<div class="right">
+    <section class="games">
+        <p>Select a game:</p>
+
+        <div id="games-list">
+        </div>
+
+    </section>
+</div>
+
+<article>
+    <p>Use the arrow keys to move, SPACE to place bombs.</p>
+    
+</article>
+
+<article>
+    <header>News</header>
+    <p>
+        <b>18 Mar</b> - ShortFuse is on Facebook.
+    </p>
+</article>
+
+<footer>
+    <p>Using: node.js, socket.io, backbone, underscore, jquery, compass, sass, html5 (css3, canvas).</p>
+    <p>An open source project by <a href="http://twitter.com/cri5ti">@cri5ti.</a></p>
+    <p>Fork me on <a href="https://github.com/cri5ti/html5-bomberman">GitHub</a>.</p>
+</footer>

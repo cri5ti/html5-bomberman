@@ -46,9 +46,38 @@ require([
 
             var time = new Date(stat.time);
             $("#lastupdate").text( time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() );
+
+            $("#stat-uptime").text(formatTimespan(stat.server.uptime));
+            $("#stat-restarts").text(stat.server.restarts);
+            $("#stat-joins").text(stat.server.joinedplayers);
+
+            $("#stat-kills").text(stat.kills.total);
+            $("#stat-kills-kil").text(stat.kills.kills);
+            $("#stat-kills-sui").text(stat.kills.suicides);
+
         });
 
     });
+
+    var formatTimespan = function(t) {
+        t = Math.floor( t/1000 );
+
+        if (t < 60) return t + " sec";
+
+        di = t % 60;
+        ds = Math.floor(t / 60);
+        if (ds < 60) return ds + " min " + di + " sec";
+
+        di = ds % 60;
+        ds = Math.floor(ds / 60);
+        if (ds < 60) return ds + " hr " + di + " min";
+
+        di = ds % 24;
+        ds = Math.floor(ds / 24);
+        return ds + " days " + di + " hr";
+
+        return t;
+    }
 
     var vals = {};
     var chart = function(n, v, tv, opt) {

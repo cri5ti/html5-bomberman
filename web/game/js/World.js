@@ -12,8 +12,6 @@ define([
 ],function($, _, Backbone, core) {
 
 
-    var characters = ["john", "mary", "joe", "betty"];
-
     var ortho = [
         {x:0, y:0, d: 0 },
         {x:1, y:0, e: 4, d: 2},
@@ -98,13 +96,6 @@ define([
             this.flames.on('remove', this.onFlameRemoved, this);
 
             this.canvas = new GameCanvas({world: this});
-
-            // create our player
-            this.player = new Character({
-                name: opt.myName,
-                character: characters[Math.floor(Math.random()*(characters.length))]
-            });
-            this.players.add(this.player);
         },
 
         onCharacterAdded: function(c) {
@@ -187,28 +178,84 @@ define([
         },
 
         updateScoring: function(recreate) {
-            var $st = $("#score-table");
+            var $st = $("#scores");
             if (recreate) {
                 $st.empty();
                 _.each(this.players.sortBy(function(p) { return -p.get('score'); }), function(p) {
-                    var si = $(scoreItem({name: p.get('name'), score: p.get('score'), color: p.get('character') }));
+                    var si = $(scoreItemTemplate({id: p.id, name: p.get('name'), score: p.get('score'), color: p.get('character') }));
 
-                    var lag = p.get('lag');
-                    var lagw = lagBar(lag, 20, 300, 48, 8);
-                    var cg = Math.round(lagBar(lag, 20, 250, 255, 0));
-                    var cr = 255 - cg;
+                    var fbuid = p.get('fbuid');
+                    if (fbuid) {
+                        $(".icon", si).append($("<img/>").attr("src", "http://graph.facebook.com/" + fbuid + "/picture?type=square"));
+                    }
 
-                    $('.lag', si).css({
-                        width: lagw+'px',
-                        'background-color': 'rgb('+cr+','+cg+',0)'
-                    })
+                    updateLag($('.lag', si), p.get('lag'));
+
                     $st.append(si);
                 });
+            } else {
+                this.players.each(function(p) {
+                    var si = $("div[data-id="+p.id+"]", $st);
+                    // lag
+                    updateLag($('.lag', si), p.get('lag'));
+                });
             }
+        },
+
+        updateFriendScoring: function(mates, scores) {
+            $("#challenges-section").show();
+
+            var $st = $("#challenges").empty();
+
+            var fbuid = this.player.get('fbuid');
+
+            for(var i=0, l=mates.length; i<l; i++) {
+                var mate = mates[i];
+
+                s1 = scores[ i*2   ] * 1;
+                s2 = scores[ i*2+1 ] * 1;
+
+                $st.append(mateScoreTemplate({
+                    id1: fbuid,
+                    id2: mate.get('fbuid'),
+                    score1: s1,
+                    score2: s2,
+                    cls1: s1 > s2 ? 'high' : '',
+                    cls2: s2 > s1 ? 'high' : ''
+                }));
+            }
+
         }
     });
 
-    var scoreItem = _.template('<div class="score-item color-<%= color %>"><div class="player"><%= name %></div><div class="score"><%= score %></div><div class="lag"></div></div>');
+    var updateLag = function($lag, lag) {
+        var lagw = lagBar(lag, 20, 300, 48, 8);
+        var cg = Math.round(lagBar(lag, 20, 250, 255, 0));
+        var cr = 255 - cg;
+
+        $lag.css({
+            width: lagw+'px',
+            'background-color': 'rgb('+cr+','+cg+',0)'
+        })
+    }
+
+    var scoreItemTemplate = _.template(
+        '<div data-id="<%= id %>" class="score-item color-<%= color %>">' +
+            '<div class="icon"></div>' +
+            '<div class="player"><%= name %></div>' +
+            '<div class="score"><%= score %></div>' +
+            '<div class="lag"></div>' +
+        '</div>');
+
+    var mateScoreTemplate =  _.template(
+            '<div class="score-item">' +
+                '<div class="icon icon1"><img src="http://graph.facebook.com/<%= id1 %>/picture?type=square"/></div>' +
+                '<span class="score score1 <%= cls1 %>"><%= score1 %></span>' +
+                '<span class="vs"> vs </span>' +
+                '<span class="score score2 <%= cls2 %>"><%= score2 %></span>' +
+                '<div class="icon icon2"><img src="http://graph.facebook.com/<%= id2 %>/picture?type=square"/></div>' +
+            '</div>');
+
 
     var throttlePlay = _.throttle(function(snd) {
         play(snd)

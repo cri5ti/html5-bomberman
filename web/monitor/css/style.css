@@ -10,6 +10,10 @@ table {
 }
 
 tr {
+    height: 20px;
+}
+
+.charts tr {
     height: 30px;
 }
 
@@ -22,3 +26,8 @@ tr {
     display: inline-block;
 
 }
+
+
+#stat-kills { font-size: 13px; }
+#stat-kills-sui { color: #fea; }
+#stat-kills-kil { color: #afa; }

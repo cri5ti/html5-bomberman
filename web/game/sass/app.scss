@@ -2,49 +2,44 @@
 @import "compass/reset";
 @import "compass";
 
+
 html {
     font-family: Arial;
     height: 100%;
 }
 
 body {
-    /*@include background-image(linear-gradient(top, #60aa42,#ace884,#27702c));*/
     background-color: #27702c;
     color: #fff;
 }
 
-#chat {
-    color: #0f0;
-    font-size: 12px;
-    line-height: 20px;
-    position: fixed;
-    width: 100%;
-    padding: 10px;
-    bottom: 100px;
-    z-index: -1;
 
-    .info {
-        color: #000;
+#loading {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABuklEQVQ4y42Tuy8EURjF12NZsd5BLFvYUBAbCYntKEQQtqBQUFBQEqVKSIhCq0Urev+ChJLS7HyPe3e9ajVndodM7I64yS+5M3fO+V5zI5E/lsN0Ba4j/1054SS4BAnf4M7D2+uLqREjSWNNNNTAFfEMPsCFb3AL7r29GO0TlTQVbLlBTqUHdPtZbIJPMAHxDXh4frVRERkVy+1Fs4KJStDIET5xmB/Bqm9yCw4gngPL1poWRB/wzthKF1keJyv9gQy4F+JTQOAKz50g/n3Oaqr5RWogHCJLGbacyuVtXaUmjiOb3SelsjqdN6eKC5xQaxp/i7bBkc8hKQ+HNRlTaEH0EZ+0WJQF0Q44/sZVHg01sNIUNACDv7KRFMhinLVlI35/qkL9g2yktdL82yHcAOdgzxWNs/JPHzSvtfTs1pGhDJgHaddKLBh5HZyBqaKh8haYJpEE6COjaVKd8c4gToIZMjwSzKANtJbEMgbxMYRJV3Ue7xdJpQMGayBVNMlTPRU4VqEUboZ4HyyXzHQB5SwWRaoTYAUBGkLvAtJqRuQl/DhNfjazMMiWokqMjGTQxHCDCs2d9Pjrmy+hzJTvv4By2AAAAABJRU5ErkJggg==');
+    background-size: 16px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 50%;
+
+    -webkit-animation-name: rotateThis;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotateThis {
+    from {
+        -webkit-transform:rotate(0deg)
     }
-
-    .chat {
-        color: #ff0;
-    }
-
-    .mychat {
-        color: #fff;
-    }
-
-    .kill {
-        color: #fa6;
-    }
-
-    .bomb {
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0 5px;
+    to {
+        -webkit-transform:rotate(360deg)
     }
 }
+
 
 a {
     color: #f60;
@@ -58,170 +53,8 @@ a:hover {
     color: #fff;
 }
 
-#game {
-    position: absolute;
-    left: 50%;
-    top: 60px;
 
-    @include box-shadow(#000 0px 3px 20px);
-}
+@import "lobby";
 
-#console {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 10px;
-    border-top: solid 1px #6af;
-    background:  #04a;
-    z-index: 1000;
+@import "game";
 
-    @include box-shadow(#000 0px -3px 20px);
-}
-
-#score-table {
-    padding: 12px;
-    font: 13px Arial;
-    background: black;
-    border-bottom: solid 1px #4A4;
-
-    .score-item {
-        display: inline-block;
-        margin: 0 10px;
-        color: #aaa;
-        vertical-align: top;
-
-        .player {
-            display: inline-block;
-            margin-right: 3px;
-        }
-
-        .score {
-            display: inline-block;
-            font-size: 15px;
-            padding: 2px 10px;
-            @include border-radius(10px);
-        }
-
-        .lag {
-            display: block;
-            position: relative;
-            height: 3px;
-            width: 0;
-            margin: 5px;
-            background-color: #0f0;
-            background-image: url('/res/lagbar.png');
-            background-position: left;
-        }
-    }
-
-    .score-item.color-mary  .score { background: #a00;   color: #fd6; }
-    .score-item.color-john  .score { background: #fff;   color: #33f; }
-    .score-item.color-joe   .score { background: #333;   color: #0f0; border: solid 1px #0f0; padding: 0 8px; }
-    .score-item.color-betty .score { background: #05e;   color: #ffa; }
-}
-
-#waitserver {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    text-align: center;
-    line-height: 100px;
-    color: #fff;
-    opacity: 0.5;
-}
-
-#chatbox {
-    width: 90%;
-    font-size: 14px;
-    border: none;
-    padding: 10px;
-    background: #04a;
-    color: #888;
-}
-
-#chatbox:focus {
-    border: none;
-    color:  #fff;
-    outline: none;
-}
-
-
-
-#footer {
-    position: fixed;
-    bottom: 0;
-    background: #000;
-    width: 100%;
-    padding: 10px;
-    font-size: 13px;
-    line-height: 20px;
-    color: #aaa;
-    z-order: -100;
-    
-    a { color: #fff; }
-}
-
-
-
-#welcome {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #273;
-
-    #form {
-        background: #384;
-        position: absolute;
-        font-size: 20px;
-        width: 300px;
-        left: 50%;
-        margin-left: -150px;
-        top: 10%;
-        padding: 30px;
-
-        @include border-radius(24px);
-        @include box-shadow(#051, 0, 0, 30px);
-
-        p {
-            color: #051;
-            margin-bottom: 20px;
-        }
-    
-        input {
-            background: #273;
-            border: none;
-            font-size: 24px;
-            color: yellow;
-            border-bottom: solid 1px yellow;
-            padding: 10px;
-            width: 210px;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-        button {
-            background-color: #384;
-            border: none;
-            color: yellow;
-            font-size: 20px;
-            padding: 10px 20px;
-            @include border-radius(16px);
-        }
-
-        button:hover {
-            background-color: yellow;
-            color: #384;
-        }
-
-        button:disabled {
-            color: #384;
-        }
-
-    }
-
-}
