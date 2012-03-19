@@ -151,7 +151,7 @@ define([
 
     var friendChallengeTemplate = _.template(
         '<div class="friend">' +
-            '<img class="icon" src="http://graph.facebook.com/<%= uid %>/picture?type=square"/>' +
+            '<img class="icon" src="' +window.location.protocol+ '//graph.facebook.com/<%= uid %>/picture?type=square"/>' +
             '<div class="who"><%= name %></div>'+
         '</div>'
     );
