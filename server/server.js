@@ -22,7 +22,7 @@ var https = express.createServer({
 //_______________________________________________________________
 // IO
 
-var sio = require('socket.io').listen(http);
+var sio = require('socket.io').listen(https);
 //io.set('transports', ['websocket','flashsocket','htmlfile','xhr-polling','jsonp-polling']);
 
 var redis = require("redis").createClient();
@@ -65,7 +65,10 @@ var server = require("./game/server");
 var s = new Server({io: sio, redis: redis});
 
 
-register(http);
+//register(http);
+http.get('*',function(req,res){
+    res.redirect('https://www.playshortfuse.com'+req.url);
+})
 http.listen(8000);
 
 register(https);

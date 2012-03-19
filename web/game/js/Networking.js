@@ -19,7 +19,7 @@ define([
 
             this.world.placeBombs.on('add', this.requestPlaceBomb, this);
 
-            this.socket = io.connect('/' + opt.game);
+            this.socket = io.connect('/' + opt.game, {secure: true});
 
             this.socket.on('disconnect', $.proxy(this.onDisconnect, this));
 
