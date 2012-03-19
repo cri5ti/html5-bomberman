@@ -118,6 +118,17 @@ define([
                     });
                 });
 
+            $("#multi-challenge").click(function() {
+                var item = $(this);
+
+                // FIXME DRY as above (except :to)
+                FB.ui( {
+                    method: 'apprequests',
+                    title: 'Challenge friend',
+                    message: 'You have been challenged to a game of Short Fuse! Do you think you can handle it?',
+                });
+            });
+
             _.defer(_.bind(this.refreshFriends, this));
             setInterval(_.bind(this.refreshFriends, this), 30000);
         },

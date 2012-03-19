@@ -1,4 +1,4 @@
-/* line 17, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 20, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
   line-height: 1;
 }
 
-/* line 22, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 24, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 101, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 114, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 114, /Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -119,7 +119,7 @@ a:hover {
   color: #fff;
 }
 
-/* line 11, ../sass/lobby.scss */
+/* line 11, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby {
   width: 600px;
   margin: 50px auto;
@@ -127,31 +127,31 @@ a:hover {
   font-size: 18px;
   color: #051;
 }
-/* line 20, ../sass/lobby.scss */
+/* line 20, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .left {
   display: inline-block;
   vertical-align: top;
   width: 325px;
 }
-/* line 26, ../sass/lobby.scss */
+/* line 26, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .right {
   display: inline-block;
   vertical-align: top;
   margin-left: -40px;
 }
-/* line 32, ../sass/lobby.scss */
+/* line 32, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .logo {
   margin: 0 30px 30px 30px;
 }
-/* line 36, ../sass/lobby.scss */
+/* line 36, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby p {
   margin-bottom: 5px;
 }
-/* line 38, ../sass/lobby.scss */
+/* line 38, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby section {
   margin: 15px;
 }
-/* line 40, ../sass/lobby.scss */
+/* line 40, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .player {
   -moz-border-radius: 24px;
   -webkit-border-radius: 24px;
@@ -166,7 +166,7 @@ a:hover {
   background: #273;
   padding: 5px;
 }
-/* line 43, ../sass/lobby.scss */
+/* line 43, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .player #userpic {
   display: inline-block;
   vertical-align: bottom;
@@ -174,7 +174,7 @@ a:hover {
   height: 50px;
   margin-left: -50px;
 }
-/* line 50, ../sass/lobby.scss */
+/* line 50, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .player #userpic img {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -187,7 +187,7 @@ a:hover {
   -o-box-shadow: black 0 1px 6px;
   box-shadow: black 0 1px 6px;
 }
-/* line 56, ../sass/lobby.scss */
+/* line 56, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .player input {
   background: #205f20;
   border: none;
@@ -202,11 +202,11 @@ a:hover {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 66, ../sass/lobby.scss */
+/* line 66, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .player input:focus {
   outline: none;
 }
-/* line 73, ../sass/lobby.scss */
+/* line 73, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select li {
   margin: 5px;
   display: inline-block;
@@ -220,65 +220,65 @@ a:hover {
   border-radius: 5px;
   opacity: 0.5;
 }
-/* line 81, ../sass/lobby.scss */
+/* line 81, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select li:hover {
   background-color: #5b7;
 }
-/* line 82, ../sass/lobby.scss */
+/* line 82, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select li.selected {
   background-color: #5b7;
   opacity: 1;
 }
-/* line 84, ../sass/lobby.scss */
+/* line 84, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select li div {
   width: 22px;
   height: 22px;
   background-position: -22px 0;
 }
-/* line 90, ../sass/lobby.scss */
+/* line 90, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .john {
   background-image: url("/res/char-john.png");
 }
-/* line 91, ../sass/lobby.scss */
+/* line 91, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .joe {
   background-image: url("/res/char-joe.png");
 }
-/* line 92, ../sass/lobby.scss */
+/* line 92, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .betty {
   background-image: url("/res/char-betty.png");
 }
-/* line 93, ../sass/lobby.scss */
+/* line 93, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .mary {
   background-image: url("/res/char-mary.png");
 }
-/* line 95, ../sass/lobby.scss */
+/* line 95, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .frame0 .selected div {
   background-position: 0 0;
 }
-/* line 96, ../sass/lobby.scss */
+/* line 96, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .frame1 .selected div {
   background-position: -22px 0;
 }
-/* line 97, ../sass/lobby.scss */
+/* line 97, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .frame2 .selected div {
   background-position: -44px 0;
 }
-/* line 98, ../sass/lobby.scss */
+/* line 98, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .frame3 .selected div {
   background-position: -22px 0;
 }
-/* line 102, ../sass/lobby.scss */
+/* line 102, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby #facebook-login p {
   font-size: 12px;
   white-space: normal;
   line-height: 15px;
   color: #8fa;
 }
-/* line 108, ../sass/lobby.scss */
+/* line 108, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby #facebook-login a {
   color: #afa;
 }
-/* line 111, ../sass/lobby.scss */
+/* line 111, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games {
   -moz-border-radius: 24px;
   -webkit-border-radius: 24px;
@@ -294,12 +294,12 @@ a:hover {
   padding: 5px;
   padding: 20px;
 }
-/* line 115, ../sass/lobby.scss */
+/* line 115, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games #games-list {
   min-width: 258px;
   min-height: 300px;
 }
-/* line 120, ../sass/lobby.scss */
+/* line 120, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode {
   position: relative;
   width: 256px;
@@ -308,18 +308,18 @@ a:hover {
   border: solid 1px #000;
   margin-top: 10px;
 }
-/* line 130, ../sass/lobby.scss */
+/* line 130, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode.free {
   background: url("/res/mode-arena.png");
 }
-/* line 132, ../sass/lobby.scss */
+/* line 132, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode.free:hover {
   -moz-box-shadow: yellow 0 0 30px 3px;
   -webkit-box-shadow: yellow 0 0 30px 3px;
   -o-box-shadow: yellow 0 0 30px 3px;
   box-shadow: yellow 0 0 30px 3px;
 }
-/* line 136, ../sass/lobby.scss */
+/* line 136, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode.future {
   background: #333;
   border: solid 1px #111;
@@ -335,7 +335,7 @@ a:hover {
   -khtml-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 147, ../sass/lobby.scss */
+/* line 147, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode .play {
   cursor: default;
   line-height: 128px;
@@ -358,7 +358,7 @@ a:hover {
   -o-transition-duration: 250ms;
   transition-duration: 250ms;
 }
-/* line 161, ../sass/lobby.scss */
+/* line 161, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode:hover .play {
   opacity: 1;
   -moz-transform: translateX(0);
@@ -367,7 +367,7 @@ a:hover {
   -ms-transform: translateX(0);
   transform: translateX(0);
 }
-/* line 167, ../sass/lobby.scss */
+/* line 167, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .counter {
   position: absolute;
   background: #a00;
@@ -387,7 +387,7 @@ a:hover {
   -o-box-shadow: black 0 1px 5px;
   box-shadow: black 0 1px 5px;
 }
-/* line 179, ../sass/lobby.scss */
+/* line 179, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games label {
   position: absolute;
   color: #fff;
@@ -400,28 +400,28 @@ a:hover {
   color: #000;
   text-shadow: white 0 1px 5px;
 }
-/* line 193, ../sass/lobby.scss */
+/* line 193, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode:first-child {
   margin-top: 0;
 }
 
-/* line 201, ../sass/lobby.scss */
+/* line 201, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 article {
   margin: 40px 10px;
   color: #132;
 }
-/* line 205, ../sass/lobby.scss */
+/* line 205, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 article header {
   font-size: 16px;
   margin: 10px 0;
   font-weight: bold;
 }
-/* line 207, ../sass/lobby.scss */
+/* line 207, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 article p {
   font-size: 13px;
 }
 
-/* line 212, ../sass/lobby.scss */
+/* line 212, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 footer {
   background: #373;
   width: 100%;
@@ -435,12 +435,12 @@ footer {
   right: 0;
   box-sizing: border-box;
 }
-/* line 225, ../sass/lobby.scss */
+/* line 225, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 footer a {
   color: #4c4;
 }
 
-/* line 7, ../sass/game.scss */
+/* line 7, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #view {
   position: absolute;
   -moz-box-shadow: black 0px 3px 20px;
@@ -448,7 +448,7 @@ footer a {
   -o-box-shadow: black 0px 3px 20px;
   box-shadow: black 0px 3px 20px;
 }
-/* line 13, ../sass/game.scss */
+/* line 13, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #waitserver {
   position: absolute;
   top: 0;
@@ -461,7 +461,7 @@ footer a {
   color: #fff;
   opacity: 0.5;
 }
-/* line 26, ../sass/game.scss */
+/* line 26, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table {
   position: fixed;
   left: 0;
@@ -473,47 +473,47 @@ footer a {
   background: black;
   border-right: solid 1px #4A4;
 }
-/* line 39, ../sass/game.scss */
+/* line 39, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table section {
   margin-bottom: 20px;
 }
-/* line 42, ../sass/game.scss */
+/* line 42, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table section header {
   color: #555;
   text-transform: uppercase;
   margin: 5px;
 }
-/* line 49, ../sass/game.scss */
+/* line 49, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section {
   display: none;
 }
-/* line 52, ../sass/game.scss */
+/* line 52, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .icon img {
   width: 25px;
   height: 25px;
 }
-/* line 54, ../sass/game.scss */
+/* line 54, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .icon1 {
   float: left;
 }
-/* line 55, ../sass/game.scss */
+/* line 55, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .icon2 {
   float: right;
 }
-/* line 56, ../sass/game.scss */
+/* line 56, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .vs {
   color: #666;
 }
-/* line 58, ../sass/game.scss */
+/* line 58, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .score {
   padding: 2px 5px;
 }
-/* line 61, ../sass/game.scss */
+/* line 61, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .score.high {
   color: #000;
   background: #fff;
 }
-/* line 67, ../sass/game.scss */
+/* line 67, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .score-item {
   display: block;
   clear: both;
@@ -524,34 +524,38 @@ footer a {
   text-align: center;
   line-height: 25px;
 }
-/* line 77, ../sass/game.scss */
+/* line 77, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #challenges-section .score-item:first-child {
   border-top: none;
 }
-/* line 81, ../sass/game.scss */
+/* line 81, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #friends-section {
   display: none;
 }
-/* line 84, ../sass/game.scss */
+/* line 84, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #friends-section .friend {
   color: #999;
 }
-/* line 85, ../sass/game.scss */
+/* line 85, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #friends-section .friend img {
   width: 25px;
   height: 25px;
   margin: 5px 10px;
   vertical-align: middle;
 }
-/* line 91, ../sass/game.scss */
+/* line 91, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #friends-section .friend .who {
   display: inline-block;
 }
-/* line 92, ../sass/game.scss */
+/* line 92, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #friends-section .friend .challenge {
   display: inline-block;
 }
-/* line 97, ../sass/game.scss */
+/* line 93, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
+#game #score-table #friends-section .friend .challenged {
+  color: #555;
+}
+/* line 98, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #scores-section .score-item {
   clear: both;
   display: block;
@@ -560,7 +564,7 @@ footer a {
   vertical-align: top;
   border-top: solid 1px #222;
 }
-/* line 105, ../sass/game.scss */
+/* line 106, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #scores-section .score-item .icon {
   width: 25px;
   height: 25px;
@@ -568,18 +572,18 @@ footer a {
   vertical-align: middle;
   float: left;
 }
-/* line 113, ../sass/game.scss */
+/* line 114, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #scores-section .score-item img {
   width: 25px;
   height: 25px;
 }
-/* line 115, ../sass/game.scss */
+/* line 116, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #scores-section .score-item .player {
   display: inline-block;
   margin-right: 3px;
   max-width: 85px;
 }
-/* line 121, ../sass/game.scss */
+/* line 122, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #scores-section .score-item .score {
   float: right;
   display: inline-block;
@@ -592,7 +596,7 @@ footer a {
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 129, ../sass/game.scss */
+/* line 130, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table #scores-section .score-item .lag {
   display: block;
   height: 3px;
@@ -602,33 +606,33 @@ footer a {
   background-image: url("/res/lagbar.png");
   background-position: left;
 }
-/* line 141, ../sass/game.scss */
+/* line 142, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table .score-item:first-child {
   border-top: none;
 }
-/* line 145, ../sass/game.scss */
+/* line 146, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table .score-item.color-mary .score {
   background: #a00;
   color: #fd6;
 }
-/* line 146, ../sass/game.scss */
+/* line 147, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table .score-item.color-john .score {
   background: #fff;
   color: #33f;
 }
-/* line 147, ../sass/game.scss */
+/* line 148, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table .score-item.color-joe .score {
   background: #333;
   color: #0f0;
   border: solid 1px #0f0;
   padding: 0 8px;
 }
-/* line 148, ../sass/game.scss */
+/* line 149, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #score-table .score-item.color-betty .score {
   background: #05e;
   color: #ffa;
 }
-/* line 154, ../sass/game.scss */
+/* line 155, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chat {
   position: fixed;
   bottom: 0;
@@ -641,29 +645,29 @@ footer a {
   padding: 10px;
   overflow-y: scroll;
 }
-/* line 168, ../sass/game.scss */
+/* line 169, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chat .info {
   color: #000;
 }
-/* line 172, ../sass/game.scss */
+/* line 173, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chat .chat {
   color: #ff0;
 }
-/* line 176, ../sass/game.scss */
+/* line 177, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chat .mychat {
   color: #fff;
 }
-/* line 180, ../sass/game.scss */
+/* line 181, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chat .kill {
   color: #fa6;
 }
-/* line 184, ../sass/game.scss */
+/* line 185, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chat .bomb {
   display: inline-block;
   vertical-align: middle;
   margin: 0 5px;
 }
-/* line 191, ../sass/game.scss */
+/* line 192, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #console {
   position: fixed;
   bottom: 0;
@@ -677,7 +681,7 @@ footer a {
   -o-box-shadow: black 0px -3px 20px;
   box-shadow: black 0px -3px 20px;
 }
-/* line 203, ../sass/game.scss */
+/* line 204, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chatbox {
   width: 90%;
   font-size: 14px;
@@ -686,7 +690,7 @@ footer a {
   background: #04a;
   color: #888;
 }
-/* line 212, ../sass/game.scss */
+/* line 213, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
 #game #chatbox:focus {
   border: none;
   color: #fff;
