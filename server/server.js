@@ -68,10 +68,7 @@ var s = new Server({io: sio, redis: redis});
 register(http);
 http.listen(8000);
 
-https.use(function(req,res) {
-    res.redirect("http://playshortfuse.com");
-    res.end();
-});
+register(https);
 https.listen(8443);
 
 console.log("Server started.");
