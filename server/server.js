@@ -14,8 +14,8 @@ console.log("Working dir: ", dir);
 
 var http = express.createServer();
 var https = express.createServer({
-    key: fs.readFileSync(dir+"privatekey.pem"),
-    cert: fs.readFileSync(dir+"certificate.pem")
+    key: fs.readFileSync(dir+"privatekey.key"),
+    cert: fs.readFileSync(dir+"certificate.cer")
 });
 
 
@@ -39,12 +39,10 @@ var fb = require("./facebook/facebook").setup({
 
 var register = function (app) {
 
-//    app.use(express.cookieParser());
-//    app.use(express.logger());
-//    app.use(express.session({ secret: "raging bull" }));
     app.use(express.bodyParser());
 
     app.use("/", fb.auth( { redirectUrl: "http://apps.facebook.com/shortfuse/" } ));
+
     app.post("/", function(req,res,next) {
         res.redirect(req.url);
     });
