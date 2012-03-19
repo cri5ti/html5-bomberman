@@ -45,7 +45,8 @@ var register = function (app) {
 
     app.use(express.bodyParser());
 
-    app.use("/", fb.auth( { redirectUrl: "https://apps.facebook.com/shortfuse/" } ));
+//    app.use("/", fb.auth( { redirectUrl: "https://apps.facebook.com/shortfuse/" } ));
+    app.use("/", fb.auth( { redirectUrl: "https://www.playshortfuse.com/" } ));
 
     app.post("/", function(req,res,next) {
         res.redirect(req.url);
