@@ -113,7 +113,11 @@
 #game #score-table #friends-section .friend .challenged {
   color: #555;
 }
-/* line 98, ../sass/game.scss */
+/* line 94, ../sass/game.scss */
+#game #score-table #friends-section .friend #multi-challenge {
+  color: #aaa;
+}
+/* line 99, ../sass/game.scss */
 #game #score-table #scores-section .score-item {
   clear: both;
   display: block;
@@ -122,7 +126,7 @@
   vertical-align: top;
   border-top: solid 1px #222;
 }
-/* line 106, ../sass/game.scss */
+/* line 107, ../sass/game.scss */
 #game #score-table #scores-section .score-item .icon {
   width: 25px;
   height: 25px;
@@ -130,18 +134,18 @@
   vertical-align: middle;
   float: left;
 }
-/* line 114, ../sass/game.scss */
+/* line 115, ../sass/game.scss */
 #game #score-table #scores-section .score-item img {
   width: 25px;
   height: 25px;
 }
-/* line 116, ../sass/game.scss */
+/* line 117, ../sass/game.scss */
 #game #score-table #scores-section .score-item .player {
   display: inline-block;
   margin-right: 3px;
   max-width: 85px;
 }
-/* line 122, ../sass/game.scss */
+/* line 123, ../sass/game.scss */
 #game #score-table #scores-section .score-item .score {
   float: right;
   display: inline-block;
@@ -154,7 +158,7 @@
   -khtml-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 130, ../sass/game.scss */
+/* line 131, ../sass/game.scss */
 #game #score-table #scores-section .score-item .lag {
   display: block;
   height: 3px;
@@ -164,33 +168,33 @@
   background-image: url("/res/lagbar.png");
   background-position: left;
 }
-/* line 142, ../sass/game.scss */
+/* line 143, ../sass/game.scss */
 #game #score-table .score-item:first-child {
   border-top: none;
 }
-/* line 146, ../sass/game.scss */
+/* line 147, ../sass/game.scss */
 #game #score-table .score-item.color-mary .score {
   background: #a00;
   color: #fd6;
 }
-/* line 147, ../sass/game.scss */
+/* line 148, ../sass/game.scss */
 #game #score-table .score-item.color-john .score {
   background: #fff;
   color: #33f;
 }
-/* line 148, ../sass/game.scss */
+/* line 149, ../sass/game.scss */
 #game #score-table .score-item.color-joe .score {
   background: #333;
   color: #0f0;
   border: solid 1px #0f0;
   padding: 0 8px;
 }
-/* line 149, ../sass/game.scss */
+/* line 150, ../sass/game.scss */
 #game #score-table .score-item.color-betty .score {
   background: #05e;
   color: #ffa;
 }
-/* line 155, ../sass/game.scss */
+/* line 156, ../sass/game.scss */
 #game #chat {
   position: fixed;
   bottom: 0;
@@ -203,29 +207,29 @@
   padding: 10px;
   overflow-y: scroll;
 }
-/* line 169, ../sass/game.scss */
+/* line 170, ../sass/game.scss */
 #game #chat .info {
   color: #000;
 }
-/* line 173, ../sass/game.scss */
+/* line 174, ../sass/game.scss */
 #game #chat .chat {
   color: #ff0;
 }
-/* line 177, ../sass/game.scss */
+/* line 178, ../sass/game.scss */
 #game #chat .mychat {
   color: #fff;
 }
-/* line 181, ../sass/game.scss */
+/* line 182, ../sass/game.scss */
 #game #chat .kill {
   color: #fa6;
 }
-/* line 185, ../sass/game.scss */
+/* line 186, ../sass/game.scss */
 #game #chat .bomb {
   display: inline-block;
   vertical-align: middle;
   margin: 0 5px;
 }
-/* line 192, ../sass/game.scss */
+/* line 193, ../sass/game.scss */
 #game #console {
   position: fixed;
   bottom: 0;
@@ -239,7 +243,7 @@
   -o-box-shadow: black 0px -3px 20px;
   box-shadow: black 0px -3px 20px;
 }
-/* line 204, ../sass/game.scss */
+/* line 205, ../sass/game.scss */
 #game #chatbox {
   width: 90%;
   font-size: 14px;
@@ -248,7 +252,7 @@
   background: #04a;
   color: #888;
 }
-/* line 213, ../sass/game.scss */
+/* line 214, ../sass/game.scss */
 #game #chatbox:focus {
   border: none;
   color: #fff;
