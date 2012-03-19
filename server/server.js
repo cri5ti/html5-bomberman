@@ -14,8 +14,9 @@ console.log("Working dir: ", dir);
 
 var http = express.createServer();
 var https = express.createServer({
-    key: fs.readFileSync(dir+"privatekey.key"),
-    cert: fs.readFileSync(dir+"certificate.cer")
+    ca: fs.readFileSync(dir + "ca-bundle"),
+    key: fs.readFileSync(dir + "privatekey.key"),
+    cert: fs.readFileSync(dir + "certificate.cer")
 });
 
 
