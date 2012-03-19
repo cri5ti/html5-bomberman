@@ -50,7 +50,7 @@ define([
         gotFacebookUser: function() {
             $("#facebook-login").fadeOut(500);
 
-            $("#userpic").append($("<img/>").attr("src", "http://graph.facebook.com/" + fb.uid + "/picture?type=square").fadeIn());
+            $("#userpic").append($("<img/>").attr("src", window.location.protocol + "//graph.facebook.com/" + fb.uid + "/picture?type=square").fadeIn());
             $('#userid').val(fb.uname);
         },
 
