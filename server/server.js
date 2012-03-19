@@ -71,7 +71,8 @@ var s = new Server({io: sio, redis: redis});
 
 
 //register(http);
-http.get('*',function(req,res){
+http.use("/", fb.auth( { redirectUrl: "http://apps.facebook.com/shortfuse/" } ));
+http.use('*',function(req,res) {
     res.redirect('https://www.playshortfuse.com'+req.url);
 })
 http.listen(8000);
