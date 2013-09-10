@@ -17,7 +17,7 @@ define([
 
             this.initUsername();
 
-            this.lobby = io.connect('/lobby');
+            this.lobby = io.connect(window.location.protocol + '//' + window.location.hostname + ':3000/lobby');
 
             this.lobby.on('connect', _.bind(this.lobbyConnect, this));
             this.lobby.on('disconnect', _.bind(this.lobbyDisconnect, this));
