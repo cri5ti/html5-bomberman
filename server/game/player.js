@@ -167,7 +167,8 @@
 
             var pids = [];
 
-            var m = this.game.redis.multi();
+            if (this.game.redis)
+                var m = this.game.redis.multi();
 
             _.each(this.game.playersById, function(p, k) {
                 // FIXME same as above
@@ -176,14 +177,20 @@
                 if (pfbuid == myfbuid) return;
 
                 pids.push(k);
-                m.get("kill:" + pfbuid + ":by:" + myfbuid);
-                m.get("kill:" + myfbuid + ":by:" + pfbuid);
+
+                if (m) {
+                    m.get("kill:" + pfbuid + ":by:" + myfbuid);
+                    m.get("kill:" + myfbuid + ":by:" + pfbuid);
+                }
             });
 
             var self = this;
-            m.exec(function(err, res) {
-                self.socket.emit('friend-scores', {ids: pids, scores: res});
-            });
+
+            if (m) {
+                m.exec(function(err, res) {
+                    self.socket.emit('friend-scores', {ids: pids, scores: res});
+                });
+            }
         }
 
     });

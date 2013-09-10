@@ -5,7 +5,7 @@
     "node": "0.6.x"
   },
   "dependencies": {
-    "express": "2.5.8",
+    "express": "~3.3.8",
 	"backbone": "0.9.1",
 	"requirejs": "1.0.7",
 	"socket.io": "0.9.0",

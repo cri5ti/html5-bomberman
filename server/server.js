@@ -1,88 +1,35 @@
 
-var express = require("express"),
-    fs = require("fs");
+var express = require("express");
+var app = express();
 
-//var auth= require('connect-auth');
-
-
-var dir = __dirname + "/";
-
-console.log("Working dir: ", dir);
-
-//_______________________________________________________________
-// HTTP + HTTPS
-
-var http = express.createServer();
-var https = express.createServer({
-    ca: [
-            fs.readFileSync(dir + "ca.pem"),
-            fs.readFileSync(dir + "sub.class1.server.ca.pem")
-        ],
-    key: fs.readFileSync(dir + "privatekey.key"),
-    cert: fs.readFileSync(dir + "certificate.cer")
-});
+var server = require('http').Server(app);
+var socketio = require('socket.io').listen(server);
+//socketio.set('transports', ['websocket','flashsocket','htmlfile','xhr-polling','jsonp-polling']);
 
 
-//_______________________________________________________________
-// IO
-
-var sio = require('socket.io').listen(https);
-//io.set('transports', ['websocket','flashsocket','htmlfile','xhr-polling','jsonp-polling']);
-
-var redis = require("redis").createClient();
-
+var redis = null;
+if (!process.env.SHORTFUSE_LIGHT)
+     redis = require("redis").createClient();
 
 /////////////
 
-const fbCallbackAddress= "http://localhost:8000/";
-
-var fb = require("./facebook/facebook").setup({
-    appId: "209351425839638",
-    appSecret: "f96d4be66d931678b7c5f12ee02e8db4"
-});
-
-var register = function (app) {
-
-    app.use(express.bodyParser());
-
-    app.use("/", fb.auth( { redirectUrl: "https://apps.facebook.com/shortfuse/" } ));
-//    app.use("/", fb.auth( { redirectUrl: "https://www.playshortfuse.com/" } ));
-
-    app.post("/", function(req,res,next) {
-        res.redirect(req.url);
-    });
-
-    app.get("/fb/static/", express.static("web/facebook/static/", {maxAge: 60*60*24*365}))
-    app.use("/fb/", express.static("web/facebook/"));
-
-    // game
-    app.use(express.static("web/game/"));
-
-    // monitor
-    app.use("/monitor/", express.static("web/monitor/"));
-};
 
 global.counters = {};
-var monitor = require("./monitor.js").start({io: sio, redis: redis});
+var monitor = require("./monitor.js").start({io: socketio, redis: redis});
 
-var server = require("./game/server");
+var Server = require("./game/server");
 
-var s = new Server({io: sio, redis: redis});
-
-
-//register(http);
-http.use("/", fb.auth( { redirectUrl: "http://apps.facebook.com/shortfuse/" } ));
-http.post("/", function(req,res,next) {
-    res.redirect(req.url);
-});
-http.get('*',function(req,res) {
-    res.redirect('https://www.playshortfuse.com'+req.url);
-})
-http.listen(8000);
-
-register(https);
-https.listen(8443);
-
-console.log("Server started.");
+new Server({io: socketio, redis: redis});
 
 
+app.use(express.bodyParser());
+
+// game
+app.use(express.static(__dirname + "/../web/game/"));
+
+// monitor
+app.use("/monitor/", express.static(__dirname + "/../web/monitor/"));
+
+server.listen(3000);
+
+module.exports = app;

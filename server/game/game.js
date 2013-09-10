@@ -140,15 +140,18 @@
             var who = this.playersById[whoId];
             if (!who) return;
 
-            this.redis.incr("counters.kills");
+            if (this.redis)
+                this.redis.incr("counters.kills");
 
             if (whoId == byWhoId) { // suicide
                 console.log(who.get('name') + " suicided");
                 who.set('score', who.get('score') - 1);
 
-                this.redis.incr("counters.kills.suicides");
+                if (this.redis) {
+                    this.redis.incr("counters.kills.suicides");
+                    this.redis.incr("suicides-by:" + whoId);
+                }
 
-                this.redis.incr("suicides-by:" + whoId);
             } else {
                 var byWho = this.playersById[byWhoId];
                 if (!byWho) return;
@@ -156,12 +159,13 @@
                 console.log(who.get('name') + " was killed by " + byWho.get('name'));
                 byWho.set('score', byWho.get('score') + 1);
 
-                this.redis.incr("counters.kills.kills");
+                if (this.redis) {
+                    this.redis.incr("counters.kills.kills");
+                    this.redis.incr("kills-by:" + byWhoId);
 
-                this.redis.incr("kills-by:" + byWhoId);
-
-                if (who.get('fbuid')>0 && byWho.get('fbuid') > 0)
-                    this.redis.incr("kill:" + who.get('fbuid') + ":by:" + byWho.get('fbuid'));
+                    if (who.get('fbuid')>0 && byWho.get('fbuid') > 0)
+                        this.redis.incr("kill:" + who.get('fbuid') + ":by:" + byWho.get('fbuid'));
+                }
 
                 this.ctrlsById[whoId].notifyFriendBattles();
                 this.ctrlsById[byWhoId].notifyFriendBattles();

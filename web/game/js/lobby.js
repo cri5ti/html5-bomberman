@@ -4,10 +4,10 @@ define([
     "jquery", "underscore", "backbone",
 
     "text!../html/lobby.html",
-    "facebook",
+//    "facebook",
 
     "Game"
-], function($, _, Backbone, tpl, fb) {
+], function($, _, Backbone, tpl) {
 
 
     LobbyView = Backbone.View.extend({
@@ -24,10 +24,10 @@ define([
 
             this.lobby.on('list-games', _.bind(this.onGamesList, this));
 
-            fb.on("auth", _.bind(this.gotFacebookUser, this));
-            fb.on("not-logged", function() {
-                $("#facebook-login").show();
-            });
+//            fb.on("auth", _.bind(this.gotFacebookUser, this));
+//            fb.on("not-logged", function() {
+//                $("#facebook-login").show();
+//            });
 
             var frame = 0;
             setInterval(function() {
@@ -117,7 +117,7 @@ define([
 
             new Game({
                 playerName: name,
-                fbuid: fb.uid,
+                // fbuid: fb.uid,
                 character: character,
                 game: game
             });

@@ -93,21 +93,22 @@ setInterval(function() {
 
     // redis stats
 
-    redis.multi()
-        .get("stats.last-start-time")
-        .get("counters.restarts")
-        .get("counters.joined-players")
-        .get("counters.kills")
-        .get("counters.kills.suicides")
-        .get("counters.kills.kills")
-        .exec(function(err, res) {
-            lastStats.lastStartTime     = res[0];
-            lastStats.restarts          = res[1];
-            lastStats.joinedPlayers     = res[2];
-            lastStats.kills             = res[3];
-            lastStats.killsSuicides     = res[4];
-            lastStats.killsKills        = res[5];
-        });
-
+    if (redis) {
+        redis.multi()
+            .get("stats.last-start-time")
+            .get("counters.restarts")
+            .get("counters.joined-players")
+            .get("counters.kills")
+            .get("counters.kills.suicides")
+            .get("counters.kills.kills")
+            .exec(function(err, res) {
+                lastStats.lastStartTime     = res[0];
+                lastStats.restarts          = res[1];
+                lastStats.joinedPlayers     = res[2];
+                lastStats.kills             = res[3];
+                lastStats.killsSuicides     = res[4];
+                lastStats.killsKills        = res[5];
+            });
+    }
 
 }, 3000);
