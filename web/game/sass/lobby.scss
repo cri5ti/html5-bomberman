@@ -87,10 +87,10 @@
             background-position: -22px 0;
         }
 
-        .john  { background-image: url('/res/char-john.png'); }
-        .joe   { background-image: url('/res/char-joe.png'); }
-        .betty { background-image: url('/res/char-betty.png'); }
-        .mary  { background-image: url('/res/char-mary.png'); }
+        .john  { background-image: url('res/char-john.png'); }
+        .joe   { background-image: url('res/char-joe.png'); }
+        .betty { background-image: url('res/char-betty.png'); }
+        .mary  { background-image: url('res/char-mary.png'); }
 
         .frame0 .selected div { background-position: 0 0; }
         .frame1 .selected div { background-position: -22px 0; }

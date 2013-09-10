@@ -116,19 +116,19 @@
 }
 /* line 90, ../sass/lobby.scss */
 #lobby .character-select .john {
-  background-image: url("/res/char-john.png");
+  background-image: url("res/char-john.png");
 }
 /* line 91, ../sass/lobby.scss */
 #lobby .character-select .joe {
-  background-image: url("/res/char-joe.png");
+  background-image: url("res/char-joe.png");
 }
 /* line 92, ../sass/lobby.scss */
 #lobby .character-select .betty {
-  background-image: url("/res/char-betty.png");
+  background-image: url("res/char-betty.png");
 }
 /* line 93, ../sass/lobby.scss */
 #lobby .character-select .mary {
-  background-image: url("/res/char-mary.png");
+  background-image: url("res/char-mary.png");
 }
 /* line 95, ../sass/lobby.scss */
 #lobby .character-select .frame0 .selected div {
