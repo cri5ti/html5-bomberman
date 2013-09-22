@@ -30,6 +30,6 @@ app.use(express.static(__dirname + "/../web/game/"));
 // monitor
 app.use("/monitor/", express.static(__dirname + "/../web/monitor/"));
 
-server.listen(3000);
+server.listen(8080);
 
 module.exports = app;
