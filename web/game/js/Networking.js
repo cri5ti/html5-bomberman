@@ -19,7 +19,8 @@ define([
 
             this.world.placeBombs.on('add', this.requestPlaceBomb, this);
 
-            this.socket = io.connect(window.location.protocol + '//' + window.location.hostname + ':3000/' + opt.game);
+            //this.socket = io.connect(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/' + opt.game);
+            this.socket = io.connect('/' + opt.game);
 
             this.socket.on('disconnect', $.proxy(this.onDisconnect, this));
 
