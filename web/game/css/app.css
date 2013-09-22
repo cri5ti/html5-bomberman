@@ -237,19 +237,19 @@ a:hover {
 }
 /* line 90, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .john {
-  background-image: url("res/char-john.png");
+  background-image: url("../res/char-john.png");
 }
 /* line 91, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .joe {
-  background-image: url("res/char-joe.png");
+  background-image: url("../res/char-joe.png");
 }
 /* line 92, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .betty {
-  background-image: url("res/char-betty.png");
+  background-image: url("../res/char-betty.png");
 }
 /* line 93, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .mary {
-  background-image: url("res/char-mary.png");
+  background-image: url("../res/char-mary.png");
 }
 /* line 95, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .character-select .frame0 .selected div {
@@ -310,7 +310,7 @@ a:hover {
 }
 /* line 130, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode.free {
-  background: url("res/mode-arena.png");
+  background: url("../res/mode-arena.png");
 }
 /* line 132, /Users/cristi/Desktop/websteer/guys/web/game/sass/lobby.scss */
 #lobby .games .game-mode.free:hover {
@@ -607,7 +607,7 @@ footer a {
   width: 0;
   margin: 5px 5px 5px 35px;
   background-color: #0f0;
-  background-image: url("res/lagbar.png");
+  background-image: url("../res/lagbar.png");
   background-position: left;
 }
 /* line 144, /Users/cristi/Desktop/websteer/guys/web/game/sass/game.scss */
