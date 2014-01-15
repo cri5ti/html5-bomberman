@@ -33,7 +33,7 @@ Install
 	
 * Start server
 
-		node server/server.js
+		node index.js
 		
 
 * Open a browser to `localhost:8080` and enjoy!
